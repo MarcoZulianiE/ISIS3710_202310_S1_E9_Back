@@ -8,9 +8,10 @@ import { ReseniaModule } from './resenia/resenia.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { NecesidadModule } from './necesidad/necesidad.module';
 import { EspecialidadModule } from './especialidad/especialidad.module';
+import { HorarioModule } from './horario/horario.module';
 
 @Module({
-  imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule,],
+  imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,],
   controllers: [AppController],
   providers: [AppService],
 })
