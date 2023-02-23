@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+/* eslint-disable prettier/prettier */
+import { UsuarioEntity } from 'src/usuario/usuario.entity';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class ReseniaEntity {
@@ -13,4 +15,10 @@ export class ReseniaEntity {
 
   @Column()
   descripcion: string;
+
+  @ManyToOne(() => UsuarioEntity, usuario => usuario.reseniasRecibidas)
+  receptor: UsuarioEntity;
+
+  @ManyToOne(() => UsuarioEntity, usuario => usuario.reseniasEscritas)
+  autor: UsuarioEntity;
 }
