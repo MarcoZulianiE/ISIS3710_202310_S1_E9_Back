@@ -26,7 +26,7 @@ export class OfertaEntity {
     contrato: ContratoEntity;
 
     @OneToMany( () => HorarioEntity, horario => horario.oferta)
-    horarios: HorarioEntity;
+    horarios: HorarioEntity[];
 }
 
 

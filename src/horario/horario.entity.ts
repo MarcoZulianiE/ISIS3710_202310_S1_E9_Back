@@ -1,5 +1,5 @@
 import { OfertaEntity } from "src/oferta/oferta.entity";
-import { Column, ColumnTypeUndefinedError, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, ColumnTypeUndefinedError, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 export class HorarioEntity {
     
@@ -16,6 +16,7 @@ export class HorarioEntity {
     dia: Dia;
 
     @ManyToOne( () => OfertaEntity, oferta => oferta.horarios)
+    @JoinColumn()
     oferta: OfertaEntity;
 }
 
