@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { EspecialidadEntity } from 'src/especialidad/especialidad.entity';
+import { NecesidadEntity } from 'src/necesidad/necesidad.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
 export class UsuarioEntity {
@@ -25,4 +27,10 @@ export class UsuarioEntity {
 
     @Column()
     tipoUsuario: string;
+
+    @OneToMany(() => NecesidadEntity, necesidad => necesidad.usuario)
+    necesidades: NecesidadEntity[];
+
+    @OneToMany(() => EspecialidadEntity, especialidad => especialidad.usuario)
+    especialidades: NecesidadEntity[];
 }

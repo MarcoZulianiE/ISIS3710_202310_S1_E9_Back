@@ -6,9 +6,11 @@ import { ContratoModule } from './contrato/contrato.module';
 import { OfertaModule } from './oferta/oferta.module';
 import { ReseniaModule } from './resenia/resenia.module';
 import { UsuarioModule } from './usuario/usuario.module';
+import { NecesidadModule } from './necesidad/necesidad.module';
+import { EspecialidadModule } from './especialidad/especialidad.module';
 
 @Module({
-  imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule,],
+  imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule,],
   controllers: [AppController],
   providers: [AppService],
 })
