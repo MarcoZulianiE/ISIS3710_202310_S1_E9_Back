@@ -3,7 +3,7 @@ import { UsuarioEntity } from 'src/usuario/usuario.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export default class AntecedenteEntity {
+export class AntecedenteEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

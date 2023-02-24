@@ -1,4 +1,5 @@
-import AntecedenteEntity from 'src/antecedente/antecedente.entity';
+
+import { AntecedenteEntity } from 'src/antecedente/antecedente.entity';
 import { EspecialidadEntity } from 'src/especialidad/especialidad.entity';
 import { NecesidadEntity } from 'src/necesidad/necesidad.entity';
 import { ReseniaEntity } from 'src/resenia/resenia.entity';

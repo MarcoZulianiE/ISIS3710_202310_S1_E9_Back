@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import AntecedenteEntity from './antecedente/antecedente.entity';
+
+import { AntecedenteEntity } from './antecedente/antecedente.entity';
 import { AntecedenteModule } from './antecedente/antecedente.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
