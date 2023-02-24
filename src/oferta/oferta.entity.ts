@@ -2,6 +2,7 @@ import { ContratoEntity } from "src/contrato/contrato.entity";
 import { HorarioEntity } from "src/horario/horario.entity";
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class OfertaEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;

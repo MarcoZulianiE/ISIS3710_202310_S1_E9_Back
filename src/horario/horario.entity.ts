@@ -1,16 +1,17 @@
 import { OfertaEntity } from "src/oferta/oferta.entity";
-import { Column, ColumnTypeUndefinedError, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
+@Entity()
 export class HorarioEntity {
     
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column()
-    horaInicio: Timestamp;
+    horaInicio: Date;
 
     @Column()
-    horaFin: Timestamp;
+    horaFin: Date;
 
     @Column()
     dia: Dia;
@@ -25,5 +26,7 @@ export enum Dia{
     "Martes",
     "Miercoles",
     "Jueves",
-    "Viernes"
+    "Viernes", 
+    "Sabado",
+    "Domingo"
 }

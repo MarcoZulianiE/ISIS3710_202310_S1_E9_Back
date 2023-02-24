@@ -1,6 +1,7 @@
 import { OfertaEntity } from "src/oferta/oferta.entity";
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class ContratoEntity {
 
     @PrimaryGeneratedColumn("uuid")

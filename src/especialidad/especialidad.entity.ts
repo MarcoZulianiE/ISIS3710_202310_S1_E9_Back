@@ -1,6 +1,7 @@
 import { UsuarioEntity } from "src/usuario/usuario.entity";
-import { Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class EspecialidadEntity {
     
     @PrimaryGeneratedColumn('uuid')
