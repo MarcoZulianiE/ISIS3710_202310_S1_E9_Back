@@ -8,7 +8,7 @@ export class NecesidadEntity {
     id: string;
 
     @Column()
-    tipo: Propiedad;
+    tipo: string;
 
     @Column()
     descripcion: string;
@@ -16,10 +16,4 @@ export class NecesidadEntity {
     @ManyToOne( () => UsuarioEntity, usuario => usuario.necesidades)
     usuario: UsuarioEntity;
 
-}
-
-export enum Propiedad {
-    "Educativa", 
-    "Salud",
-    "Comportamental"
 }

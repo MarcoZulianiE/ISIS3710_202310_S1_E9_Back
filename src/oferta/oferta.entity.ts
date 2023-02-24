@@ -14,7 +14,7 @@ export class OfertaEntity {
     disponible: boolean;
 
     @Column()
-    tipoOferta: TipoO;
+    tipoOferta: string;
 
     @Column()
     fechaInicio: Date;
@@ -28,10 +28,4 @@ export class OfertaEntity {
 
     @OneToMany( () => HorarioEntity, horario => horario.oferta)
     horarios: HorarioEntity[];
-}
-
-
-export enum TipoO {
-    "Canguro", 
-    "Acudiente",
 }

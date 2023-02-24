@@ -14,19 +14,9 @@ export class HorarioEntity {
     horaFin: Date;
 
     @Column()
-    dia: Dia;
+    dia: string;
 
     @ManyToOne( () => OfertaEntity, oferta => oferta.horarios)
     @JoinColumn()
     oferta: OfertaEntity;
-}
-
-export enum Dia{
-    "Lunes",
-    "Martes",
-    "Miercoles",
-    "Jueves",
-    "Viernes", 
-    "Sabado",
-    "Domingo"
 }

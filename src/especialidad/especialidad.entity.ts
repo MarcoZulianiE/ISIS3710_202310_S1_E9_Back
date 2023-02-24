@@ -8,17 +8,11 @@ export class EspecialidadEntity {
     id: string;
 
     @Column()
-    tipo: Propiedad;
+    tipo: string;
 
     @Column()
     descripcion: string;
 
     @ManyToOne( () => UsuarioEntity, usuario => usuario.especialidades)
     usuario: UsuarioEntity;
-}
-
-export enum Propiedad {
-    "Educativa", 
-    "Salud",
-    "Comportamental"
 }
