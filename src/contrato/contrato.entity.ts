@@ -1,5 +1,6 @@
 import { OfertaEntity } from "src/oferta/oferta.entity";
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { UsuarioEntity } from "src/usuario/usuario.entity";
+import { Column, Entity, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class ContratoEntity {
@@ -12,5 +13,8 @@ export class ContratoEntity {
 
     @OneToOne(()=> OfertaEntity, oferta => oferta.contrato)
     oferta: OfertaEntity;
+
+    @ManyToOne(() => UsuarioEntity, usuario => usuario.contratos)
+    usuario: UsuarioEntity;
 
 }

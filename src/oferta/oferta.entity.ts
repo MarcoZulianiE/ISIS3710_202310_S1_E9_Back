@@ -1,6 +1,7 @@
 import { ContratoEntity } from "src/contrato/contrato.entity";
 import { HorarioEntity } from "src/horario/horario.entity";
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { UsuarioEntity } from "src/usuario/usuario.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class OfertaEntity {
@@ -28,4 +29,7 @@ export class OfertaEntity {
 
     @OneToMany( () => HorarioEntity, horario => horario.oferta)
     horarios: HorarioEntity[];
+
+    @ManyToOne(() => UsuarioEntity, usuario => usuario.ofertas)
+    usuario: UsuarioEntity;
 }
