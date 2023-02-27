@@ -1,21 +1,22 @@
 /* eslint-disable prettier/prettier */
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AntecedenteEntity } from 'src/antecedente/antecedente.entity';
-import { ContratoEntity } from 'src/contrato/contrato.entity';
-import { EspecialidadEntity } from 'src/especialidad/especialidad.entity';
-import { HorarioEntity } from 'src/horario/horario.entity';
-import { NecesidadEntity } from 'src/necesidad/necesidad.entity';
-import { OfertaEntity } from 'src/oferta/oferta.entity';
-import { ReseniaEntity } from 'src/resenia/resenia.entity';
+import { AntecedenteEntity } from '../../antecedente/antecedente.entity';
+import { ContratoEntity } from '../../contrato/contrato.entity';
+import { EspecialidadEntity } from '../../especialidad/especialidad.entity';
+import { HorarioEntity } from '../../horario/horario.entity';
+import { NecesidadEntity } from '../../necesidad/necesidad.entity';
+import { OfertaEntity } from '../../oferta/oferta.entity';
+import { ReseniaEntity } from '../../resenia/resenia.entity';
+import { UsuarioEntity } from '../../usuario/usuario.entity';
 
 export const TypeOrmTestingConfig = () => [
   TypeOrmModule.forRoot({
     type: 'sqlite',
     database: ':memory:',
     dropSchema: true,
-    entities: [AntecedenteEntity, ContratoEntity, EspecialidadEntity, HorarioEntity, NecesidadEntity, OfertaEntity, ReseniaEntity],
+    entities: [AntecedenteEntity, ContratoEntity, EspecialidadEntity, HorarioEntity, NecesidadEntity, OfertaEntity, ReseniaEntity, UsuarioEntity],
     synchronize: true,
     keepConnectionAlive: true 
   }),
-  TypeOrmModule.forFeature([AntecedenteEntity, ContratoEntity, EspecialidadEntity, HorarioEntity, NecesidadEntity, OfertaEntity, ReseniaEntity]),
+  TypeOrmModule.forFeature([AntecedenteEntity, ContratoEntity, EspecialidadEntity, HorarioEntity, NecesidadEntity, OfertaEntity, ReseniaEntity, UsuarioEntity]),
 ];

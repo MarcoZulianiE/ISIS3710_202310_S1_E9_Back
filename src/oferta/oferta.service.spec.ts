@@ -6,7 +6,6 @@ import { OfertaEntity } from './oferta.entity';
 import { OfertaService } from './oferta.service';
 
 import { faker } from '@faker-js/faker';
-import { NotFoundError, async } from 'rxjs';
 import { NotFoundErrorMessage } from '../shared/errors/business-errors';
 
 describe('OfertaService', () => {
