@@ -8,11 +8,14 @@ import { NotFoundErrorMessage } from '../shared/errors/business-errors';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 
 import { faker } from '@faker-js/faker';
+import { OfertaEntity } from '../oferta/oferta.entity';
 
 describe('ContratoService', () => {
   let service: ContratoService;
   let repository: Repository<ContratoEntity>;
+  let ofertaRepository: Repository<OfertaEntity>;
   let contratoList: ContratoEntity[];
+  let oferta: OfertaEntity;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -22,6 +25,7 @@ describe('ContratoService', () => {
 
     service = module.get<ContratoService>(ContratoService);
     repository = module.get<Repository<ContratoEntity>>(getRepositoryToken(ContratoEntity));
+    ofertaRepository = module.get<Repository<OfertaEntity>>(getRepositoryToken(OfertaEntity));
 
     await seedDatabase();
 
@@ -37,6 +41,18 @@ describe('ContratoService', () => {
       });
       contratoList.push(contrato);
     }
+
+    oferta = await ofertaRepository.save({
+      id: "", 
+      precio: parseInt(faker.commerce.price(1000,100000, 0)),
+      disponible: faker.datatype.boolean(),
+      tipoOferta: faker.helpers.arrayElement(["canguro", "acudiente"]),
+      fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
+      fechaFin: faker.date.between("2020-01-01", "2020-12-31"), 
+      horarios: [],
+      usuario: null,
+      contrato:null,
+    })
     
   }
 
@@ -71,9 +87,7 @@ describe('ContratoService', () => {
       oferta: null,
     }
 
-          // TODO: ask about nulls
-
-    const newContrato: ContratoEntity = await service.create(contrato);
+    const newContrato: ContratoEntity = await service.create(oferta.id, contrato);
     expect(newContrato).not.toBeNull();
 
     const storedContrato: ContratoEntity = await repository.findOne({where: {id: newContrato.id}});
@@ -82,6 +96,17 @@ describe('ContratoService', () => {
     expect(storedContrato.id).toEqual(newContrato.id);
     expect(storedContrato.fecha).toEqual(newContrato.fecha);
 
+  });
+
+  it('create should throw an exception for an invalid oferta', async () => {
+    const contrato: ContratoEntity = {
+      id: "", 
+      fecha: faker.date.between('2015-01-01', '2020-12-31'),
+      usuario: null,
+      oferta: null,
+    }
+    
+    await expect(() => service.create("0", contrato)).rejects.toHaveProperty("message", NotFoundErrorMessage("oferta"));
   });
 
   it('update should modify a contrato', async () => {

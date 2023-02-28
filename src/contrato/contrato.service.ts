@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { OfertaEntity } from '../oferta/oferta.entity';
 import { BusinessError, BusinessLogicException, NotFoundErrorMessage } from '../shared/errors/business-errors';
 import { ContratoEntity } from './contrato.entity';
 
@@ -9,6 +10,8 @@ export class ContratoService {
     constructor(
         @InjectRepository(ContratoEntity)
         private readonly contratoRepository: Repository<ContratoEntity>,
+        @InjectRepository(OfertaEntity)
+        private readonly ofertaRepository: Repository<OfertaEntity>
     ){}
 
     async findAll(): Promise<ContratoEntity[]> {
@@ -22,7 +25,11 @@ export class ContratoService {
         return contrato;
     }
 
-    async create(contrato: ContratoEntity): Promise<ContratoEntity> {
+    async create(ofertatID: string, contrato: ContratoEntity): Promise<ContratoEntity> {
+        const oferta: OfertaEntity = await this.ofertaRepository.findOne({where: {id: ofertatID}});
+        if(!oferta)
+            throw new BusinessLogicException(NotFoundErrorMessage("oferta"), BusinessError.NOT_FOUND);
+        contrato.oferta = oferta;
         return await this.contratoRepository.save(contrato);
     }
 
