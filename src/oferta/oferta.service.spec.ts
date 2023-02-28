@@ -50,7 +50,7 @@ describe('OfertaService', () => {
     expect(ofertas).toHaveLength(ofertaList.length);
   });
 
-  it('findOne shoudl return an oferta by id', async () => {
+  it('findOne should return an oferta by id', async () => {
     const storedOferta: OfertaEntity = ofertaList[0];
     const oferta: OfertaEntity = await service.findOne(storedOferta.id);
 
@@ -71,14 +71,12 @@ describe('OfertaService', () => {
       id: "", 
       precio: parseInt(faker.commerce.price(1000,100000, 0)),
       disponible: faker.datatype.boolean(),
-      tipoOferta: faker.helpers.arrayElement(["canguro", "acudiente"]),
+      tipoOferta: faker.helpers.arrayElement(["kangaroo", "acudiente"]),
       fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
       fechaFin: faker.date.between("2020-01-01", "2020-12-31"), 
       horarios: [],
       usuario: null,
       contrato:null,
-
-      // TODO: ask about nulls
 
     }
 
@@ -93,6 +91,22 @@ describe('OfertaService', () => {
     expect(storedOferta.fechaInicio).toEqual(oferta.fechaInicio);
     expect(storedOferta.fechaFin).toEqual(oferta.fechaFin);
   
+  });
+
+  it('create should throw an exception for an invalid tipoOferta', async () => {
+    const oferta: OfertaEntity = {
+      id: "", 
+      precio: parseInt(faker.commerce.price(1000,100000, 0)),
+      disponible: faker.datatype.boolean(),
+      tipoOferta: "efectivo",
+      fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
+      fechaFin: faker.date.between("2020-01-01", "2020-12-31"), 
+      horarios: [],
+      usuario: null,
+      contrato:null,
+    }
+
+    await expect(() => service.create(oferta)).rejects.toHaveProperty("message", "El tipo de oferta debe ser 'kangaroo' o 'acudiente'");
   });
 
   it('update should modify an oferta',async () => {

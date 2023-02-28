@@ -25,6 +25,9 @@ export class OfertaService {
     }
 
     async create(oferta: OfertaEntity): Promise<OfertaEntity> {
+        if(oferta.tipoOferta.toLowerCase() != "kangaroo" && oferta.tipoOferta.toLowerCase() != "acudiente")
+            throw new BusinessLogicException("El tipo de oferta debe ser 'kangaroo' o 'acudiente'", BusinessError.PRECONDITION_FAILED);
+        
         return await this.ofertaRepository.save(oferta);
     }
 
