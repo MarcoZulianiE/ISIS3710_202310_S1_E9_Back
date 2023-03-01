@@ -19,6 +19,9 @@ import { ReseniaEntity } from './resenia/resenia.entity';
 import { ReseniaModule } from './resenia/resenia.module';
 import { UsuarioEntity } from './usuario/usuario.entity';
 import { UsuarioModule } from './usuario/usuario.module';
+import { OfertaHorarioService } from './oferta-horario/oferta-horario.service';
+import { OfertaHorarioModule } from './oferta-horario/oferta-horario.module';
+import { HorarioOfertaModule } from './horario-oferta/horario-oferta.module';
 
 @Module({
   imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,
@@ -33,8 +36,10 @@ import { UsuarioModule } from './usuario/usuario.module';
     dropSchema: true,
     synchronize: true,
     keepConnectionAlive: true
-  })],
+  }),
+  OfertaHorarioModule,
+  HorarioOfertaModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, OfertaHorarioService],
 })
 export class AppModule {}

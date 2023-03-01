@@ -28,7 +28,7 @@ export class OfertaHorarioService {
         return await this.ofertaRepository.save(oferta);
     }
 
-    async findHorarioByOfertaId(ofertaId: string, horarioId: string): Promise<HorarioEntity> {
+    async findHorarioByOfertaIdHorarioId(ofertaId: string, horarioId: string): Promise<HorarioEntity> {
         const horario: HorarioEntity = await this.horarioRepository.findOne({where: {id: horarioId}});
         if(!horario)
             throw new BusinessLogicException(NotFoundErrorMessage("horario"), BusinessError.NOT_FOUND);
