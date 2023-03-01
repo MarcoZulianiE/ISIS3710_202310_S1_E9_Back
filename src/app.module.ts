@@ -9,19 +9,18 @@ import { ContratoEntity } from './contrato/contrato.entity';
 import { ContratoModule } from './contrato/contrato.module';
 import { EspecialidadEntity } from './especialidad/especialidad.entity';
 import { EspecialidadModule } from './especialidad/especialidad.module';
+import { HorarioOfertaModule } from './horario-oferta/horario-oferta.module';
 import { HorarioEntity } from './horario/horario.entity';
 import { HorarioModule } from './horario/horario.module';
 import { NecesidadEntity } from './necesidad/necesidad.entity';
 import { NecesidadModule } from './necesidad/necesidad.module';
+import { OfertaHorarioModule } from './oferta-horario/oferta-horario.module';
 import { OfertaEntity } from './oferta/oferta.entity';
 import { OfertaModule } from './oferta/oferta.module';
 import { ReseniaEntity } from './resenia/resenia.entity';
 import { ReseniaModule } from './resenia/resenia.module';
 import { UsuarioEntity } from './usuario/usuario.entity';
 import { UsuarioModule } from './usuario/usuario.module';
-import { OfertaHorarioService } from './oferta-horario/oferta-horario.service';
-import { OfertaHorarioModule } from './oferta-horario/oferta-horario.module';
-import { HorarioOfertaModule } from './horario-oferta/horario-oferta.module';
 
 @Module({
   imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,
@@ -40,6 +39,6 @@ import { HorarioOfertaModule } from './horario-oferta/horario-oferta.module';
   OfertaHorarioModule,
   HorarioOfertaModule],
   controllers: [AppController],
-  providers: [AppService, OfertaHorarioService],
+  providers: [AppService],
 })
 export class AppModule {}
