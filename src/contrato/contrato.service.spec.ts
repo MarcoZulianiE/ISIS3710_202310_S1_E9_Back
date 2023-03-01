@@ -12,7 +12,7 @@ import { OfertaEntity } from '../oferta/oferta.entity';
 
 describe('ContratoService', () => {
   let service: ContratoService;
-  let repository: Repository<ContratoEntity>;
+  let contratoRepository: Repository<ContratoEntity>;
   let ofertaRepository: Repository<OfertaEntity>;
   let contratoList: ContratoEntity[];
   let oferta: OfertaEntity;
@@ -24,7 +24,7 @@ describe('ContratoService', () => {
     }).compile();
 
     service = module.get<ContratoService>(ContratoService);
-    repository = module.get<Repository<ContratoEntity>>(getRepositoryToken(ContratoEntity));
+    contratoRepository = module.get<Repository<ContratoEntity>>(getRepositoryToken(ContratoEntity));
     ofertaRepository = module.get<Repository<OfertaEntity>>(getRepositoryToken(OfertaEntity));
 
     await seedDatabase();
@@ -32,11 +32,12 @@ describe('ContratoService', () => {
   });
 
   const seedDatabase = async () => {
-    repository.clear();
+    contratoRepository.clear();
+    ofertaRepository.clear();
     contratoList = [];
 
     for(let i = 0; i < 5; i++){
-      const contrato: ContratoEntity = await repository.save({
+      const contrato: ContratoEntity = await contratoRepository.save({
         fecha: faker.date.between('2015-01-01', '2020-12-31'),
       });
       contratoList.push(contrato);
@@ -90,7 +91,7 @@ describe('ContratoService', () => {
     const newContrato: ContratoEntity = await service.create(oferta.id, contrato);
     expect(newContrato).not.toBeNull();
 
-    const storedContrato: ContratoEntity = await repository.findOne({where: {id: newContrato.id}});
+    const storedContrato: ContratoEntity = await contratoRepository.findOne({where: {id: newContrato.id}});
     expect(storedContrato).not.toBeNull();
 
     expect(storedContrato.id).toEqual(newContrato.id);
@@ -116,7 +117,7 @@ describe('ContratoService', () => {
     const updatedContrato: ContratoEntity = await service.update(contrato.id, contrato);
     expect(updatedContrato).not.toBeNull();
 
-    const storedContrato: ContratoEntity = await repository.findOne({where: {id: contrato.id}});
+    const storedContrato: ContratoEntity = await contratoRepository.findOne({where: {id: contrato.id}});
     expect(storedContrato).not.toBeNull();
     expect(storedContrato.fecha).toEqual(contrato.fecha);
   });
@@ -133,7 +134,7 @@ describe('ContratoService', () => {
     const contrato: ContratoEntity = contratoList[0];
     await service.delete(contrato.id);
   
-    const deletedContrato: ContratoEntity = await repository.findOne({ where: { id: contrato.id } })
+    const deletedContrato: ContratoEntity = await contratoRepository.findOne({ where: { id: contrato.id } })
     expect(deletedContrato).toBeNull();
   });
 
