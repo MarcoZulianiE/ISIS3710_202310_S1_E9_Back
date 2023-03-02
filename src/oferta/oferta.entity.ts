@@ -1,6 +1,6 @@
-import { ContratoEntity } from "src/contrato/contrato.entity";
-import { HorarioEntity } from "src/horario/horario.entity";
-import { UsuarioEntity } from "src/usuario/usuario.entity";
+import { ContratoEntity } from "../contrato/contrato.entity";
+import { HorarioEntity } from "../horario/horario.entity";
+import { UsuarioEntity } from "../usuario/usuario.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
