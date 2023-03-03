@@ -172,7 +172,7 @@ describe('UsuarioService', () => {
   });
 
   it('delete should throw an exception for an invalid usuario', async () => {
-    const museum: UsuarioEntity = usuarioList[0];
+    const usuario: UsuarioEntity = usuarioList[0];
     await expect(() => service.delete("0")).rejects.toHaveProperty("message", NotFoundErrorMessage("usuario"))
   });
 
