@@ -21,6 +21,7 @@ import { UsuarioEntity } from './usuario/usuario.entity';
 import { UsuarioModule } from './usuario/usuario.module';
 import { UsuarioContratoModule } from './usuario-contrato/usuario-contrato.module';
 import { UsuarioOfertaModule } from './usuario-oferta/usuario-oferta.module';
+import { ContratoUsuarioModule } from './contrato-usuario/contrato-usuario.module';
 
 @Module({
   imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,
@@ -37,7 +38,8 @@ import { UsuarioOfertaModule } from './usuario-oferta/usuario-oferta.module';
     keepConnectionAlive: true
   }),
   UsuarioContratoModule,
-  UsuarioOfertaModule],
+  UsuarioOfertaModule,
+  ContratoUsuarioModule],
   controllers: [AppController],
   providers: [AppService],
 })
