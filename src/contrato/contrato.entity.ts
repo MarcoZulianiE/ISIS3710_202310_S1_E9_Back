@@ -1,6 +1,6 @@
-import { OfertaEntity } from "src/oferta/oferta.entity";
-import { UsuarioEntity } from "src/usuario/usuario.entity";
-import { Column, Entity, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { OfertaEntity } from "../oferta/oferta.entity";
+import { UsuarioEntity } from "../usuario/usuario.entity";
 
 @Entity()
 export class ContratoEntity {

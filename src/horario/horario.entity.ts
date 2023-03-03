@@ -1,5 +1,5 @@
-import { OfertaEntity } from "src/oferta/oferta.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { OfertaEntity } from "../oferta/oferta.entity";
 
 @Entity()
 export class HorarioEntity {

@@ -9,10 +9,12 @@ import { ContratoEntity } from './contrato/contrato.entity';
 import { ContratoModule } from './contrato/contrato.module';
 import { EspecialidadEntity } from './especialidad/especialidad.entity';
 import { EspecialidadModule } from './especialidad/especialidad.module';
+import { HorarioOfertaModule } from './horario-oferta/horario-oferta.module';
 import { HorarioEntity } from './horario/horario.entity';
 import { HorarioModule } from './horario/horario.module';
 import { NecesidadEntity } from './necesidad/necesidad.entity';
 import { NecesidadModule } from './necesidad/necesidad.module';
+import { OfertaHorarioModule } from './oferta-horario/oferta-horario.module';
 import { OfertaEntity } from './oferta/oferta.entity';
 import { OfertaModule } from './oferta/oferta.module';
 import { ReseniaEntity } from './resenia/resenia.entity';
@@ -33,7 +35,9 @@ import { UsuarioModule } from './usuario/usuario.module';
     dropSchema: true,
     synchronize: true,
     keepConnectionAlive: true
-  })],
+  }),
+  OfertaHorarioModule,
+  HorarioOfertaModule],
   controllers: [AppController],
   providers: [AppService],
 })
