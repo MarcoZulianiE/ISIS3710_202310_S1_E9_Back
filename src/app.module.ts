@@ -22,6 +22,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { UsuarioContratoModule } from './usuario-contrato/usuario-contrato.module';
 import { UsuarioOfertaModule } from './usuario-oferta/usuario-oferta.module';
 import { ContratoUsuarioModule } from './contrato-usuario/contrato-usuario.module';
+import { OfertaUsuarioModule } from './oferta-usuario/oferta-usuario.module';
 
 @Module({
   imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,
@@ -39,7 +40,8 @@ import { ContratoUsuarioModule } from './contrato-usuario/contrato-usuario.modul
   }),
   UsuarioContratoModule,
   UsuarioOfertaModule,
-  ContratoUsuarioModule],
+  ContratoUsuarioModule,
+  OfertaUsuarioModule],
   controllers: [AppController],
   providers: [AppService],
 })
