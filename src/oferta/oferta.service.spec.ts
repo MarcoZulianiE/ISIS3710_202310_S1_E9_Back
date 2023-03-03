@@ -71,7 +71,7 @@ describe('OfertaService', () => {
       id: "", 
       precio: parseInt(faker.commerce.price(1000,100000, 0)),
       disponible: faker.datatype.boolean(),
-      tipoOferta: faker.helpers.arrayElement(["kangaroo", "acudiente"]),
+      tipoOferta: faker.helpers.arrayElement(["canguro", "acudiente"]),
       fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
       fechaFin: faker.date.between("2020-01-01", "2020-12-31"), 
       horarios: [],
@@ -106,7 +106,7 @@ describe('OfertaService', () => {
       contrato:null,
     }
 
-    await expect(() => service.create(oferta)).rejects.toHaveProperty("message", "El tipo de oferta debe ser 'kangaroo' o 'acudiente'");
+    await expect(() => service.create(oferta)).rejects.toHaveProperty("message", "El tipo de oferta debe ser 'canguro' o 'acudiente'");
   });
 
   it('update should modify an oferta',async () => {

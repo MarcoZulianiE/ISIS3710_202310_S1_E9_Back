@@ -10,7 +10,7 @@ import { ReseniaEntity } from '../resenia/resenia.entity';
 @Entity()
 export class UsuarioEntity {
     @PrimaryGeneratedColumn('uuid')
-    id: number;
+    id: string;
 
     @Column()
     cedula: number;

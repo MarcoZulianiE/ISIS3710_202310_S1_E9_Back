@@ -50,7 +50,7 @@ describe('OfertaHorarioService', () => {
       id: "", 
       precio: parseInt(faker.commerce.price(1000,100000, 0)),
       disponible: faker.datatype.boolean(),
-      tipoOferta: faker.helpers.arrayElement(["kangaroo", "acudiente"]),
+      tipoOferta: faker.helpers.arrayElement(["canguro", "acudiente"]),
       fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
       fechaFin: faker.date.between("2020-01-01", "2020-12-31"), 
       horarios: horariosList,
@@ -73,7 +73,7 @@ describe('OfertaHorarioService', () => {
     const newOferta: OfertaEntity = await ofertaRepository.save({
       precio: parseInt(faker.commerce.price(1000,100000, 0)),
       disponible: faker.datatype.boolean(),
-      tipoOferta: faker.helpers.arrayElement(["kangaroo", "acudiente"]),
+      tipoOferta: faker.helpers.arrayElement(["canguro", "acudiente"]),
       fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
       fechaFin: faker.date.between("2020-01-01", "2020-12-31"),
       usuario: null,
@@ -93,7 +93,7 @@ describe('OfertaHorarioService', () => {
     const newOferta: OfertaEntity = await ofertaRepository.save({
       precio: parseInt(faker.commerce.price(1000,100000, 0)),
       disponible: faker.datatype.boolean(),
-      tipoOferta: faker.helpers.arrayElement(["kangaroo", "acudiente"]),
+      tipoOferta: faker.helpers.arrayElement(["canguro", "acudiente"]),
       fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
       fechaFin: faker.date.between("2020-01-01", "2020-12-31"),
       usuario: null,
