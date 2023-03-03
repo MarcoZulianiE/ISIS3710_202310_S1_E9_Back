@@ -68,8 +68,8 @@ describe('HorarioService', () => {
     const horario: HorarioEntity = {
       id: "", 
       dia: faker.date.weekday(),
-      horaInicio:faker.date.between('1800-01-01T00:00:00.000Z', '1800-01-02T00:10:00.000Z'),
-      horaFin: faker.date.between('1800-01-01T00:11:00.000Z', '1800-01-02T00:14:00.000Z'),
+      horaInicio:faker.date.between('1800-01-01T00:00:00.000Z', '1800-01-01T00:10:00.000Z'),
+      horaFin: faker.date.between('1800-01-01T00:13:00.000Z', '1800-01-01T00:20:00.000Z'),
       oferta: null,
 
     }
