@@ -1,4 +1,4 @@
-import { OfertaEntity } from "src/oferta/oferta.entity";
+import { OfertaEntity } from "../oferta/oferta.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
