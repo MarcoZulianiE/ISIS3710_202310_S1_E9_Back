@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
-import { ReseniaEntity } from '../resenia/resenia.entity';
-import { UsuarioEntity } from '../usuario/usuario.entity';
 import { Repository } from 'typeorm';
+import { ReseniaEntity } from '../resenia/resenia.entity';
+import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import { ReseniaUsuarioService } from './resenia-usuario.service';
 
 import { faker } from '@faker-js/faker';
@@ -46,7 +46,8 @@ describe('ReseniaUsuarioService', () => {
     resenia = await reseniaRepository.save({
       titulo: faker.lorem.sentence(),
       calificacion: faker.datatype.number({min: 0, max: 5}),
-      descripcion: faker.lorem.sentence()
+      descripcion: faker.lorem.sentence(),
+      autor: usuario,
     })
   }
 
@@ -202,7 +203,7 @@ describe('ReseniaUsuarioService', () => {
    
     await service.deleteUsuarioResenia(resenia.id, usuario.id);
  
-    const storedResenia: ReseniaEntity = await reseniaRepository.findOne({where: {id: resenia.id}, relations: ["usuario"]});
+    const storedResenia: ReseniaEntity = await reseniaRepository.findOne({where: {id: resenia.id}, relations: ["autor"]});
     const deletedUsuario: UsuarioEntity = storedResenia.autor;
  
     expect(deletedUsuario).toBeNull();

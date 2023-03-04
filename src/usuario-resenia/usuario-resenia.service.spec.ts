@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { ReseniaEntity } from '../resenia/resenia.entity';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { UsuarioEntity } from '../usuario/usuario.entity';
-import { ReseniaEntity } from '../resenia/resenia.entity';
-import { Repository } from 'typeorm';
 import { UsuarioReseniaService } from './usuario-resenia.service';
 
 import { faker } from '@faker-js/faker';
@@ -51,8 +51,11 @@ describe('UsuarioReseniaService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
-      resenias: reseniaList
+      reseniasRecibidas: reseniaList
     })
+
+    reseniaList[0].receptor = usuario;
+
   }
 
   it('should be defined', () => {
@@ -133,6 +136,7 @@ describe('UsuarioReseniaService', () => {
       calificacion: faker.datatype.number({min: 0, max: 5}),
       descripcion: faker.lorem.sentence()
     });
+    console.log('new', newResenia);
  
     await expect(()=> service.findReseniaByUsuarioIdReseniaId(usuario.id, newResenia.id)).rejects.toHaveProperty("message", PreconditionFailedErrorMessage("usuario", "resenia"));
   });
@@ -182,7 +186,7 @@ describe('UsuarioReseniaService', () => {
    
     await service.deleteReseniaUsuario(usuario.id, resenia.id);
  
-    const storedUsuario: UsuarioEntity = await usuarioRepository.findOne({where: {id: usuario.id}, relations: ["resenias"]});
+    const storedUsuario: UsuarioEntity = await usuarioRepository.findOne({where: {id: usuario.id}, relations: ["reseniasRecibidas"]});
     const deletedResenia: ReseniaEntity = storedUsuario.reseniasRecibidas.find(c => c.id === resenia.id);
  
     expect(deletedResenia).toBeUndefined();
@@ -199,7 +203,7 @@ describe('UsuarioReseniaService', () => {
 
   it('deleteReseniaToUsuario should thrown an exception for an non asocciated resenia', async () => {
     const newResenia: ReseniaEntity = await reseniaRepository.save({
-      ftitulo: faker.lorem.sentence(),
+      titulo: faker.lorem.sentence(),
       calificacion: faker.datatype.number({min: 0, max: 5}),
       descripcion: faker.lorem.sentence()
     });

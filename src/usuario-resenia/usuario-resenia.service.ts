@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BusinessError, BusinessLogicException, NotFoundErrorMessage, PreconditionFailedErrorMessage } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 import { ReseniaEntity } from '../resenia/resenia.entity';
+import { BusinessError, BusinessLogicException, NotFoundErrorMessage, PreconditionFailedErrorMessage } from '../shared/errors/business-errors';
 import { UsuarioEntity } from '../usuario/usuario.entity';
 
 @Injectable()
@@ -39,7 +39,7 @@ export class UsuarioReseniaService {
         if (!usuario)
           throw new BusinessLogicException(NotFoundErrorMessage("usuario"), BusinessError.NOT_FOUND)
    
-        const usuarioResenia: ReseniaEntity = usuario.reseniasRecibidas.find(resenia => resenia.id === resenia.id);
+        const usuarioResenia: ReseniaEntity = usuario.reseniasRecibidas.find(r => r.id === resenia.id);
    
         if (!usuarioResenia)
           throw new BusinessLogicException(PreconditionFailedErrorMessage("usuario","resenia"), BusinessError.PRECONDITION_FAILED)
@@ -80,7 +80,7 @@ export class UsuarioReseniaService {
         if (!usuario)
           throw new BusinessLogicException(NotFoundErrorMessage("usuario"), BusinessError.NOT_FOUND)
     
-        const usuarioResenia: ReseniaEntity = usuario.reseniasRecibidas.find(resenia => resenia.id === resenia.id);
+        const usuarioResenia: ReseniaEntity = usuario.reseniasRecibidas.find(r => r.id === resenia.id);
     
         if (!usuarioResenia)
             throw new BusinessLogicException(PreconditionFailedErrorMessage("usuario","resenia"), BusinessError.PRECONDITION_FAILED)
