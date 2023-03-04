@@ -136,7 +136,6 @@ describe('UsuarioReseniaService', () => {
       calificacion: faker.datatype.number({min: 0, max: 5}),
       descripcion: faker.lorem.sentence()
     });
-    console.log('new', newResenia);
  
     await expect(()=> service.findReseniaByUsuarioIdReseniaId(usuario.id, newResenia.id)).rejects.toHaveProperty("message", PreconditionFailedErrorMessage("usuario", "resenia"));
   });
