@@ -11,7 +11,7 @@ export class AntecedenteEntity {
   tipo: string;
 
   @Column()
-  description: string;
+  descripcion: string;
 
   @ManyToOne(() => UsuarioEntity, usuario => usuario.antecedentes)
   usuario: UsuarioEntity;

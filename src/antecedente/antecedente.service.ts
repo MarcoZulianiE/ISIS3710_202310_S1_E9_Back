@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BusinessError, BusinessLogicException } from '../shared/errors/business-errors';
+import { BusinessError, BusinessLogicException, NotFoundErrorMessage } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 import { AntecedenteEntity } from './antecedente.entity';
 
@@ -20,7 +20,7 @@ export class AntecedenteService {
     async findOne(id: string): Promise<AntecedenteEntity> {
         const antecedente: AntecedenteEntity = await this.antecedenteRepository.findOne({where: {id}, relations: [] } );
         if (!antecedente)
-          throw new BusinessLogicException("The antecedente with the given id was not found", BusinessError.NOT_FOUND);
+          throw new BusinessLogicException(NotFoundErrorMessage("antecedente"), BusinessError.NOT_FOUND);
    
         return antecedente;
     }
@@ -32,7 +32,7 @@ export class AntecedenteService {
     async update(id: string, antecedente: AntecedenteEntity): Promise<AntecedenteEntity> {
         const persistedAntecedente: AntecedenteEntity = await this.antecedenteRepository.findOne({where:{id}});
         if (!persistedAntecedente)
-          throw new BusinessLogicException("The antecedente with the given id was not found", BusinessError.NOT_FOUND);
+          throw new BusinessLogicException(NotFoundErrorMessage("antecedente"), BusinessError.NOT_FOUND);
         
         return await this.antecedenteRepository.save({...persistedAntecedente, ...antecedente});
     }
@@ -40,7 +40,7 @@ export class AntecedenteService {
     async delete(id: string) {
         const antecedente: AntecedenteEntity = await this.antecedenteRepository.findOne({where:{id}});
         if (!antecedente)
-          throw new BusinessLogicException("The antecedente with the given id was not found", BusinessError.NOT_FOUND);
+          throw new BusinessLogicException(NotFoundErrorMessage("antecedente"), BusinessError.NOT_FOUND);
      
         await this.antecedenteRepository.remove(antecedente);
     }
