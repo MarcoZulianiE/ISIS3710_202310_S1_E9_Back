@@ -1,4 +1,4 @@
-import { UsuarioEntity } from "src/usuario/usuario.entity";
+import { UsuarioEntity } from "../usuario/usuario.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -11,7 +11,7 @@ export class EspecialidadEntity {
     tipo: string;
 
     @Column()
-    descripcion: string;
+    aniosExperiencia: number;
 
     @ManyToOne( () => UsuarioEntity, usuario => usuario.especialidades)
     usuario: UsuarioEntity;
