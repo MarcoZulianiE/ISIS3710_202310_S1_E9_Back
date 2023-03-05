@@ -11,7 +11,7 @@ export class EspecialidadEntity {
     tipo: string;
 
     @Column()
-    descripcion: string;
+    aniosExperiencia: number;
 
     @ManyToOne( () => UsuarioEntity, usuario => usuario.especialidades)
     usuario: UsuarioEntity;

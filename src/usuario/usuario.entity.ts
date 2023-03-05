@@ -38,7 +38,7 @@ export class UsuarioEntity {
     necesidades: NecesidadEntity[];
 
     @OneToMany(() => EspecialidadEntity, especialidad => especialidad.usuario)
-    especialidades: NecesidadEntity[];
+    especialidades: EspecialidadEntity[];
     
     @OneToMany(() => ReseniaEntity, resenia => resenia.receptor)
     reseniasRecibidas: ReseniaEntity[];

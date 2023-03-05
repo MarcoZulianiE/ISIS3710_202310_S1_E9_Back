@@ -19,18 +19,18 @@ import { OfertaHorarioModule } from './oferta-horario/oferta-horario.module';
 import { OfertaUsuarioModule } from './oferta-usuario/oferta-usuario.module';
 import { OfertaEntity } from './oferta/oferta.entity';
 import { OfertaModule } from './oferta/oferta.module';
+import { ReseniaUsuarioModule } from './resenia-usuario/resenia-usuario.module';
 import { ReseniaEntity } from './resenia/resenia.entity';
 import { ReseniaModule } from './resenia/resenia.module';
+import { UsuarioAntecedenteModule } from './usuario-antecedente/usuario-antecedente.module';
 import { UsuarioContratoModule } from './usuario-contrato/usuario-contrato.module';
 import { UsuarioOfertaModule } from './usuario-oferta/usuario-oferta.module';
+import { UsuarioReseniaModule } from './usuario-resenia/usuario-resenia.module';
 import { UsuarioEntity } from './usuario/usuario.entity';
 import { UsuarioModule } from './usuario/usuario.module';
-import { UsuarioReseniaModule } from './usuario-resenia/usuario-resenia.module';
-import { ReseniaUsuarioModule } from './resenia-usuario/resenia-usuario.module';
-import { UsuarioAntecedenteModule } from './usuario-antecedente/usuario-antecedente.module';
 
 @Module({
-  imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,  OfertaHorarioModule, HorarioOfertaModule, UsuarioContratoModule, UsuarioOfertaModule, ContratoUsuarioModule, OfertaUsuarioModule,
+  imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,  OfertaHorarioModule, HorarioOfertaModule, UsuarioContratoModule, UsuarioOfertaModule, ContratoUsuarioModule, OfertaUsuarioModule, UsuarioReseniaModule, ReseniaUsuarioModule, UsuarioAntecedenteModule,
   TypeOrmModule.forRoot({
     type: 'postgres',
     host: 'localhost',
@@ -43,9 +43,6 @@ import { UsuarioAntecedenteModule } from './usuario-antecedente/usuario-antecede
     synchronize: true,
     keepConnectionAlive: true
   }),
-  UsuarioReseniaModule,
-  ReseniaUsuarioModule,
-  UsuarioAntecedenteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
