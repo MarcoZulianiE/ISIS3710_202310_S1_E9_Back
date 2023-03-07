@@ -25,8 +25,8 @@ export class ContratoService {
         return contrato;
     }
 
-    async create(ofertatID: string, contrato: ContratoEntity): Promise<ContratoEntity> {
-        const oferta: OfertaEntity = await this.ofertaRepository.findOne({where: {id: ofertatID}});
+    async create(contrato: ContratoEntity): Promise<ContratoEntity> {
+        const oferta: OfertaEntity = await this.ofertaRepository.findOne({where: {id: contrato.oferta.id}});
         if(!oferta)
             throw new BusinessLogicException(NotFoundErrorMessage("oferta"), BusinessError.NOT_FOUND);
         contrato.oferta = oferta;
