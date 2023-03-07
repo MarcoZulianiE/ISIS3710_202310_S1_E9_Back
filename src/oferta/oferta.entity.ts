@@ -24,7 +24,6 @@ export class OfertaEntity {
     fechaFin: Date; 
 
     @OneToOne( () => ContratoEntity, contrato => contrato.oferta)
-    @JoinColumn()
     contrato: ContratoEntity;
 
     @OneToMany( () => HorarioEntity, horario => horario.oferta)
