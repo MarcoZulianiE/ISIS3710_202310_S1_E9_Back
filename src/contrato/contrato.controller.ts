@@ -1,9 +1,11 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { ContratoDto } from './contrato.dto';
 import { ContratoEntity } from './contrato.entity';
 import { ContratoService } from './contrato.service';
 
+@UseInterceptors(BusinessErrorsInterceptor)
 @Controller('contratos')
 export class ContratoController {
 
