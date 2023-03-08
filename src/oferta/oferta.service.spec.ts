@@ -7,11 +7,14 @@ import { OfertaService } from './oferta.service';
 
 import { faker } from '@faker-js/faker';
 import { NotFoundErrorMessage } from '../shared/errors/business-errors';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 
 describe('OfertaService', () => {
   let service: OfertaService;
   let repository: Repository<OfertaEntity>;
+  let usuarioRepository: Repository<UsuarioEntity>;
   let ofertaList: OfertaEntity[];
+  let usuario: UsuarioEntity;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -21,6 +24,7 @@ describe('OfertaService', () => {
 
     service = module.get<OfertaService>(OfertaService);
     repository = module.get<Repository<OfertaEntity>>(getRepositoryToken(OfertaEntity));
+    usuarioRepository = module.get<Repository<UsuarioEntity>>(getRepositoryToken(UsuarioEntity));
     await seedDatabase();
   });
 
@@ -37,6 +41,19 @@ describe('OfertaService', () => {
         fechaFin: faker.date.between("2020-01-01", "2020-12-31"), })
       ofertaList.push(oferta);
       }
+
+      usuario = await usuarioRepository.save({
+        cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+        contrasenia: faker.internet.password(),
+        nombre: faker.name.fullName(),
+        correoElectronico: faker.internet.email(),
+        direccion: faker.address.streetAddress(),
+        celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+        tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"])
+      })
+
+
+
     }
 
 
@@ -75,11 +92,11 @@ describe('OfertaService', () => {
       fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
       fechaFin: faker.date.between("2020-01-01", "2020-12-31"), 
       horarios: [],
-      usuario: null,
+      usuario: usuario,
       contrato:null,
 
     }
-
+ 
     const newOferta: OfertaEntity = await service.create(oferta);
     expect(newOferta).not.toBeNull();
 
@@ -102,11 +119,46 @@ describe('OfertaService', () => {
       fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
       fechaFin: faker.date.between("2020-01-01", "2020-12-31"), 
       horarios: [],
-      usuario: null,
+      usuario: usuario,
       contrato:null,
     }
 
     await expect(() => service.create(oferta)).rejects.toHaveProperty("message", "El tipo de oferta debe ser 'canguro' o 'acudiente'");
+  });
+
+  it('create should throw an exception for an invalid usuario', async () => {
+    const newUser: UsuarioEntity = {
+      id: "0",
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      contrasenia: faker.internet.password(),
+      nombre: faker.name.fullName(),
+      correoElectronico: faker.internet.email(),
+      direccion: faker.address.streetAddress(),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      especialidades: [], 
+      necesidades: [],
+      reseniasEscritas: [],
+      reseniasRecibidas: [],
+      ofertas: [],
+      contratos: [],
+      antecedentes: [],
+    }
+
+
+    const oferta: OfertaEntity = {
+      id: "", 
+      precio: parseInt(faker.commerce.price(1000,100000, 0)),
+      disponible: faker.datatype.boolean(),
+      tipoOferta: "efectivo",
+      fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
+      fechaFin: faker.date.between("2020-01-01", "2020-12-31"), 
+      horarios: [],
+      usuario: newUser,
+      contrato:null,
+    }
+
+    await expect(() => service.create(oferta)).rejects.toHaveProperty("message", NotFoundErrorMessage("usuario"));
   });
 
   it('update should modify an oferta',async () => {

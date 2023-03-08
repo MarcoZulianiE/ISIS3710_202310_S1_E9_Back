@@ -85,10 +85,10 @@ describe('ContratoService', () => {
       id: "", 
       fecha: faker.date.between('2015-01-01', '2020-12-31'),
       usuario: null,
-      oferta: null,
+      oferta: oferta,
     }
 
-    const newContrato: ContratoEntity = await service.create(oferta.id, contrato);
+    const newContrato: ContratoEntity = await service.create(contrato);
     expect(newContrato).not.toBeNull();
 
     const storedContrato: ContratoEntity = await contratoRepository.findOne({where: {id: newContrato.id}});
@@ -100,14 +100,28 @@ describe('ContratoService', () => {
   });
 
   it('create should throw an exception for an invalid oferta', async () => {
+    const newOferta: OfertaEntity = {
+      id: "0",
+      precio: parseInt(faker.commerce.price(1000,100000, 0)),
+      disponible: faker.datatype.boolean(),
+      tipoOferta: faker.helpers.arrayElement(["canguro", "acudiente"]),
+      fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
+      fechaFin: faker.date.between("2020-01-01", "2020-12-31"),
+      horarios: [],
+      usuario: null,
+      contrato:null,
+    }
+
     const contrato: ContratoEntity = {
       id: "", 
       fecha: faker.date.between('2015-01-01', '2020-12-31'),
       usuario: null,
-      oferta: null,
+      oferta: newOferta
     }
+
+
     
-    await expect(() => service.create("0", contrato)).rejects.toHaveProperty("message", NotFoundErrorMessage("oferta"));
+    await expect(() => service.create(contrato)).rejects.toHaveProperty("message", NotFoundErrorMessage("oferta"));
   });
 
   it('update should modify a contrato', async () => {

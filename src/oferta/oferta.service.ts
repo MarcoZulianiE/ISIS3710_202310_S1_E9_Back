@@ -2,13 +2,17 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BusinessError, BusinessLogicException, NotFoundErrorMessage } from '../shared/errors/business-errors';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import { OfertaEntity } from './oferta.entity';
 
 @Injectable()
 export class OfertaService {
     constructor(
         @InjectRepository(OfertaEntity)
-        private readonly ofertaRepository: Repository<OfertaEntity>
+        private readonly ofertaRepository: Repository<OfertaEntity>,
+
+        @InjectRepository(UsuarioEntity)
+        private readonly usuarioRepository: Repository<UsuarioEntity>
     ) {}
 
     async findAll(): Promise<OfertaEntity[]> {
@@ -27,9 +31,17 @@ export class OfertaService {
     async create(oferta: OfertaEntity): Promise<OfertaEntity> {
         // TODO: revisar que fecha inicio sea menor que fecha fin
         
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: oferta.usuario.id}});
+
+        if(!usuario)
+            throw new BusinessLogicException(NotFoundErrorMessage("usuario"), BusinessError.NOT_FOUND);
+        
+        
 
         if(oferta.tipoOferta.toLowerCase() != "canguro" && oferta.tipoOferta.toLowerCase() != "acudiente")
             throw new BusinessLogicException("El tipo de oferta debe ser 'canguro' o 'acudiente'", BusinessError.PRECONDITION_FAILED);
+
+        oferta.usuario = usuario;
         
         return await this.ofertaRepository.save(oferta);
     }
