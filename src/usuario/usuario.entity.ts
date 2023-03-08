@@ -14,7 +14,7 @@ export class UsuarioEntity {
     id: string;
 
     @Column()
-    cedula: number;
+    cedula: string;
 
     @Column()
     contrasenia: string;
@@ -29,7 +29,7 @@ export class UsuarioEntity {
     direccion: string;
 
     @Column()
-    celular: number;
+    celular: string;
 
     @Column()
     tipoUsuario: string;

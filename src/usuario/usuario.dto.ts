@@ -2,9 +2,9 @@ import {IsNotEmpty, IsString, IsNumber} from 'class-validator';
 
 export class UsuarioDto {
 
-    @IsNumber()
+    @IsString()
     @IsNotEmpty()
-    readonly cedula: number;
+    readonly cedula: string;
 
     @IsString()
     @IsNotEmpty()
@@ -22,9 +22,9 @@ export class UsuarioDto {
     @IsNotEmpty()
     readonly direccion: string;
 
-    @IsNumber()
+    @IsString()
     @IsNotEmpty()
-    readonly celular: number;
+    readonly celular: string;
 
     @IsString()
     @IsNotEmpty()

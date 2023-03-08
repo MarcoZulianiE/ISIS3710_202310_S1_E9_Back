@@ -44,12 +44,12 @@ describe('UsuarioReseniaService', () => {
     }
  
     usuario = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
       reseniasRecibidas: reseniaList
     })
@@ -70,12 +70,12 @@ describe('UsuarioReseniaService', () => {
     });
  
     const newUsuario: UsuarioEntity = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
     })
  
@@ -90,12 +90,12 @@ describe('UsuarioReseniaService', () => {
 
   it('addReseniaUsuario should thrown exception for an invalid resenia', async () => {
     const newUsuario: UsuarioEntity = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
     })
  

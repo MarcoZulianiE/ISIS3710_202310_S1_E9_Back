@@ -33,12 +33,12 @@ describe('OfertaUsuarioService', () => {
     ofertaRepository.clear();
  
     usuario = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
     })
 
@@ -58,12 +58,12 @@ describe('OfertaUsuarioService', () => {
 
   it('addUsuarioOferta should add an usuario to a oferta', async () => {
     const newUsuario: UsuarioEntity = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
     })
     
@@ -100,12 +100,12 @@ describe('OfertaUsuarioService', () => {
 
   it('addUsuarioOferta should thrown exception for an invalid oferta', async () => {
     const newUsuario: UsuarioEntity = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
     })
  
@@ -134,12 +134,12 @@ describe('OfertaUsuarioService', () => {
 
   it('findUsuarioByOfertaIdUsuarioId should throw an exception for an usuario not associated to the oferta', async () => {
     const newUsuario: UsuarioEntity = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
     })
  
@@ -164,12 +164,12 @@ describe('OfertaUsuarioService', () => {
 
   it('associateUsuarioOferta should update usuario for a oferta', async () => {
     const newUsuario: UsuarioEntity = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
     })
 
@@ -185,12 +185,12 @@ describe('OfertaUsuarioService', () => {
 
   it('associateUsuarioOferta should throw an exception for an invalid oferta', async () => {
     const newUsuario: UsuarioEntity = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
     })
 
@@ -224,12 +224,12 @@ describe('OfertaUsuarioService', () => {
 
   it('deleteUsuarioToOferta should thrown an exception for an non asocciated usuario', async () => {
     const newUsuario: UsuarioEntity = await usuarioRepository.save({
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
     })
  
