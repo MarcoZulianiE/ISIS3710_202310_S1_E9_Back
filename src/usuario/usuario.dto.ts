@@ -1,5 +1,4 @@
-import {IsNotEmpty, IsString, IsUrl} from 'class-validator';
-import { IsNumber } from 'class-validator/types/decorator/decorators';
+import {IsNotEmpty, IsString, IsNumber} from 'class-validator';
 
 export class UsuarioDto {
 
