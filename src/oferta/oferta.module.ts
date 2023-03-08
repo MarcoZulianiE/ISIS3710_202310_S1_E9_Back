@@ -6,7 +6,7 @@ import { OfertaEntity } from './oferta.entity';
 import { OfertaService } from './oferta.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([OfertaEntity, UsuarioEntity], )],
+  imports: [TypeOrmModule.forFeature([OfertaEntity, UsuarioEntity],)],
   providers: [OfertaService],
   controllers: [OfertaController]
 })
