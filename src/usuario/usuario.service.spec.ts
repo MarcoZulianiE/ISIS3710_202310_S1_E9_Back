@@ -29,12 +29,12 @@ describe('UsuarioService', () => {
     usuarioList = [];
     for(let i = 0; i < 5; i++){
         const usuario: UsuarioEntity = await repository.save({
-        cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+        cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
         contrasenia: faker.internet.password(),
         nombre: faker.name.fullName(),
         correoElectronico: faker.internet.email(),
         direccion: faker.address.streetAddress(),
-        celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+        celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
         tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"])})
         usuarioList.push(usuario);
     }
@@ -70,12 +70,12 @@ describe('UsuarioService', () => {
   it('create should return a new usuario', async () => {
     const usuario: UsuarioEntity = {
       id: "",
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
       necesidades: [],
       especialidades: [],
@@ -103,12 +103,12 @@ describe('UsuarioService', () => {
   it('create should throw an exception for an invalid tipoUsuario', async () => {
     const usuario: UsuarioEntity = {
       id: "",
-      cedula: faker.datatype.number({min: 10000, max: 99999999999}),
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: "panda",
       necesidades: [],
       especialidades: [],
@@ -130,7 +130,7 @@ describe('UsuarioService', () => {
       nombre: null,
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
-      celular: faker.datatype.number({min: 1000000000, max: 9999999999}),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
       necesidades: [],
       especialidades: [],
@@ -146,7 +146,7 @@ describe('UsuarioService', () => {
 
   it('update should modify an usuario', async () => {
     const usuario: UsuarioEntity = usuarioList[0];
-    usuario.cedula = 123456;
+    usuario.cedula = "123456";
     usuario.contrasenia = "New contrasenia";
     const updatedUsuario: UsuarioEntity = await service.update(usuario.id, usuario);
     expect(updatedUsuario).not.toBeNull();
@@ -159,7 +159,7 @@ describe('UsuarioService', () => {
   it('update should throw an exception for an invalid usuario', async () => {
     let usuario: UsuarioEntity = usuarioList[0];
     usuario = {
-      ...usuario, cedula: 123456, contrasenia: "New contrasenia"
+      ...usuario, cedula: "123456", contrasenia: "New contrasenia"
     }
     await expect(() => service.update("0", usuario)).rejects.toHaveProperty("message", NotFoundErrorMessage("usuario"))
   });
