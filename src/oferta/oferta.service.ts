@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UsuarioEntity } from 'src/usuario/usuario.entity';
 import { Repository } from 'typeorm';
 import { BusinessError, BusinessLogicException, NotFoundErrorMessage } from '../shared/errors/business-errors';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import { OfertaEntity } from './oferta.entity';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class OfertaService {
         @InjectRepository(OfertaEntity)
         private readonly ofertaRepository: Repository<OfertaEntity>,
 
-        @InjectRepository(OfertaEntity)
+        @InjectRepository(UsuarioEntity)
         private readonly usuarioRepository: Repository<UsuarioEntity>
     ) {}
 
@@ -30,7 +30,7 @@ export class OfertaService {
 
     async create(oferta: OfertaEntity): Promise<OfertaEntity> {
         // TODO: revisar que fecha inicio sea menor que fecha fin
-
+        
         const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: oferta.usuario.id}});
 
         if(!usuario)
