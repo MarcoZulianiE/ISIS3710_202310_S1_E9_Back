@@ -1,5 +1,5 @@
-import { UsuarioEntity } from "../usuario/usuario.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { UsuarioEntity } from "../usuario/usuario.entity";
 
 @Entity()
 export class EspecialidadEntity {

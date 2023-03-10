@@ -1,11 +1,12 @@
+/* eslint-disable prettier/prettier */
 
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { AntecedenteEntity } from '../antecedente/antecedente.entity';
 import { ContratoEntity } from '../contrato/contrato.entity';
 import { EspecialidadEntity } from '../especialidad/especialidad.entity';
 import { NecesidadEntity } from '../necesidad/necesidad.entity';
 import { OfertaEntity } from '../oferta/oferta.entity';
 import { ReseniaEntity } from '../resenia/resenia.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UsuarioEntity {
@@ -13,7 +14,7 @@ export class UsuarioEntity {
     id: string;
 
     @Column()
-    cedula: number;
+    cedula: string;
 
     @Column()
     contrasenia: string;
@@ -28,7 +29,7 @@ export class UsuarioEntity {
     direccion: string;
 
     @Column()
-    celular: number;
+    celular: string;
 
     @Column()
     tipoUsuario: string;

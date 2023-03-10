@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { UsuarioEntity } from '../usuario/usuario.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 
 @Entity()
 export class AntecedenteEntity {
@@ -11,7 +11,7 @@ export class AntecedenteEntity {
   tipo: string;
 
   @Column()
-  description: string;
+  descripcion: string;
 
   @ManyToOne(() => UsuarioEntity, usuario => usuario.antecedentes)
   usuario: UsuarioEntity;
