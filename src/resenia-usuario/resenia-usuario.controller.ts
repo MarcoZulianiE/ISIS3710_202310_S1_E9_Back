@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { UsuarioEntity } from 'src/usuario/usuario.entity';
+import { UsuarioDto } from '../usuario/usuario.dto';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import { ReseniaUsuarioService } from './resenia-usuario.service';
 
 @Controller('resenia')
@@ -25,10 +26,10 @@ export class ReseniaUsuarioController {
    }
 
 @Put(':reseniaId/usuarios')
-   async associateUsuarioResenia(@Body() usuarioDto: UsuarioDto, @Param('reseniaId') reseniaId: string){
-       const usuario = plainToInstance(UsuarioEntity, usuarioDto)
-       return await this.reseniaUsuarioService.associateUsuarioResenia(reseniaId, usuario);
-   }
+    async associateUsuariosResenia(@Body() usuarioDto: UsuarioDto, @Param('reseniaId') reseniaId: string){
+        const usuario = plainToInstance(UsuarioEntity, usuarioDto)
+        return await this.reseniaUsuarioService.associateUsuarioResenia(reseniaId, usuario);
+    }
 
 @Delete(':reseniaId/usuarios/:usuarioId')
 @HttpCode(204)

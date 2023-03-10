@@ -6,7 +6,7 @@ import { AntecedenteDto } from './antecedente.dto';
 import { AntecedenteEntity } from './antecedente.entity';
 import { AntecedenteService } from './antecedente.service';
 
-@Controller('antecedente')
+@Controller('antecedentes')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class AntecedenteController {
     constructor(private readonly antecedenteService: AntecedenteService) {}

@@ -8,7 +8,7 @@ import { ReseniaService } from './resenia.service';
 
 @UseInterceptors(BusinessErrorsInterceptor)
 
-@Controller('resenia')
+@Controller('resenias')
 export class ReseniaController {
     constructor(private readonly reseniaService: ReseniaService) {}
 
