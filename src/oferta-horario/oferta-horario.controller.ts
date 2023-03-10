@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { HorarioDto } from 'src/horario/horario.dto';
-import { HorarioEntity } from 'src/horario/horario.entity';
+import { HorarioDto } from '../horario/horario.dto';
+import { HorarioEntity } from '../horario/horario.entity';
+import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { OfertaHorarioService } from './oferta-horario.service';
 
+@UseInterceptors(BusinessErrorsInterceptor)
 @Controller('ofertas')
 export class OfertaHorarioController {
     constructor(private readonly ofertaHorarioService: OfertaHorarioService) {}
