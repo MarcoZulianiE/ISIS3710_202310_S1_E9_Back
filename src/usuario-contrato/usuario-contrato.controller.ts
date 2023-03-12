@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { ContratoDto } from 'src/contrato/contrato.dto';
 import { ContratoEntity } from 'src/contrato/contrato.entity';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { UsuarioContratoService } from './usuario-contrato.service';
@@ -25,12 +26,11 @@ export class UsuarioContratoController {
     return await this.usuarioContratoService.findContratosByUsuarioId(usuarioId);
   }
 
-//   TODO: Descomentar cuando ya este el DTO de Contrato
-//   @Put(':usuarioId/contratos')
-//   async associateContratosUsuario(@Body() contratoDto: ContratoDto[], @Param('usuarioId') usuarioId: string){
-//     const contratos = plainToInstance(ContratoEntity, contratoDto)
-//     return await this.usuarioContratoService.associateContratosUsuario(usuarioId, contratos);
-//   }
+  @Put(':usuarioId/contratos')
+  async associateContratosUsuario(@Body() contratoDto: ContratoDto[], @Param('usuarioId') usuarioId: string){
+    const contratos = plainToInstance(ContratoEntity, contratoDto)
+    return await this.usuarioContratoService.associateContratosUsuario(usuarioId, contratos);
+  }
 
   @Delete(':usuarioId/contratos/:contratoId')
   @HttpCode(204)
