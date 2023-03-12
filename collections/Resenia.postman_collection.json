@@ -1,0 +1,609 @@
+{
+	"info": {
+		"_postman_id": "4402a208-3d97-4846-bb82-bbbcdb552c86",
+		"name": "Resenia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25914520"
+	},
+	"item": [
+		{
+			"name": "Add resenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"resenia_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add resenia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenias/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all resenias",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of resenias > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all resenias",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"titulo\": \"Excelente persona\", \n    \"calificacion\": 5,\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\n    },\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120003\",\n        \"titulo:\": \"Es un crack\",\n        \"calificacion\": 5,\n        \"descripcion\": \"Es muy buena gente y tiene un buen trato\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get one resenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get one resenia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an invalid resenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an invalid resenia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The reseña with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update resenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update resenia",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update invalid resenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenia/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenia",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update invalid resenia",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenia/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenia",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The museum with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a resenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a resenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}"
+							]
+						}
+					},
+					"status": "No Content}",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid resenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an invalid resenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "resenia_id",
+			"value": "03d375cf-1b26-4d4d-ba79-17819dc04c79"
+		}
+	]
+}

@@ -39,7 +39,7 @@ import { UsuarioModule } from './usuario/usuario.module';
     password: 'postgres',
     database: 'kangaroo',
     entities: [UsuarioEntity, OfertaEntity, ContratoEntity, AntecedenteEntity, ReseniaEntity, NecesidadEntity, EspecialidadEntity, HorarioEntity],
-    dropSchema: true,
+    dropSchema: false,
     synchronize: true,
     keepConnectionAlive: true
   }),

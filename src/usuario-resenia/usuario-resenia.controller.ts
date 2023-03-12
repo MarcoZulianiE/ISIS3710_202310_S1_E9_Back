@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors.interceptor';
 import { ReseniaDto } from '../resenia/resenia.dto';
 import { ReseniaEntity } from '../resenia/resenia.entity';
 import { UsuarioReseniaService } from './usuario-resenia.service';
 
-@Controller('usuario')
+@Controller('usuarios')
+@UseInterceptors(BusinessErrorsInterceptor)
 export class UsuarioReseniaController {
     constructor(private readonly usuarioReseniaService: UsuarioReseniaService){}
 
