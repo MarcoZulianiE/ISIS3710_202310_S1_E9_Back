@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { AntecedenteDto } from '../antecedente/antecedente.dto';
 import { AntecedenteEntity } from '../antecedente/antecedente.entity';
 import { UsuarioAntecedenteService } from './usuario-antecedente.service';
 
-@Controller('usuario')
+@Controller('usuarios')
+@UseInterceptors(BusinessErrorsInterceptor)
 export class UsuarioAntecedenteController {
     constructor(private readonly usuarioAntecedenteService: UsuarioAntecedenteService){}
     
