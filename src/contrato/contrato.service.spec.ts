@@ -9,13 +9,16 @@ import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-co
 
 import { faker } from '@faker-js/faker';
 import { OfertaEntity } from '../oferta/oferta.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 
 describe('ContratoService', () => {
   let service: ContratoService;
   let contratoRepository: Repository<ContratoEntity>;
   let ofertaRepository: Repository<OfertaEntity>;
+  let usuarioRepository: Repository<UsuarioEntity>;
   let contratoList: ContratoEntity[];
   let oferta: OfertaEntity;
+  let usuario: UsuarioEntity;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -26,6 +29,7 @@ describe('ContratoService', () => {
     service = module.get<ContratoService>(ContratoService);
     contratoRepository = module.get<Repository<ContratoEntity>>(getRepositoryToken(ContratoEntity));
     ofertaRepository = module.get<Repository<OfertaEntity>>(getRepositoryToken(OfertaEntity));
+    usuarioRepository = module.get<Repository<UsuarioEntity>>(getRepositoryToken(UsuarioEntity));
 
     await seedDatabase();
 
@@ -36,7 +40,7 @@ describe('ContratoService', () => {
     ofertaRepository.clear();
     contratoList = [];
 
-    for(let i = 0; i < 5; i++){
+    for (let i = 0; i < 5; i++) {
       const contrato: ContratoEntity = await contratoRepository.save({
         fecha: faker.date.between('2015-01-01', '2020-12-31'),
       });
@@ -44,17 +48,26 @@ describe('ContratoService', () => {
     }
 
     oferta = await ofertaRepository.save({
-      id: "", 
-      precio: parseInt(faker.commerce.price(1000,100000, 0)),
+      id: "",
+      precio: parseInt(faker.commerce.price(1000, 100000, 0)),
       disponible: faker.datatype.boolean(),
       tipoOferta: faker.helpers.arrayElement(["canguro", "acudiente"]),
       fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
-      fechaFin: faker.date.between("2020-01-01", "2020-12-31"), 
+      fechaFin: faker.date.between("2020-01-01", "2020-12-31"),
       horarios: [],
       usuario: null,
-      contrato:null,
+      contrato: null,
     })
-    
+
+    usuario = await usuarioRepository.save({
+      cedula: faker.datatype.number({ min: 10000, max: 99999999999 }).toString(),
+      contrasenia: faker.internet.password(),
+      nombre: faker.name.fullName(),
+      correoElectronico: faker.internet.email(),
+      direccion: faker.address.streetAddress(),
+      celular: faker.datatype.number({ min: 1000000000, max: 9999999999 }).toString(),
+      tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"])
+    })
   }
 
   it('should be defined', () => {
@@ -82,16 +95,16 @@ describe('ContratoService', () => {
 
   it('create should return a new contrato', async () => {
     const contrato: ContratoEntity = {
-      id: "", 
+      id: "",
       fecha: faker.date.between('2015-01-01', '2020-12-31'),
-      usuario: null,
+      usuario: usuario,
       oferta: oferta,
     }
 
     const newContrato: ContratoEntity = await service.create(contrato);
     expect(newContrato).not.toBeNull();
 
-    const storedContrato: ContratoEntity = await contratoRepository.findOne({where: {id: newContrato.id}});
+    const storedContrato: ContratoEntity = await contratoRepository.findOne({ where: { id: newContrato.id } });
     expect(storedContrato).not.toBeNull();
 
     expect(storedContrato.id).toEqual(newContrato.id);
@@ -102,26 +115,57 @@ describe('ContratoService', () => {
   it('create should throw an exception for an invalid oferta', async () => {
     const newOferta: OfertaEntity = {
       id: "0",
-      precio: parseInt(faker.commerce.price(1000,100000, 0)),
+      precio: parseInt(faker.commerce.price(1000, 100000, 0)),
       disponible: faker.datatype.boolean(),
       tipoOferta: faker.helpers.arrayElement(["canguro", "acudiente"]),
       fechaInicio: faker.date.between("2020-01-01", "2020-12-31"),
       fechaFin: faker.date.between("2020-01-01", "2020-12-31"),
       horarios: [],
       usuario: null,
-      contrato:null,
+      contrato: null,
     }
 
     const contrato: ContratoEntity = {
-      id: "", 
+      id: "",
       fecha: faker.date.between('2015-01-01', '2020-12-31'),
-      usuario: null,
+      usuario: usuario,
       oferta: newOferta
     }
 
 
-    
+
     await expect(() => service.create(contrato)).rejects.toHaveProperty("message", NotFoundErrorMessage("oferta"));
+  });
+
+  it('create should throw an exception for an invalid usuario', async () => {
+    const newUsuario: UsuarioEntity = {
+      id: "0",
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
+      contrasenia: faker.internet.password(),
+      nombre: faker.name.fullName(),
+      correoElectronico: faker.internet.email(),
+      direccion: faker.address.streetAddress(),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
+      tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      reseniasRecibidas: [],
+      reseniasEscritas: [],
+      necesidades:  [],
+      especialidades: [],
+      ofertas: [],
+      antecedentes: [],
+      contratos: [], // TODO: revisasr esto
+    }
+
+    const contrato: ContratoEntity = {
+      id: "",
+      fecha: faker.date.between('2015-01-01', '2020-12-31'),
+      usuario: newUsuario,
+      oferta: oferta
+    }
+
+
+
+    await expect(() => service.create(contrato)).rejects.toHaveProperty("message", NotFoundErrorMessage("usuario"));
   });
 
   it('update should modify a contrato', async () => {
@@ -131,7 +175,7 @@ describe('ContratoService', () => {
     const updatedContrato: ContratoEntity = await service.update(contrato.id, contrato);
     expect(updatedContrato).not.toBeNull();
 
-    const storedContrato: ContratoEntity = await contratoRepository.findOne({where: {id: contrato.id}});
+    const storedContrato: ContratoEntity = await contratoRepository.findOne({ where: { id: contrato.id } });
     expect(storedContrato).not.toBeNull();
     expect(storedContrato.fecha).toEqual(contrato.fecha);
   });
@@ -147,7 +191,7 @@ describe('ContratoService', () => {
   it('delete should remove a contrato', async () => {
     const contrato: ContratoEntity = contratoList[0];
     await service.delete(contrato.id);
-  
+
     const deletedContrato: ContratoEntity = await contratoRepository.findOne({ where: { id: contrato.id } })
     expect(deletedContrato).toBeNull();
   });

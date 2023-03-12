@@ -16,6 +16,7 @@ export class ContratoEntity {
     oferta: OfertaEntity;
 
     @ManyToOne(() => UsuarioEntity, usuario => usuario.contratos)
+    @JoinColumn()
     usuario: UsuarioEntity;
 
 }

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { OfertaEntity } from '../oferta/oferta.entity';
 import { BusinessError, BusinessLogicException, NotFoundErrorMessage } from '../shared/errors/business-errors';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import { ContratoEntity } from './contrato.entity';
 
 @Injectable()
@@ -11,7 +12,9 @@ export class ContratoService {
         @InjectRepository(ContratoEntity)
         private readonly contratoRepository: Repository<ContratoEntity>,
         @InjectRepository(OfertaEntity)
-        private readonly ofertaRepository: Repository<OfertaEntity>
+        private readonly ofertaRepository: Repository<OfertaEntity>, 
+        @InjectRepository(UsuarioEntity)
+        private readonly usuarioRepository: Repository<UsuarioEntity>
     ){}
 
     async findAll(): Promise<ContratoEntity[]> {
@@ -29,7 +32,13 @@ export class ContratoService {
         const oferta: OfertaEntity = await this.ofertaRepository.findOne({where: {id: contrato.oferta.id}});
         if(!oferta)
             throw new BusinessLogicException(NotFoundErrorMessage("oferta"), BusinessError.NOT_FOUND);
+
+        const usuario: UsuarioEntity = await this.usuarioRepository.findOne({where: {id: contrato.usuario.id}});
+        if(!usuario)
+            throw new BusinessLogicException(NotFoundErrorMessage("usuario"), BusinessError.NOT_FOUND);
+        
         contrato.oferta = oferta;
+        contrato.usuario = usuario;
         return await this.contratoRepository.save(contrato);
     }
 
