@@ -1,6 +1,7 @@
 import { Type } from "class-transformer";
 import { IsDate, IsNotEmpty } from "class-validator";
-import { OfertaDto } from "src/oferta/oferta.dto";
+import { OfertaDto } from "../oferta/oferta.dto";
+import { UsuarioDto } from "../usuario/usuario.dto";
 
 export class ContratoDto {
     
@@ -11,4 +12,7 @@ export class ContratoDto {
 
     @IsNotEmpty()
     readonly oferta: OfertaDto;   
+
+    @IsNotEmpty()
+    readonly usuario: UsuarioDto;
 }

@@ -30,5 +30,6 @@ export class OfertaEntity {
     horarios: HorarioEntity[];
 
     @ManyToOne(() => UsuarioEntity, usuario => usuario.ofertas)
+    @JoinColumn()
     usuario: UsuarioEntity;
 }
