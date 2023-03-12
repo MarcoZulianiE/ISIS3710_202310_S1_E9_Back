@@ -5,7 +5,7 @@ import { UsuarioEntity } from 'src/usuario/usuario.entity';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { ContratoUsuarioService } from './contrato-usuario.service';
 
-@Controller('contrato-usuario')
+@Controller('contratos')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class ContratoUsuarioController {
 
