@@ -25,12 +25,12 @@ export class HorarioOfertaController {
         return await this.horarioOfertaService.findOfertasByHorarioId(horarioId);
     }
 
-    @Put(':horarioId/ofertas')
-    async associateOfertasHorario(@Body() ofertasDto: OfertaDto[], @Param('horarioId') horarioId: string) {
-        // TODO: ASK about put with just one item
-        // const ofertas: OfertaEntity = plainToInstance(OfertaEntity, ofertasDto)
-        // return await this.horarioOfertaService.associateOfertaHorario(horarioId, ofertas);
-    }
+    // @Put(':horarioId/ofertas')
+    // async associateOfertasHorario(@Body() ofertasDto: OfertaDto[], @Param('horarioId') horarioId: string) {
+    //     // TODO: ASK about put with just one item
+    //     // const ofertas: OfertaEntity = plainToInstance(OfertaEntity, ofertasDto)
+    //     // return await this.horarioOfertaService.associateOfertaHorario(horarioId, ofertas);
+    // }
 
     @Delete(':horarioId/ofertas/:ofertaId')
     @HttpCode(204)

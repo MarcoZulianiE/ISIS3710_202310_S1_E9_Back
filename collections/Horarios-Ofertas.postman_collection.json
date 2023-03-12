@@ -1,0 +1,1514 @@
+{
+	"info": {
+		"_postman_id": "fd6c9be6-245d-4079-876e-b9a37da8be4b",
+		"name": "Horarios-Ofertas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19626788"
+	},
+	"item": [
+		{
+			"name": "Add Horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"horario_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"horaInicio\" : \"1800-01-01T00:09:00.000Z\",\r\n    \"horaFin\" : \"1800-01-01T00:10:00.000Z\",\r\n    \"dia\" : \"Martes\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/horarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Horario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"horaInicio\" : \"7:48 a.m.\",\r\n    \"horaFin\" : \"4:01 p.m.\",\r\n    \"dia\" : \"Martes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/horarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Add an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"usuario_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add oferta 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"oferta_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-04-01\",\n    \"fechaFin\": \"2023-04-13\",\n    \"usuario\": {\n        \"id\": \"{{usuario_id_1}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						""
+					]
+				},
+				"description": "This request creates a new oferta. The API returns the created resource with the assigned ID."
+			},
+			"response": [
+				{
+					"name": "Add oferta",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"precio\": 30000, \n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\", \n    \"fechaFin\": \"2023-04-13\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\",\n    \"fechaFin\": \"2023-04-13\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add oferta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"oferta_id_2\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-04-01\",\n    \"fechaFin\": \"2023-04-13\",\n    \"usuario\": {\n        \"id\": \"{{usuario_id_1}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						""
+					]
+				},
+				"description": "This request creates a new oferta. The API returns the created resource with the assigned ID."
+			},
+			"response": [
+				{
+					"name": "Add oferta",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"precio\": 30000, \n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\", \n    \"fechaFin\": \"2023-04-13\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\",\n    \"fechaFin\": \"2023-04-13\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add oferta to an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add oferta to an horario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas",
+								"{{oferta_id_1}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"7e265679-3a85-416d-afca-80fd04e2b79c\",\n    \"dia\": \"Lunes\",\n    \"horaInicio\": \"5:00 p.m.\",\n    \"horaFin\": \"8:00 p.m.\",\n    \"oferta\":{\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Add invalid oferta to an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add invalid oferta to an horario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add oferta to an invalid horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The horario with the given id was not found.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"00000000-0000-0000-0000-000000000000",
+						"ofertas",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add oferta to an invalid horario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"00000000-0000-0000-0000-000000000000",
+								"ofertas",
+								"{{oferta_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The horario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an oferta of an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an oferta of an horario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas",
+								"{{oferta_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an invalid oferta of an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an invalid oferta of an horario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an oferta of an invalid horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The horario with the given id was not found.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"00000000-0000-0000-0000-000000000000",
+						"ofertas",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an oferta of an invalid horario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"00000000-0000-0000-0000-000000000000",
+								"ofertas",
+								"{{oferta_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The horario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an oferta non-associated to an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id is not associated to the horario.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"{{oferta_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an oferta non-associated to an horario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas",
+								"{{oferta_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The oferta with the given id is not associated to the horario\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all ofertas of an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all ofertas of an horario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get all ofertas of an invalid horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The horario with the given id was not found.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000/ofertas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"00000000-0000-0000-0000-000000000000",
+						"ofertas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all ofertas of an invalid horario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000/ofertas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"00000000-0000-0000-0000-000000000000",
+								"ofertas"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The horario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an oferta of an invalid horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The horario with the given id was not found.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"00000000-0000-0000-0000-000000000000",
+						"ofertas",
+						"{{oferta_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an oferta of an invalid horario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"00000000-0000-0000-0000-000000000000",
+								"ofertas",
+								"{{oferta_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The horario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an oferta non-associated to an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id is not associated to the horario.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"{{oferta_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an oferta non-associated to an horario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas",
+								"{{oferta_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The oferta with the given id is not associated to the horario\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an oferta of an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"{{oferta_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an oferta of an horario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas{{oferta_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas{{oferta_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid oferta of an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an invalid oferta of an horario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an Horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an Horario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id_1}}"
+					]
+				},
+				"description": "This request deletes an oferta given its ID. The API does not return any content."
+			},
+			"response": [
+				{
+					"name": "Delete an oferta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an oferta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id_2}}"
+					]
+				},
+				"description": "This request deletes an oferta given its ID. The API does not return any content."
+			},
+			"response": [
+				{
+					"name": "Delete an oferta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
