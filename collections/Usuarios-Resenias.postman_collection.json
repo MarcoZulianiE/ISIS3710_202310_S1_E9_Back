@@ -1,11 +1,261 @@
 {
 	"info": {
-		"_postman_id": "08d112ec-c03f-44e9-aaa8-8557acbf5743",
+		"_postman_id": "31812c21-faa3-4156-a059-c92f8c2f2479",
 		"name": "Usuarios-Resenias",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25914520"
+		"_exporter_id": "19626788"
 	},
 	"item": [
+		{
+			"name": "Add an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"usuario_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add resenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"resenia_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add resenia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenias/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add resenia 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"resenia_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add resenia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenias/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+				}
+			]
+		},
 		{
 			"name": "Add resenia to an usuario",
 			"event": [
@@ -25,7 +275,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id_2}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -33,7 +283,7 @@
 						"usuarios",
 						"{{usuario_id}}",
 						"resenias",
-						"{{resenia_id_2}}"
+						"{{resenia_id_1}}"
 					]
 				}
 			},
@@ -141,7 +391,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The reseña with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The reseña with the given id was not found.\"\n}"
 				}
 			]
 		},
@@ -169,7 +419,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -177,7 +427,7 @@
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
 						"resenias",
-						"{{resenia_id}}"
+						"{{resenia_id_1}}"
 					]
 				}
 			},
@@ -213,7 +463,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
@@ -308,7 +558,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -316,7 +566,7 @@
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
 						"resenias",
-						"{{resenia_id}}"
+						"{{resenia_id_1}}"
 					]
 				}
 			},
@@ -352,7 +602,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
@@ -559,7 +809,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
@@ -730,7 +980,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The resenia with the given id was not found\"\r\n}"
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The resenia with the given id was not found.\"\r\n}"
 				}
 			]
 		},
@@ -818,7 +1068,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
@@ -874,10 +1124,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -949,7 +1199,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
@@ -1021,7 +1271,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The reseña with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The reseña with the given id was not found.\"\n}"
 				}
 			]
 		},
@@ -1049,7 +1299,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -1057,7 +1307,7 @@
 						"usuarios",
 						"{{usuario_id}}",
 						"resenias",
-						"{{resenia_id}}"
+						"{{resenia_id_2}}"
 					]
 				}
 			},
@@ -1098,17 +1348,14 @@
 			]
 		},
 		{
-			"name": "Add an usuario Copy",
+			"name": "Delete a resenia",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"usuario_id\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1116,66 +1363,152 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios",
+					"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"usuarios"
+						"resenias",
+						"{{resenia_id_1}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add an Usuario",
+					"name": "Delete a resenia",
 					"originalRequest": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios",
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"usuarios"
+								"resenias",
+								"{{resenia_id}}"
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"status": "No Content}",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete a resenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a resenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}"
+							]
+						}
+					},
+					"status": "No Content}",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete usuario Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
 				}
 			]
 		}
@@ -1198,20 +1531,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "usuario_id",
-			"value": "ab9898bc-be02-4b65-b0a4-fae7268b834b"
-		},
-		{
-			"key": "resenia_id_1",
-			"value": "956e25d4-f2d6-4bb2-8a04-53bc40df39bc"
-		},
-		{
-			"key": "resenia_id_2",
-			"value": "5f658892-11ce-4ac4-ac80-66a9efbac4d1"
 		}
 	]
 }

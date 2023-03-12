@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "e51669f5-f229-436a-a12f-481c15e5fc70",
+		"_postman_id": "127e00ac-b158-483c-aa16-34e8050f7747",
 		"name": "Usuarios-Antecedentes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25914520"
+		"_exporter_id": "19626788"
 	},
 	"item": [
 		{
-			"name": "Add an usuario Copy",
+			"name": "Add an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -85,6 +85,174 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add antecedente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"antecedente_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add antecedente",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add antecedente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"antecedente_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add antecedente",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
 				}
 			]
 		},
@@ -944,10 +1112,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -1166,6 +1334,171 @@
 					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"The antecedente with the given id is not associated to the usuario\"\r\n}"
 				}
 			]
+		},
+		{
+			"name": "Delete an antecedente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						"{{antecedente_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an antecedente",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an antecedente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						"{{antecedente_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an antecedente",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
 		}
 	],
 	"event": [
@@ -1186,20 +1519,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "usuario_id",
-			"value": "f3916c60-1ca2-4507-997e-ac2c13300ed3"
-		},
-		{
-			"key": "antecedente_id_1",
-			"value": "4e043bbd-3bb3-4285-ae11-fa0abc6832b5"
-		},
-		{
-			"key": "antecedente_id_2",
-			"value": "24eeed15-6b27-4a49-84bd-6bbb77ea7bdd"
 		}
 	]
 }

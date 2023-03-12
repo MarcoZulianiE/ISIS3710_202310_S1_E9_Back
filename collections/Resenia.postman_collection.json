@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4402a208-3d97-4846-bb82-bbbcdb552c86",
+		"_postman_id": "b0f12bea-39c6-4114-9345-0af0921b1861",
 		"name": "Resenia",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25914520"
+		"_exporter_id": "19626788"
 	},
 	"item": [
 		{
@@ -234,7 +234,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found\");\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -383,7 +383,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found\");\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -403,12 +403,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenia/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenia",
+						"resenias",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
@@ -504,10 +504,10 @@
 					},
 					"status": "No Content}",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -524,7 +524,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found\");\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -598,12 +598,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "resenia_id",
-			"value": "03d375cf-1b26-4d4d-ba79-17819dc04c79"
 		}
 	]
 }
