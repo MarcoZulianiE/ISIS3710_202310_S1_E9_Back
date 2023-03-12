@@ -5,7 +5,7 @@ import { NecesidadDto } from './necesidad.dto';
 import { NecesidadEntity } from './necesidad.entity';
 import { NecesidadService } from './necesidad.service';
 
-@Controller('necesidad')
+@Controller('necesidades')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class NecesidadController {
     constructor(private readonly necesidadService: NecesidadService) {}

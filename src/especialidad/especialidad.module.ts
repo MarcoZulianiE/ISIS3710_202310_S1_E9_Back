@@ -6,6 +6,7 @@ import { EspecialidadController } from './especialidad.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([EspecialidadEntity])],
-  providers: [EspecialidadService]
+  providers: [EspecialidadService],
+  controllers: [EspecialidadController]
 })
 export class EspecialidadModule {}

@@ -5,7 +5,7 @@ import { EspecialidadDto } from './especialidad.dto';
 import { EspecialidadEntity } from './especialidad.entity';
 import { EspecialidadService } from './especialidad.service';
 
-@Controller('especialidad')
+@Controller('especialidades')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class EspecialidadController {
     constructor(private readonly especialidadService: EspecialidadService) {}
