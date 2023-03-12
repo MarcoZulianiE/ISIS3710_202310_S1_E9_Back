@@ -74,9 +74,6 @@ export class HorarioOfertaService {
           throw new BusinessLogicException(NotFoundErrorMessage("oferta"), BusinessError.NOT_FOUND)
      
         const horario: HorarioEntity = await this.horarioRepository.findOne({where: {id: horarioId}, relations: ["oferta"]});
-
-        console.log('h ', horario)
-        console.log('o ', oferta)
         
         if (!horario)
           throw new BusinessLogicException(NotFoundErrorMessage("horario"), BusinessError.NOT_FOUND)
