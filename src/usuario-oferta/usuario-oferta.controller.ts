@@ -1,6 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
-import { plainToInstance } from 'class-transformer';
-import { OfertaEntity } from 'src/oferta/oferta.entity';
+import { Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { UsuarioOfertaService } from './usuario-oferta.service';
 

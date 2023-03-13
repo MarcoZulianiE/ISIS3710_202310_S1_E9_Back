@@ -9,32 +9,32 @@ import { OfertaUsuarioService } from './oferta-usuario.service';
 @UseInterceptors(BusinessErrorsInterceptor)
 export class OfertaUsuarioController {
 
-  constructor(private readonly OfertaUsuarioService: OfertaUsuarioService){}
+  constructor(private readonly ofertaUsuarioService: OfertaUsuarioService){}
 
   @Post(':ofertaId/usuarios/:usuarioId')
   async addUsuarioOferta(@Param('ofertaId') ofertaId: string, @Param('usuarioId') usuarioId: string){
-    return await this.OfertaUsuarioService.addUsuarioOferta(ofertaId, usuarioId);
+    return await this.ofertaUsuarioService.addUsuarioOferta(ofertaId, usuarioId);
   }
 
   @Get(':ofertaId/usuarios/:usuarioId')
   async findUsuarioByOfertaIdUsuarioId(@Param('ofertaId') ofertaId: string, @Param('usuarioId') usuarioId: string){
-    return await this.OfertaUsuarioService.findUsuarioByOfertaIdUsuarioId(ofertaId, usuarioId);
+    return await this.ofertaUsuarioService.findUsuarioByOfertaIdUsuarioId(ofertaId, usuarioId);
   }
 
   @Get(':ofertaId/usuarios')
   async findUsuarioByOfertaId(@Param('ofertaId') ofertaId: string){
-    return await this.OfertaUsuarioService.findUsuarioByOfertaId(ofertaId);
+    return await this.ofertaUsuarioService.findUsuarioByOfertaId(ofertaId);
   }
 
   @Put(':ofertaId/usuarios')
   async associateUsuarioOferta(@Body() usuarioDto: UsuarioDto, @Param('ofertaId') ofertaId: string){
     const usuario = plainToInstance(UsuarioEntity, usuarioDto)
-    return await this.OfertaUsuarioService.associateUsuarioOferta(ofertaId, usuario);
+    return await this.ofertaUsuarioService.associateUsuarioOferta(ofertaId, usuario);
   }
 
   @Delete(':ofertaId/usuarios/:usuarioId')
   @HttpCode(204)
   async deleteUsuarioOferta(@Param('ofertaId') ofertaId: string, @Param('usuarioId') usuarioId: string){
-    return await this.OfertaUsuarioService.deleteUsuarioOferta(ofertaId, usuarioId);
+    return await this.ofertaUsuarioService.deleteUsuarioOferta(ofertaId, usuarioId);
   }
 }
