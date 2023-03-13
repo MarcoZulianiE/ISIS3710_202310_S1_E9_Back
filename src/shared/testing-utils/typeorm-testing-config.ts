@@ -13,7 +13,7 @@ export const TypeOrmTestingConfig = () => [
   TypeOrmModule.forRoot({
     type: 'sqlite',
     database: ':memory:',
-    dropSchema: true,
+    dropSchema: false,
     entities: [AntecedenteEntity, ContratoEntity, EspecialidadEntity, HorarioEntity, NecesidadEntity, OfertaEntity, ReseniaEntity, UsuarioEntity],
     synchronize: true,
     keepConnectionAlive: true 
