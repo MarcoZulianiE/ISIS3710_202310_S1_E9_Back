@@ -24,6 +24,7 @@ import { ReseniaEntity } from './resenia/resenia.entity';
 import { ReseniaModule } from './resenia/resenia.module';
 import { UsuarioAntecedenteModule } from './usuario-antecedente/usuario-antecedente.module';
 import { UsuarioContratoModule } from './usuario-contrato/usuario-contrato.module';
+import { UsuarioEspecialidadModule } from './usuario-especialidad/usuario-especialidad.module';
 import { UsuarioNecesidadModule } from './usuario-necesidad/usuario-necesidad.module';
 import { UsuarioOfertaModule } from './usuario-oferta/usuario-oferta.module';
 import { UsuarioReseniaModule } from './usuario-resenia/usuario-resenia.module';
@@ -31,7 +32,7 @@ import { UsuarioEntity } from './usuario/usuario.entity';
 import { UsuarioModule } from './usuario/usuario.module';
 
 @Module({
-  imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,  OfertaHorarioModule, HorarioOfertaModule, UsuarioContratoModule, UsuarioOfertaModule, ContratoUsuarioModule, OfertaUsuarioModule, UsuarioReseniaModule, ReseniaUsuarioModule, UsuarioAntecedenteModule, UsuarioNecesidadModule,
+  imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,  OfertaHorarioModule, HorarioOfertaModule, UsuarioContratoModule, UsuarioOfertaModule, ContratoUsuarioModule, OfertaUsuarioModule, UsuarioReseniaModule, ReseniaUsuarioModule, UsuarioAntecedenteModule, UsuarioNecesidadModule, UsuarioEspecialidadModule,
   TypeOrmModule.forRoot({
     type: 'postgres',
     host: 'localhost',
