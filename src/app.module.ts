@@ -30,6 +30,8 @@ import { UsuarioOfertaModule } from './usuario-oferta/usuario-oferta.module';
 import { UsuarioReseniaModule } from './usuario-resenia/usuario-resenia.module';
 import { UsuarioEntity } from './usuario/usuario.entity';
 import { UsuarioModule } from './usuario/usuario.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,  OfertaHorarioModule, HorarioOfertaModule, UsuarioContratoModule, UsuarioOfertaModule, ContratoUsuarioModule, OfertaUsuarioModule, UsuarioReseniaModule, ReseniaUsuarioModule, UsuarioAntecedenteModule, UsuarioNecesidadModule, UsuarioEspecialidadModule,
@@ -45,6 +47,8 @@ import { UsuarioModule } from './usuario/usuario.module';
     synchronize: true,
     keepConnectionAlive: true
   }),
+  UserModule,
+  AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
