@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
-import { OfertaEntity } from '../oferta/oferta.entity';
-import { UsuarioEntity } from '../usuario/usuario.entity';
 import { Repository } from 'typeorm';
+import { OfertaEntity } from '../oferta/oferta.entity';
+import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import { OfertaUsuarioService } from './oferta-usuario.service';
 
 import { faker } from '@faker-js/faker';
@@ -40,6 +40,7 @@ describe('OfertaUsuarioService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
 
     oferta = await ofertaRepository.save({
@@ -65,6 +66,7 @@ describe('OfertaUsuarioService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
     
     const newOferta: OfertaEntity = await ofertaRepository.save({
@@ -107,6 +109,7 @@ describe('OfertaUsuarioService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     await expect(() => service.addUsuarioOferta("0", newUsuario.id)).rejects.toHaveProperty("message", NotFoundErrorMessage("oferta"));
@@ -141,6 +144,7 @@ describe('OfertaUsuarioService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     await expect(()=> service.findUsuarioByOfertaIdUsuarioId(oferta.id, newUsuario.id)).rejects.toHaveProperty("message", PreconditionFailedErrorMessage("oferta", "usuario"));
@@ -171,6 +175,7 @@ describe('OfertaUsuarioService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
 
     const updatedOferta: OfertaEntity = await service.associateUsuarioOferta(oferta.id, newUsuario);
@@ -192,6 +197,7 @@ describe('OfertaUsuarioService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
 
     await expect(()=> service.associateUsuarioOferta("0", newUsuario)).rejects.toHaveProperty("message", NotFoundErrorMessage("oferta"));
@@ -231,6 +237,7 @@ describe('OfertaUsuarioService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     await expect(()=> service.deleteUsuarioOferta(oferta.id, newUsuario.id)).rejects.toHaveProperty("message", PreconditionFailedErrorMessage("oferta", "usuario"));

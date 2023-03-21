@@ -147,6 +147,7 @@ describe('ContratoService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
       reseniasRecibidas: [],
       reseniasEscritas: [],
       necesidades:  [],

@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { ContratoEntity } from '../contrato/contrato.entity';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { UsuarioEntity } from '../usuario/usuario.entity';
-import { ContratoEntity } from '../contrato/contrato.entity';
-import { Repository } from 'typeorm';
 import { UsuarioContratoService } from './usuario-contrato.service';
 
 import { faker } from '@faker-js/faker';
@@ -48,6 +48,7 @@ describe('UsuarioContratoService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
       contratos: contratoList
     })
   }
@@ -69,6 +70,7 @@ describe('UsuarioContratoService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     const result: UsuarioEntity = await service.addContratoUsuario(newUsuario.id, newContrato.id);
@@ -87,6 +89,7 @@ describe('UsuarioContratoService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     await expect(() => service.addContratoUsuario(newUsuario.id, "0")).rejects.toHaveProperty("message", NotFoundErrorMessage("contrato"));

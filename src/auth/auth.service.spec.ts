@@ -1,17 +1,17 @@
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from '../user/user.service';
+import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { UsuarioService } from '../usuario/usuario.service';
 import { AuthService } from './auth.service';
-import { JwtStrategy } from './strategies/jwt-strategy';
-import { LocalStrategy } from './strategies/local-strategy';
+;
 
 describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AuthService, JwtService, UsuarioService],
+      imports: [...TypeOrmTestingConfig()],
+      providers: [AuthService, UsuarioService, JwtService],
     }).compile();
 
     service = module.get<AuthService>(AuthService);

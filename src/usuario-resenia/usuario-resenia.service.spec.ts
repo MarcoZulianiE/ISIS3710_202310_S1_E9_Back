@@ -51,6 +51,7 @@ describe('UsuarioReseniaService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
       reseniasRecibidas: reseniaList
     })
 
@@ -77,6 +78,7 @@ describe('UsuarioReseniaService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     const result: UsuarioEntity = await service.addReseniaUsuario(newUsuario.id, newResenia.id);
@@ -97,6 +99,7 @@ describe('UsuarioReseniaService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     await expect(() => service.addReseniaUsuario(newUsuario.id, "0")).rejects.toHaveProperty("message", NotFoundErrorMessage("resenia"));

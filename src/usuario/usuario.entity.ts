@@ -34,6 +34,9 @@ export class UsuarioEntity {
     @Column()
     tipoUsuario: string;
 
+    @Column("text", { array: true, nullable: true})
+    roles: string[];
+
     @OneToMany(() => NecesidadEntity, necesidad => necesidad.usuario)
     necesidades: NecesidadEntity[];
 

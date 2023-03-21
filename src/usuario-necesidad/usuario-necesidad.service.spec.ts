@@ -1,11 +1,11 @@
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
+import { Repository } from 'typeorm';
 import { NecesidadEntity } from '../necesidad/necesidad.entity';
 import { NotFoundErrorMessage, PreconditionFailedErrorMessage } from '../shared/errors/business-errors';
+import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { UsuarioEntity } from '../usuario/usuario.entity';
-import { Repository } from 'typeorm';
 import { UsuarioNecesidadService } from './usuario-necesidad.service';
 
 describe('UsuarioNecesidadService', () => {
@@ -47,6 +47,7 @@ describe('UsuarioNecesidadService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
       necesidades: necesidadesList
     })
   }
@@ -88,6 +89,7 @@ describe('UsuarioNecesidadService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     await expect(() => service.addNecesidadUsuario(newUsuario.id, "0")).rejects.toHaveProperty("message", NotFoundErrorMessage("necesidad"));

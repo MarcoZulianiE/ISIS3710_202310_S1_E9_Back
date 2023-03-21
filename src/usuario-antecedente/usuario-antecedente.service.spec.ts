@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { AntecedenteEntity } from '../antecedente/antecedente.entity';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { UsuarioEntity } from '../usuario/usuario.entity';
-import { AntecedenteEntity } from '../antecedente/antecedente.entity';
-import { Repository } from 'typeorm';
 import { UsuarioAntecedenteService } from './usuario-antecedente.service';
 
 import { faker } from '@faker-js/faker';
@@ -50,6 +50,7 @@ describe('UsuarioAntecedenteService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
       antecedentes: antecedenteList
     })
   }
@@ -72,6 +73,7 @@ describe('UsuarioAntecedenteService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     const result: UsuarioEntity = await service.addAntecedenteUsuario(newUsuario.id, newAntecedente.id);
@@ -91,6 +93,7 @@ describe('UsuarioAntecedenteService', () => {
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      roles: ["admin"],
     })
  
     await expect(() => service.addAntecedenteUsuario(newUsuario.id, "0")).rejects.toHaveProperty("message", NotFoundErrorMessage("antecedente"));
