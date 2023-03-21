@@ -1,4 +1,4 @@
-import {IsNotEmpty, IsString, IsEmail} from 'class-validator';
+import { IsArray, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class UsuarioDto {
 
@@ -29,5 +29,9 @@ export class UsuarioDto {
     @IsString()
     @IsNotEmpty()
     readonly tipoUsuario: string;
+
+    @IsArray()
+    @IsOptional()
+    readonly roles: string[];
 
 }

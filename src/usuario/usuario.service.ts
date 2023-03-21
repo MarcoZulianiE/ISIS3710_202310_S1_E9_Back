@@ -29,7 +29,8 @@ export class UsuarioService {
             throw new BusinessLogicException("El tipo de usuario debe ser 'canguro', 'acudiente' o 'ambos'", BusinessError.PRECONDITION_FAILED);
         if(!usuario.cedula || !usuario.contrasenia || !usuario.nombre)
             throw new BusinessLogicException("El usuario debe tener minimo una cedula, una contrasenia y un nombre", BusinessError.PRECONDITION_FAILED);
-
+        if(!usuario.roles)
+            usuario.roles = ["user"];
         return await this.usuarioRepository.save(usuario);
     }
 
