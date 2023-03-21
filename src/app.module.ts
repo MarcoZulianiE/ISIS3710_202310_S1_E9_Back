@@ -5,6 +5,7 @@ import { AntecedenteEntity } from './antecedente/antecedente.entity';
 import { AntecedenteModule } from './antecedente/antecedente.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
 import { ContratoUsuarioModule } from './contrato-usuario/contrato-usuario.module';
 import { ContratoEntity } from './contrato/contrato.entity';
 import { ContratoModule } from './contrato/contrato.module';
@@ -30,8 +31,6 @@ import { UsuarioOfertaModule } from './usuario-oferta/usuario-oferta.module';
 import { UsuarioReseniaModule } from './usuario-resenia/usuario-resenia.module';
 import { UsuarioEntity } from './usuario/usuario.entity';
 import { UsuarioModule } from './usuario/usuario.module';
-// import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [OfertaModule, ContratoModule, AntecedenteModule, ReseniaModule, UsuarioModule, NecesidadModule, EspecialidadModule, HorarioModule,  OfertaHorarioModule, HorarioOfertaModule, UsuarioContratoModule, UsuarioOfertaModule, ContratoUsuarioModule, OfertaUsuarioModule, UsuarioReseniaModule, ReseniaUsuarioModule, UsuarioAntecedenteModule, UsuarioNecesidadModule, UsuarioEspecialidadModule,
@@ -47,7 +46,6 @@ import { AuthModule } from './auth/auth.module';
     synchronize: true,
     keepConnectionAlive: true
   }),
-  // UserModule,
   AuthModule,
   ],
   controllers: [AppController],
