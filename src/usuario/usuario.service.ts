@@ -49,4 +49,8 @@ export class UsuarioService {
         await this.usuarioRepository.remove(usuario);
     }
 
+    // ==================== AUTHENTICATION RELATED METHODS ====================
+    async findByEmail(email: string): Promise<UsuarioEntity> {
+        return await this.usuarioRepository.findOne({where: {correoElectronico: email}});
+    }
 }

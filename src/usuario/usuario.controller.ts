@@ -1,5 +1,7 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Req, UseGuards, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { AuthService } from '../auth/auth.service';
+import { LocalAuthGuard } from '../auth/guards/local-auth.guard';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { UsuarioDto } from './usuario.dto';
 import { UsuarioEntity } from './usuario.entity';
@@ -9,7 +11,8 @@ import { UsuarioService } from './usuario.service';
 @UseInterceptors(BusinessErrorsInterceptor)
 export class UsuarioController {
 
-  constructor(private readonly usuarioService: UsuarioService) {}
+  constructor(private readonly usuarioService: UsuarioService,
+    private readonly authService: AuthService) {}
 
   @Get()
   async findAll() {
@@ -37,5 +40,12 @@ export class UsuarioController {
   @HttpCode(204)
   async delete(@Param('usuarioId') usuarioId: string) {
     return await this.usuarioService.delete(usuarioId);
+  }
+
+  // ==================== AUTHENTICATION RELATED METHODS ====================
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  async login(@Req() req) {
+    return this.authService.login(req);
   }
 }

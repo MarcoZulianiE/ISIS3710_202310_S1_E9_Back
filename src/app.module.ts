@@ -30,7 +30,7 @@ import { UsuarioOfertaModule } from './usuario-oferta/usuario-oferta.module';
 import { UsuarioReseniaModule } from './usuario-resenia/usuario-resenia.module';
 import { UsuarioEntity } from './usuario/usuario.entity';
 import { UsuarioModule } from './usuario/usuario.module';
-import { UserModule } from './user/user.module';
+// import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
@@ -43,11 +43,11 @@ import { AuthModule } from './auth/auth.module';
     password: 'postgres',
     database: 'kangaroo',
     entities: [UsuarioEntity, OfertaEntity, ContratoEntity, AntecedenteEntity, ReseniaEntity, NecesidadEntity, EspecialidadEntity, HorarioEntity],
-    dropSchema: false,
+    dropSchema: true,
     synchronize: true,
     keepConnectionAlive: true
   }),
-  UserModule,
+  // UserModule,
   AuthModule,
   ],
   controllers: [AppController],
