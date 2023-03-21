@@ -25,6 +25,9 @@ export class UsuarioService {
     }
 
     async create(usuario: UsuarioEntity): Promise<UsuarioEntity> {
+        const allUsuarios: UsuarioEntity[] = await this.usuarioRepository.find();
+        if(allUsuarios.find(u => u.correoElectronico == usuario.correoElectronico))
+            throw new BusinessLogicException("Ya existe un usuario con el correo electronico " + usuario.correoElectronico, BusinessError.PRECONDITION_FAILED);
         if(usuario.tipoUsuario.toLowerCase() != "canguro" && usuario.tipoUsuario.toLowerCase() != "acudiente" && usuario.tipoUsuario.toLowerCase() != "ambos")
             throw new BusinessLogicException("El tipo de usuario debe ser 'canguro', 'acudiente' o 'ambos'", BusinessError.PRECONDITION_FAILED);
         if(!usuario.cedula || !usuario.contrasenia || !usuario.nombre)

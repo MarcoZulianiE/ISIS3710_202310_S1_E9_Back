@@ -124,6 +124,50 @@ describe('UsuarioService', () => {
     await expect(() => service.create(usuario)).rejects.toHaveProperty("message", "El tipo de usuario debe ser 'canguro', 'acudiente' o 'ambos'");
   });
 
+  it('create should throw an exception for a repeated email', async () => {
+    const usuario: UsuarioEntity = {
+      id: "",
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
+      contrasenia: faker.internet.password(),
+      nombre: faker.name.fullName(),
+      correoElectronico: "canguros@gmail.com",
+      direccion: faker.address.streetAddress(),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
+      tipoUsuario: "canguro",
+      roles: ["admin"],
+      necesidades: [],
+      especialidades: [],
+      reseniasRecibidas: [],
+      reseniasEscritas: [],
+      antecedentes: [],
+      contratos: [],
+      ofertas: []
+    }
+
+    await service.create(usuario); 
+
+    const repeatedUsuario: UsuarioEntity = {
+      id: "",
+      cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
+      contrasenia: faker.internet.password(),
+      nombre: faker.name.fullName(),
+      correoElectronico: "canguros@gmail.com",
+      direccion: faker.address.streetAddress(),
+      celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
+      tipoUsuario: "canguro",
+      roles: ["admin"],
+      necesidades: [],
+      especialidades: [],
+      reseniasRecibidas: [],
+      reseniasEscritas: [],
+      antecedentes: [],
+      contratos: [],
+      ofertas: []
+    }
+ 
+    await expect(() => service.create(repeatedUsuario)).rejects.toHaveProperty("message", "Ya existe un usuario con el correo electronico " + repeatedUsuario.correoElectronico);
+  });
+
   it('create should throw an exception for an invalid cedula, contrasenia or nombre', async () => {
     const usuario: UsuarioEntity = {
       id: "",
