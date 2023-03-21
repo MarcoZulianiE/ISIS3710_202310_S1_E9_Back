@@ -12,7 +12,6 @@ export class AuthService {
    ) {}
 
   async validateUser(email: string, password: string): Promise<any> {
-    // const user: User = await this.usersService.findOne(email);
     const user: UsuarioEntity = await this.usuarioService.findByEmail(email)
     if (user && user.contrasenia === password) {
       const { contrasenia, ...result } = user;
@@ -22,7 +21,7 @@ export class AuthService {
   }
 
   async login(req: any) {
-    const payload = { name: req.user.email, sub: req.user.id };
+    const payload = { name: req.email, sub: req.id };
     return {
       token: this.jwtService.sign(payload, { privateKey: constants.JWT_SECRET }),
     };

@@ -43,9 +43,10 @@ export class UsuarioController {
   }
 
   // ==================== AUTHENTICATION RELATED METHODS ====================
+
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Req() req) {
-    return this.authService.login(req);
+  async login(@Req() req: Request) {
+    return this.authService.login(JSON.stringify(req.body));
   }
 }
