@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BusinessError, BusinessLogicException, NotFoundErrorMessage } from '../shared/errors/business-errors';
+import { Role } from '../shared/security/roles';
 import { UsuarioEntity } from './usuario.entity';
 
 @Injectable()
@@ -33,7 +34,7 @@ export class UsuarioService {
         if(!usuario.cedula || !usuario.contrasenia || !usuario.nombre)
             throw new BusinessLogicException("El usuario debe tener minimo una cedula, una contrasenia y un nombre", BusinessError.PRECONDITION_FAILED);
         if(!usuario.roles)
-            usuario.roles = ["user"];
+            usuario.roles = [Role.USER];
         return await this.usuarioRepository.save(usuario);
     }
 

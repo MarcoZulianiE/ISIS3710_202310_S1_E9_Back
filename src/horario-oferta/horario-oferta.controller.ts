@@ -1,5 +1,9 @@
-import { Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import { Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards, UseInterceptors } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
+import { Role } from '../shared/security/roles';
+import { HasRoles } from '../shared/security/roles.decorator';
 import { HorarioOfertaService } from './horario-oferta.service';
 
 @UseInterceptors(BusinessErrorsInterceptor)
@@ -7,6 +11,8 @@ import { HorarioOfertaService } from './horario-oferta.service';
 export class HorarioOfertaController {
     constructor(private readonly horarioOfertaService: HorarioOfertaService) {}
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @HasRoles(Role.USER)
     @Post(':horarioId/ofertas/:ofertaId')
     async addOfertaHorario(@Param('horarioId') horarioId: string, @Param('ofertaId') ofertaId: string) {
         return await this.horarioOfertaService.addOfertaHorario(horarioId, ofertaId);
@@ -29,6 +35,8 @@ export class HorarioOfertaController {
     //     // return await this.horarioOfertaService.associateOfertaHorario(horarioId, ofertas);
     // }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @HasRoles(Role.USER)
     @Delete(':horarioId/ofertas/:ofertaId')
     @HttpCode(204)
     async deleteOfertaHorario(@Param('horarioId') horarioId: string, @Param('ofertaId') ofertaId: string) {
