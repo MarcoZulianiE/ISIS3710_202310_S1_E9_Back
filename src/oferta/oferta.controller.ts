@@ -15,23 +15,21 @@ export class OfertaController {
     constructor(private readonly ofertaService: OfertaService) {}
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.LECTOROFERTA)
+    @HasRoles(Role.ADMINOFERTA, Role.LECTOROFERTA)
     @Get()
     async findAll() {
         return await this.ofertaService.findAll();
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.LECTOROFERTA)
+    @HasRoles(Role.ADMINOFERTA, Role.LECTOROFERTA)
     @Get(':ofertaId')
     async findOne(@Param('ofertaId') ofertaId: string) {
         return await this.ofertaService.findOne(ofertaId);
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.ESCRITOROFERTA)
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER, Role.ADMIN)
+    @HasRoles(Role.ADMINOFERTA, Role.ESCRITOROFERTA)
     @Post()
     async create(@Body() ofertaDto: OfertaDto) {
         const oferta: OfertaEntity = plainToInstance(OfertaEntity, ofertaDto)
@@ -39,7 +37,7 @@ export class OfertaController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINOFERTA, Role.ESCRITOROFERTA)
+    @HasRoles(Role.ADMINOFERTA, Role.ESCRITOROFERTA)
     @Put(':ofertaId')
     async update(@Param('ofertaId') ofertaId: string, @Body() ofertaDto: OfertaDto) {
         const oferta: OfertaEntity = plainToInstance(OfertaEntity, ofertaDto)
@@ -47,7 +45,7 @@ export class OfertaController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINOFERTA, Role.ELIMINAROFERTA)
+    @HasRoles(Role.ADMINOFERTA, Role.ELIMINAROFERTA)
     @Delete(':ofertaId')
     @HttpCode(204)
     async delete(@Param('ofertaId') ofertaId: string) {

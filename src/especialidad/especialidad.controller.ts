@@ -15,21 +15,21 @@ export class EspecialidadController {
     constructor(private readonly especialidadService: EspecialidadService) {}
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.LECTORESPECIALIDAD, Role.ADMIN)
+    @HasRoles(Role.LECTORESPECIALIDAD, Role.ADMINESPECIALIDAD)
     @Get()
     async findAll() {
       return await this.especialidadService.findAll();
     }
   
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.LECTORESPECIALIDAD, Role.ADMIN)
+    @HasRoles(Role.LECTORESPECIALIDAD, Role.ADMINESPECIALIDAD)
     @Get(':especialidadId')
     async findOne(@Param('especialidadId') especialidadId: string) {
       return await this.especialidadService.findOne(especialidadId);
     }
   
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ESCRITORESPECIALIDAD, Role.ADMIN)
+    @HasRoles(Role.ESCRITORESPECIALIDAD, Role.ADMINESPECIALIDAD)
     @Post()
     async create(@Body() especialidadDto: EspecialidadDto) {
       const necesidad: EspecialidadEntity = plainToInstance(EspecialidadEntity, especialidadDto);
@@ -37,7 +37,7 @@ export class EspecialidadController {
     }
   
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ESCRITORESPECIALIDAD, Role.ADMIN)
+    @HasRoles(Role.ESCRITORESPECIALIDAD, Role.ADMINESPECIALIDAD)
     @Put(':especialidadId')
     async update(@Param('especialidadId') especialidadId: string, @Body() especialidadDto: EspecialidadDto) {
       const necesidad: EspecialidadEntity = plainToInstance(EspecialidadEntity, especialidadDto);
@@ -45,7 +45,7 @@ export class EspecialidadController {
     }
   
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ESCRITORESPECIALIDAD, Role.ADMIN)
+    @HasRoles(Role.ESCRITORESPECIALIDAD, Role.ADMINESPECIALIDAD)
     @Delete(':especialidadId')
     @HttpCode(204)
     async delete(@Param('especialidadId') especialidadId: string) {

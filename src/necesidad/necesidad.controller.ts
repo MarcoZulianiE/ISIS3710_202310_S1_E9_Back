@@ -15,21 +15,21 @@ export class NecesidadController {
     constructor(private readonly necesidadService: NecesidadService) {}
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.LECTORNECESIDAD, Role.ADMIN)
+  @HasRoles(Role.LECTORNECESIDAD, Role.ADMINNECESIDAD)
   @Get()
   async findAll() {
     return await this.necesidadService.findAll();
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.LECTORNECESIDAD, Role.ADMIN)
+  @HasRoles(Role.LECTORNECESIDAD, Role.ADMINNECESIDAD)
   @Get(':necesidadId')
   async findOne(@Param('necesidadId') necesidadId: string) {
     return await this.necesidadService.findOne(necesidadId);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.ESCRITORNECESIDAD, Role.ADMIN)
+  @HasRoles(Role.ESCRITORNECESIDAD, Role.ADMINNECESIDAD)
   @Post()
   async create(@Body() necesidadDto: NecesidadDto) {
     const necesidad: NecesidadEntity = plainToInstance(NecesidadEntity, necesidadDto);
@@ -37,7 +37,7 @@ export class NecesidadController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.ESCRITORNECESIDAD, Role.ADMIN)
+  @HasRoles(Role.ESCRITORNECESIDAD, Role.ADMINNECESIDAD)
   @Put(':necesidadId')
   async update(@Param('necesidadId') necesidadId: string, @Body() necesidadDto: NecesidadDto) {
     const necesidad: NecesidadEntity = plainToInstance(NecesidadEntity, necesidadDto);
@@ -45,7 +45,7 @@ export class NecesidadController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.ESCRITORNECESIDAD, Role.ADMIN)
+  @HasRoles(Role.ESCRITORNECESIDAD, Role.ADMINNECESIDAD)
   @Delete(':necesidadId')
   @HttpCode(204)
   async delete(@Param('necesidadId') necesidadId: string) {

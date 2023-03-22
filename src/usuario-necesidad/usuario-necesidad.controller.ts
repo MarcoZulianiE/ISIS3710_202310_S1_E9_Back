@@ -15,28 +15,28 @@ export class UsuarioNecesidadController {
    constructor(private readonly usuarioNecesidadService: UsuarioNecesidadService){}
 
    @UseGuards(JwtAuthGuard, RolesGuard)
-   @HasRoles(Role.ESCRITORNECESIDAD, Role.ADMINNECESIDAD)
+   @HasRoles(Role.ADMINUSUARIO, Role.ESCRITORUSUARIO)
    @Post(':usuarioId/necesidades/:necesidadId')
    async addNecesidadUsuario(@Param('usuarioId') usuarioId: string, @Param('necesidadId') necesidadId: string){
        return await this.usuarioNecesidadService.addNecesidadUsuario(usuarioId, necesidadId);
    }
 
    @UseGuards(JwtAuthGuard, RolesGuard)
-   @HasRoles(Role.LECTORUSUARIO, Role.LECTORNECESIDAD, Role.ADMINNECESIDAD)
+   @HasRoles(Role.ADMINUSUARIO, Role.LECTORUSUARIO)
    @Get(':usuarioId/necesidades/:necesidadId')
    async findNecesidadByUsuarioIdNecesidadId(@Param('usuarioId') usuarioId: string, @Param('necesidadId') necesidadId: string){
        return await this.usuarioNecesidadService.findNecesidadByUsuarioIdNecesidadId(usuarioId, necesidadId);
    }
 
    @UseGuards(JwtAuthGuard, RolesGuard)
-   @HasRoles(Role.ESCRITORUSUARIO, Role.ADMINNECESIDAD)
+   @HasRoles(Role.ADMINUSUARIO, Role.LECTORUSUARIO)
    @Get(':usuarioId/necesidades')
    async findNecesidadesByUsuarioId(@Param('usuarioId') usuarioId: string){
        return await this.usuarioNecesidadService.findNecesidadesByUsuarioId(usuarioId);
    }
 
    @UseGuards(JwtAuthGuard, RolesGuard)
-   @HasRoles(Role.ESCRITORNECESIDAD, Role.ADMINNECESIDAD)
+   @HasRoles(Role.ADMINUSUARIO, Role.ESCRITORUSUARIO)
    @Put(':usuarioId/necesidades')
    async associateNecesidadesUsuario(@Body() necesidadesDto: NecesidadDto[], @Param('usuarioId') usuarioId: string){
        const necesidades = plainToInstance(NecesidadEntity, necesidadesDto)
@@ -44,7 +44,7 @@ export class UsuarioNecesidadController {
    }
 
    @UseGuards(JwtAuthGuard, RolesGuard)
-   @HasRoles(Role.ESCRITORNECESIDAD, Role.ADMINNECESIDAD, Role.ADMIN)
+   @HasRoles(Role.ADMINUSUARIO, Role.ELIMINARUSUARIO)
    @Delete(':usuarioId/necesidades/:necesidadId')
    @HttpCode(204)
    async deleteNecesidadUsuario(@Param('usuarioId') usuarioId: string, @Param('necesidadId') necesidadId: string){

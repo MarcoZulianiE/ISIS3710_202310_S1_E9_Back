@@ -1,8 +1,6 @@
 /* eslint-disable prettier/prettier */
 export enum Role {
-    //GENERICOS
-    USER = "user",
-    ADMIN = "admin",
+
     //USUARIO
     ADMINUSUARIO = "adminUsuario",
     LECTORUSUARIO = "lectorUsuario",
@@ -39,6 +37,7 @@ export enum Role {
     ESCRITOROFERTA = "escritorOferta",
     ELIMINAROFERTA = "eliminarOferta",
     //HORARIO
+    ADMINHORARIO = "adminHorario",
     LECTORHORARIO = "lectorHorario",
     ESCRITORHORARIO = "escritorHorario",
     ELIMINARHORARIO = "eliminarHorario"
