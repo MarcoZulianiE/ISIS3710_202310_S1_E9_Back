@@ -21,7 +21,8 @@ export class AuthService {
   }
 
   async login(req: any) {
-    const payload = { name: req.email, sub: req.id };
+    const parsedReq = JSON.parse(req)
+    const payload = { username: parsedReq.email, sub: parsedReq.password, roles: parsedReq.roles};
     return {
       token: this.jwtService.sign(payload, { privateKey: constants.JWT_SECRET }),
     };

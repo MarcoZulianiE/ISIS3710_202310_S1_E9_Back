@@ -1,8 +1,12 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Req, UseGuards, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { AuthService } from '../auth/auth.service';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { LocalAuthGuard } from '../auth/guards/local-auth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
+import { Role } from '../shared/security/roles';
+import { HasRoles } from '../shared/security/roles.decorator';
 import { UsuarioDto } from './usuario.dto';
 import { UsuarioEntity } from './usuario.entity';
 import { UsuarioService } from './usuario.service';
@@ -36,9 +40,11 @@ export class UsuarioController {
     return await this.usuarioService.update(usuarioId, usuario);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @HasRoles(Role.ADMIN)
   @Delete(':usuarioId')
   @HttpCode(204)
-  async delete(@Param('usuarioId') usuarioId: string) {
+  async delete(@Req() req: Request , @Param('usuarioId') usuarioId: string) {
     return await this.usuarioService.delete(usuarioId);
   }
 

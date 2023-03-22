@@ -10,6 +10,7 @@ import { HorarioService } from './horario.service';
 export class HorarioController {
     constructor(private readonly horarioService: HorarioService) {}
 
+    
     @Get()
     async findAll() {
         return await this.horarioService.findAll();
@@ -20,6 +21,7 @@ export class HorarioController {
         return await this.horarioService.findOne(horarioId);
     }
 
+    
     @Post()
     async create(@Body() horarioDto: HorarioDto) {
         const horario: HorarioEntity = plainToInstance(HorarioEntity, horarioDto)
