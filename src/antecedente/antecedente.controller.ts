@@ -16,21 +16,21 @@ export class AntecedenteController {
     constructor(private readonly antecedenteService: AntecedenteService) {}
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.LECTORANTECEDENTE, Role.ADMIN)
+    @HasRoles(Role.LECTORANTECEDENTE, Role.ADMINANTECEDENTE)
     @Get()
     async findAll() {
         return await this.antecedenteService.findAll();
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.LECTORANTECEDENTE, Role.ADMIN)
+    @HasRoles(Role.LECTORANTECEDENTE, Role.ADMINANTECEDENTE)
     @Get(':antecedenteId')
     async findOne(@Param('antecedenteId') antecedenteId: string) {
         return await this.antecedenteService.findOne(antecedenteId);
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.ADMINANTECEDENTE)
     @Post()
     async create(@Body() antecedenteDto: AntecedenteDto) {
         const antecedente: AntecedenteEntity = plainToInstance(AntecedenteEntity, antecedenteDto);
@@ -38,7 +38,7 @@ export class AntecedenteController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.ADMINANTECEDENTE)
     @Put(':antecedenteId')
     async update(@Param('antecedenteId') antecedenteId: string, @Body() antecedenteDto: AntecedenteDto) {
         const antecedente: AntecedenteEntity = plainToInstance(AntecedenteEntity, antecedenteDto);
@@ -46,7 +46,7 @@ export class AntecedenteController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMIN)   
+    @HasRoles(Role.ADMINANTECEDENTE)   
     @Delete(':antecedenteId')
     @HttpCode(204)
     async delete(@Param('antecedenteId') antecedenteId: string) {

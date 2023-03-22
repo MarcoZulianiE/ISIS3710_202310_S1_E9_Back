@@ -17,21 +17,21 @@ export class ReseniaController {
     constructor(private readonly reseniaService: ReseniaService) {}
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.LECTORRESENIA, Role.ADMIN)
+    @HasRoles(Role.LECTORRESENIA, Role.ADMINRESENIA)
     @Get()
     async findAll() {
         return await this.reseniaService.findAll();
     }
     
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.LECTORRESENIA, Role.ADMIN)
+    @HasRoles(Role.LECTORRESENIA, Role.ADMINRESENIA)
     @Get(':reseniaId')
     async findOne(@Param('reseniaId') reseniaId: string) {
         return await this.reseniaService.findOne(reseniaId);
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ESCRITORRESENIA, Role.ADMIN)
+    @HasRoles(Role.ESCRITORRESENIA, Role.ADMINRESENIA)
     @Post()
     async create(@Body() reseniaDto: ReseniaDto) {
         const resenia: ReseniaEntity = plainToInstance(ReseniaEntity, reseniaDto);
@@ -39,7 +39,7 @@ export class ReseniaController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ESCRITORRESENIA, Role.ADMIN)
+    @HasRoles(Role.ESCRITORRESENIA, Role.ADMINRESENIA)
     @Put(':reseniaId')
     async update(@Param('reseniaId') reseniaId: string, @Body() reseniaDto: ReseniaDto) {
         const resenia: ReseniaEntity = plainToInstance(ReseniaEntity, reseniaDto);
@@ -47,7 +47,7 @@ export class ReseniaController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ELIMINARRESENIA, Role.ADMIN)
+    @HasRoles(Role.ELIMINARRESENIA, Role.ADMINRESENIA)
     @Delete(':reseniaId')
     @HttpCode(204)
     async delete(@Param('reseniaId') reseniaId: string) {
