@@ -14,16 +14,22 @@ import { OfertaService } from './oferta.service';
 export class OfertaController {
     constructor(private readonly ofertaService: OfertaService) {}
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.LECTOROFERTA)
     @Get()
     async findAll() {
         return await this.ofertaService.findAll();
     }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.LECTOROFERTA)
     @Get(':ofertaId')
     async findOne(@Param('ofertaId') ofertaId: string) {
         return await this.ofertaService.findOne(ofertaId);
     }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.ESCRITOROFERTA)
     @UseGuards(JwtAuthGuard, RolesGuard)
     @HasRoles(Role.USER, Role.ADMIN)
     @Post()
@@ -33,7 +39,7 @@ export class OfertaController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER, Role.ADMIN)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINOFERTA, Role.ESCRITOROFERTA)
     @Put(':ofertaId')
     async update(@Param('ofertaId') ofertaId: string, @Body() ofertaDto: OfertaDto) {
         const oferta: OfertaEntity = plainToInstance(OfertaEntity, ofertaDto)
@@ -41,7 +47,7 @@ export class OfertaController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINOFERTA, Role.ELIMINAROFERTA)
     @Delete(':ofertaId')
     @HttpCode(204)
     async delete(@Param('ofertaId') ofertaId: string) {

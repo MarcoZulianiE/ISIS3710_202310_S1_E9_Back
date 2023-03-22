@@ -10,6 +10,14 @@ export enum Role {
     ELIMINARRESENIA = "eliminarResenia",
     LECTORHORARIO = "lectorHorario",
     ESCRITORHORARIO = "escritorHorario",
-    ELIMINARHORARIO = "eliminarHorario"
+    ELIMINARHORARIO = "eliminarHorario",
+    LECTORCONTRATO = "lectorContrato",
+    ESCRITORCONTRATO = "escritorContrato",
+    ELIMINARCONTRATO = "eliminarContrato",
+    ADMINCONTRATO = "adminContrato",
+    LECTOROFERTA = "lectorOferta",
+    ESCRITOROFERTA = "escritor0ferta",
+    ELIMINAROFERTA = "eliminarOferta",
+    ADMINOFERTA = "adminOferta"
 
 }
