@@ -37,5 +37,10 @@ export enum Role {
     ADMINOFERTA = "adminOferta",
     LECTOROFERTA = "lectorOferta",
     ESCRITOROFERTA = "escritorOferta",
-    ELIMINAROFERTA = "eliminarOferta"
+    ELIMINAROFERTA = "eliminarOferta",
+    //HORARIO
+    LECTORHORARIO = "lectorHorario",
+    ESCRITORHORARIO = "escritorHorario",
+    ELIMINARHORARIO = "eliminarHorario"
+
 }

@@ -16,21 +16,22 @@ export class ContratoController {
     constructor(private readonly contratoService: ContratoService) {}
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.LECTORCONTRATO)
     @Get()
     async findAll() {
         return await this.contratoService.findAll();
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.LECTORCONTRATO)
     @Get(':contratoId')
     async findOne(@Param('contratoId') contratoId: string) {
         return await this.contratoService.findOne(contratoId);
     }
-
+    
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMIN)
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.ESCRITORCONTRATO)
     @Post()
     async create(@Body() contratoDto: ContratoDto) {
         const contrato: ContratoEntity = plainToInstance(ContratoEntity, contratoDto)
@@ -38,7 +39,7 @@ export class ContratoController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.ESCRITORCONTRATO)
     @Put(':contratoId')
     async update(@Param('contratoId') contratoId: string, @Body() contratoDto: ContratoDto) {
         const contrato: ContratoEntity = plainToInstance(ContratoEntity, contratoDto)
@@ -46,7 +47,7 @@ export class ContratoController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMIN)
+    @HasRoles(Role.USER, Role.ADMIN, Role.ADMINCONTRATO, Role.ELIMINARCONTRATO)
     @Delete(':contratoId')
     @HttpCode(204)
     async delete(@Param('contratoId') contratoId: string) {
