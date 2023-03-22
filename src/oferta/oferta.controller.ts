@@ -25,7 +25,7 @@ export class OfertaController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER)
+    @HasRoles(Role.USER, Role.ADMIN)
     @Post()
     async create(@Body() ofertaDto: OfertaDto) {
         const oferta: OfertaEntity = plainToInstance(OfertaEntity, ofertaDto)
@@ -33,7 +33,7 @@ export class OfertaController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.USER)
+    @HasRoles(Role.USER, Role.ADMIN)
     @Put(':ofertaId')
     async update(@Param('ofertaId') ofertaId: string, @Body() ofertaDto: OfertaDto) {
         const oferta: OfertaEntity = plainToInstance(OfertaEntity, ofertaDto)
