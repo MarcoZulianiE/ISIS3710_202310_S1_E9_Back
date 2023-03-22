@@ -18,11 +18,15 @@ export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService,
     private readonly authService: AuthService) {}
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @HasRoles(Role.LECTORUSUARIO, Role.ADMINUSUARIO)
   @Get()
   async findAll() {
     return await this.usuarioService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @HasRoles(Role.LECTORUSUARIO, Role.ADMINUSUARIO)
   @Get(':usuarioId')
   async findOne(@Param('usuarioId') usuarioId: string) {
     return await this.usuarioService.findOne(usuarioId);
@@ -34,6 +38,8 @@ export class UsuarioController {
     return await this.usuarioService.create(usuario);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @HasRoles(Role.ESCRITORUSUARIO, Role.ADMINUSUARIO)
   @Put(':usuarioId')
   async update(@Param('usuarioId') usuarioId: string, @Body() usuarioDto: UsuarioDto) {
     const usuario: UsuarioEntity = plainToInstance(UsuarioEntity, usuarioDto);
@@ -41,7 +47,7 @@ export class UsuarioController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.ADMIN)
+  @HasRoles(Role.ELIMINARUSUARIO, Role.ADMINUSUARIO)
   @Delete(':usuarioId')
   @HttpCode(204)
   async delete(@Req() req: Request , @Param('usuarioId') usuarioId: string) {
