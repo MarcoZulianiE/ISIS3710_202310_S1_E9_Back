@@ -1,7 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors.interceptor';
+import { Role } from 'src/shared/security/roles';
+import { HasRoles } from 'src/shared/security/roles.decorator';
 import { ReseniaDto } from '../resenia/resenia.dto';
 import { ReseniaEntity } from '../resenia/resenia.entity';
 import { UsuarioReseniaService } from './usuario-resenia.service';
@@ -11,27 +15,37 @@ import { UsuarioReseniaService } from './usuario-resenia.service';
 export class UsuarioReseniaController {
     constructor(private readonly usuarioReseniaService: UsuarioReseniaService){}
 
+@UseGuards(JwtAuthGuard, RolesGuard)
+@HasRoles(Role.ESCRITORUSUARIO, Role.ADMINUSUARIO)
 @Post(':usuarioId/resenias/:reseniaId')
    async addReseniaUsuario(@Param('usuarioId') usuarioId: string, @Param('reseniaId') reseniaId: string){
        return await this.usuarioReseniaService.addReseniaUsuario(usuarioId, reseniaId);
    }
 
+@UseGuards(JwtAuthGuard, RolesGuard)
+@HasRoles(Role.LECTORUSUARIO, Role.ADMINUSUARIO)
 @Get(':usuarioId/resenias/:reseniaId')
    async findReseniaByUsuarioIdReseniaId(@Param('usuarioId') usuarioId: string, @Param('reseniaId') reseniaId: string){
        return await this.usuarioReseniaService.findReseniaByUsuarioIdReseniaId(usuarioId, reseniaId);
    }
 
+@UseGuards(JwtAuthGuard, RolesGuard)
+@HasRoles(Role.LECTORUSUARIO, Role.ADMINUSUARIO)
 @Get(':usuarioId/resenias')
    async findReseniasByUsuarioId(@Param('usuarioId') usuarioId: string){
        return await this.usuarioReseniaService.findReseniasByUsuarioId(usuarioId);
    }
 
+@UseGuards(JwtAuthGuard, RolesGuard)
+@HasRoles(Role.ESCRITORUSUARIO, Role.ADMINUSUARIO)
 @Put(':usuarioId/resenias')
    async associateReseniasUsuario(@Body() reseniasDto: ReseniaDto[], @Param('usuarioId') usuarioId: string){
        const resenias = plainToInstance(ReseniaEntity, reseniasDto)
        return await this.usuarioReseniaService.associateReseniasUsuario(usuarioId, resenias);
    }
 
+@UseGuards(JwtAuthGuard, RolesGuard)
+@HasRoles(Role.ELIMINARUSUARIO, Role.ADMINUSUARIO)
 @Delete(':usuarioId/resenias/:reseniaId')
 @HttpCode(204)
    async deleteReseniaUsuario(@Param('usuarioId') usuarioId: string, @Param('reseniaId') reseniaId: string){

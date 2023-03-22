@@ -9,10 +9,12 @@ export enum Role {
     ESCRITORUSUARIO = "escritorUsuario",
     ELIMINARUSUARIO = "eliminarUsuario",
     //ANTECEDENTE
+    ADMINANTECEDENTE = "adminAntecedente",
     LECTORANTECEDENTE = "lectorAntecedente",
     ESCRITORANTECEDENTE = "escritorAntecedente",
     ELIMINARANTECEDENTE = "eliminarAntecedente",
     //RESENIA
+    ADMINRESENIA = "adminResenia",
     LECTORRESENIA = "lectorResenia",
     ESCRITORRESENIA = "escritorResenia",
     ELIMINARRESENIA = "eliminarResenia",
