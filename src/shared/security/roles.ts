@@ -7,6 +7,9 @@ export enum Role {
     ELIMINARANTECEDENTE = "eliminarAntecedente",
     LECTORRESENIA = "lectorResenia",
     ESCRITORRESENIA = "escritorResenia",
-    ELIMINARRESENIA = "eliminarResenia"
+    ELIMINARRESENIA = "eliminarResenia",
+    LECTORHORARIO = "lectorHorario",
+    ESCRITORHORARIO = "escritorHorario",
+    ELIMINARHORARIO = "eliminarHorario"
 
 }
