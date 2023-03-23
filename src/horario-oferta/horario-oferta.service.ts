@@ -79,6 +79,9 @@ export class HorarioOfertaService {
           throw new BusinessLogicException(NotFoundErrorMessage("horario"), BusinessError.NOT_FOUND)
         
         const horarioOferta: OfertaEntity = horario.oferta !== null ? horario.oferta : null;
+        if(!horarioOferta)
+            throw new BusinessLogicException(PreconditionFailedErrorMessage("horario", "oferta"), BusinessError.PRECONDITION_FAILED)
+            
         const matchingOferta: OfertaEntity = horarioOferta.id === oferta.id ? horarioOferta : null;
 
         if (!matchingOferta)
