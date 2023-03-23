@@ -1,0 +1,1551 @@
+{
+	"info": {
+		"_postman_id": "129b8679-0d23-435b-a7bf-10f8b95b92ac",
+		"name": "Ofertas-Usuarios [x]",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25894623"
+	},
+	"item": [
+		{
+			"name": "Add an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"usuario_id\", data.id);\r",
+							"pm.globals.set(\"usuario_id_email\", data.correoElectronico);\r",
+							"pm.globals.set(\"usuario_id_contrasenia\", data.contrasenia);\r",
+							"pm.globals.set(\"usuario_id_roles\", data.roles);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Generate Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"jwt_token\", data.token);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_id_roles}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_roles}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"erwdewdadasdasdadasdadedd334654vfdg456gbbdb\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add an usuario 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"usuario_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Marta Lopez\",\n    \"cedula\": \"39483854\",\n    \"contrasenia\": \"Marta123\",\n    \"correoElectronico\": \"marta@gmail.com\",\n    \"direccion\": \"carrera 34 #21-61\",\n    \"celular\": \"3167537682\",\n    \"tipoUsuario\": \"Canguro\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"oferta_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-04-01\",\n    \"fechaFin\": \"2023-04-13\",\n    \"usuario\": {\n        \"id\": \"{{usuario_id}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						""
+					]
+				},
+				"description": "This request creates a new oferta. The API returns the created resource with the assigned ID."
+			},
+			"response": [
+				{
+					"name": "Add oferta",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"precio\": 30000, \n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\", \n    \"fechaFin\": \"2023-04-13\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\",\n    \"fechaFin\": \"2023-04-13\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add oferta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"oferta_id_2\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"precio\": 50000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-01-01\",\n    \"fechaFin\": \"2023-02-13\",\n    \"usuario\": {\n        \"id\": \"{{usuario_id_2}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						""
+					]
+				},
+				"description": "This request creates a new oferta. The API returns the created resource with the assigned ID."
+			},
+			"response": [
+				{
+					"name": "Add oferta",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"precio\": 30000, \n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\", \n    \"fechaFin\": \"2023-04-13\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\",\n    \"fechaFin\": \"2023-04-13\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a usuario of an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id}}",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a usuario of an oferta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/{{usuario_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}",
+								"usuarios",
+								"{{usuario_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": 43657875,\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlosgmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": 3167547634,\n    \"tipoUsuario\": \"Acudiente\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an invalid usuario of an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The usuario with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id}}",
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an invalid usuario of an oferta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}",
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a usuario of an invalid oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"00000000-0000-0000-0000-000000000000",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a usuario of an invalid oferta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"00000000-0000-0000-0000-000000000000",
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a usuario non-associated to an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The usuario with the given id is not associated to the oferta.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/{{usuario_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id}}",
+						"usuarios",
+						"{{usuario_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a usuario non-associated to an oferta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/{{usuario_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}",
+								"usuarios",
+								"{{usuario_id_2}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The usuario with the given id is not associated to the oferta\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all usuarios of an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id}}",
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all usuarios of an oferta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}",
+								"usuarios",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": 43657875,\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlosgmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": 3167547634,\n    \"tipoUsuario\": \"Acudiente\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all usuarios of an invalid oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"00000000-0000-0000-0000-000000000000",
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all usuarios of an invalid oferta",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"00000000-0000-0000-0000-000000000000",
+								"usuarios"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a usuario of an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id}}",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a usuario of an oferta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}",
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete a usuario of an invalid oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"00000000-0000-0000-0000-000000000000",
+						"usuarios",
+						"{{usuario_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a usuario of an invalid oferta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"00000000-0000-0000-0000-000000000000",
+								"usuarios",
+								"{{usuario_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid usuario of an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The usuario with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id_2}}/usuarios/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id_2}}",
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an invalid usuario of an oferta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}/usuarios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}",
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a usuario non-associated to an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The usuario with the given id is not associated to the oferta.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id_2}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id_2}}",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a usuario non-associated to an oferta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id_2}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id_2}}",
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The usuario with the given id is not associated to the oferta\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id}}"
+					]
+				},
+				"description": "This request deletes an oferta given its ID. The API does not return any content."
+			},
+			"response": [
+				{
+					"name": "Delete an oferta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an oferta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ofertas",
+						"{{oferta_id_2}}"
+					]
+				},
+				"description": "This request deletes an oferta given its ID. The API does not return any content."
+			},
+			"response": [
+				{
+					"name": "Delete an oferta",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ofertas",
+								"{{oferta_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete usuario 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
