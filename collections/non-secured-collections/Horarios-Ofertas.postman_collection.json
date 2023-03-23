@@ -1,13 +1,94 @@
 {
 	"info": {
-		"_postman_id": "8b1a2d1e-f8cc-4dc1-b05e-d77dfbf37b1f",
+		"_postman_id": "fd6c9be6-245d-4079-876e-b9a37da8be4b",
 		"name": "Horarios-Ofertas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19626788"
 	},
 	"item": [
 		{
-			"name": "Add an usuario Copy",
+			"name": "Add Horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"horario_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"horaInicio\" : \"1800-01-01T00:09:00.000Z\",\r\n    \"horaFin\" : \"1800-01-01T00:10:00.000Z\",\r\n    \"dia\" : \"Martes\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/horarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Horario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"horaInicio\" : \"7:48 a.m.\",\r\n    \"horaFin\" : \"4:01 p.m.\",\r\n    \"dia\" : \"Martes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/horarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Add an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -15,9 +96,6 @@
 						"exec": [
 							"var data = pm.response.json()\r",
 							"pm.globals.set(\"usuario_id_1\", data.id);\r",
-							"pm.globals.set(\"usuario_id_email\", data.correoElectronico);\r",
-							"pm.globals.set(\"usuario_id_contrasenia\", data.contrasenia);\r",
-							"pm.globals.set(\"usuario_id_roles\", data.roles);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -87,185 +165,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Generate Token Copy",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"jwt_token\", data.token);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"{{usuario_id_email}}\", \n    \"password\": \"{{usuario_id_contrasenia}}\", \n    \"roles\": \"{{usuario_id_roles}}\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/usuarios/login",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"usuarios",
-						"login"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Generate Token",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"carlos@gmail.com\", \n    \"password\": \"Carlos123\", \n    \"roles\": \"{{usuario_roles}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/usuarios/login",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"usuarios",
-								"login"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"token\": \"erwdewdadasdasdadasdadedd334654vfdg456gbbdb\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Add Horario",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data = pm.response.json()",
-							"pm.globals.set(\"horario_id\", data.id);",
-							"",
-							"pm.test(\"Status code is 201\", function () {",
-							"   pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"horaInicio\" : \"1800-01-01T00:09:00.000Z\",\r\n    \"horaFin\" : \"1800-01-01T00:10:00.000Z\",\r\n    \"dia\" : \"Martes\"\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/horarios",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"horarios"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Add Horario",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"horaInicio\" : \"7:48 a.m.\",\r\n    \"horaFin\" : \"4:01 p.m.\",\r\n    \"dia\" : \"Martes\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/horarios",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"horarios"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": null,
-					"header": null,
-					"cookie": [],
-					"body": null
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
 				}
 			]
 		},
@@ -288,16 +188,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -383,16 +273,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -475,16 +355,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"url": {
@@ -557,16 +427,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"url": {
@@ -639,16 +499,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"url": {
@@ -716,16 +566,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -798,16 +638,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -880,16 +710,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -962,16 +782,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -1039,16 +849,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -1121,16 +921,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -1181,82 +971,6 @@
 			]
 		},
 		{
-			"name": "Delete an oferta of an horario",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {",
-							"   pm.response.to.have.status(204);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_1}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"horarios",
-						"{{horario_id}}",
-						"ofertas",
-						"{{oferta_id_1}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Delete an oferta of an horario",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas{{oferta_id_2}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"horarios",
-								"{{horario_id}}",
-								"ofertas{{oferta_id_2}}"
-							]
-						}
-					},
-					"status": "No Content",
-					"code": 204,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": ""
-				}
-			]
-		},
-		{
 			"name": "Delete an oferta of an invalid horario",
 			"event": [
 				{
@@ -1277,16 +991,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1339,88 +1043,6 @@
 			]
 		},
 		{
-			"name": "Delete an invalid oferta of an horario",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"   pm.response.to.have.status(404);",
-							"});",
-							"",
-							"pm.test(\"Get expected error message\", function () {",
-							"   var data = pm.response.json();",
-							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"horarios",
-						"{{horario_id}}",
-						"ofertas",
-						"00000000-0000-0000-0000-000000000000"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Delete an invalid oferta of an horario",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"horarios",
-								"{{horario_id}}",
-								"ofertas",
-								"00000000-0000-0000-0000-000000000000"
-							]
-						}
-					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
-				}
-			]
-		},
-		{
 			"name": "Delete an oferta non-associated to an horario",
 			"event": [
 				{
@@ -1441,16 +1063,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1503,7 +1115,7 @@
 			]
 		},
 		{
-			"name": "Delete an oferta Copy",
+			"name": "Delete an oferta of an horario",
 			"event": [
 				{
 					"listen": "test",
@@ -1518,16 +1130,199 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/{{oferta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"{{oferta_id_1}}"
 					]
-				},
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an oferta of an horario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas{{oferta_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas{{oferta_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid oferta of an horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}",
+						"ofertas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an invalid oferta of an horario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}",
+								"ofertas",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an Horario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"horarios",
+						"{{horario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an Horario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"horarios",
+								"{{horario_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete an oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1577,7 +1372,7 @@
 			]
 		},
 		{
-			"name": "Delete an oferta Copy 2",
+			"name": "Delete an oferta 2",
 			"event": [
 				{
 					"listen": "test",
@@ -1592,16 +1387,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1651,7 +1436,7 @@
 			]
 		},
 		{
-			"name": "Delete usuario Copy",
+			"name": "Delete usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1666,16 +1451,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {

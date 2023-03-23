@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "127e00ac-b158-483c-aa16-34e8050f7747",
+		"_postman_id": "a2b0a78b-2180-4853-b01f-c749d5b476dc",
 		"name": "Usuarios-Antecedentes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788"
+		"_exporter_id": "25914520"
 	},
 	"item": [
 		{
@@ -89,14 +89,14 @@
 			]
 		},
 		{
-			"name": "Add antecedente",
+			"name": "Generate Token",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"antecedente_id_1\", data.id);\r",
+							"pm.globals.set(\"jwt_token\", data.token);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -107,6 +107,181 @@
 				}
 			],
 			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_id_roles}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_roles}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"erwdewdadasdasdadasdadedd334654vfdg456gbbdb\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add an usuario 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"usuario_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Marta Lopez\",\n    \"cedula\": \"39483854\",\n    \"contrasenia\": \"Marta123\",\n    \"correoElectronico\": \"marta@gmail.com\",\n    \"direccion\": \"carrera 34 #21-61\",\n    \"celular\": \"3167537682\",\n    \"tipoUsuario\": \"Canguro\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add antecedente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"antecedente_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -191,6 +366,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -272,10 +457,20 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_1}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -283,7 +478,7 @@
 						"usuarios",
 						"{{usuario_id}}",
 						"antecedentes",
-						"{{antecedente_id_1}}"
+						"{{antecedente_id}}"
 					]
 				}
 			},
@@ -345,6 +540,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"url": {
@@ -417,10 +622,20 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id_1}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -428,7 +643,7 @@
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
 						"antecedentes",
-						"{{antecedente_id_1}}"
+						"{{antecedente_id}}"
 					]
 				}
 			},
@@ -484,10 +699,20 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_1}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -495,7 +720,7 @@
 						"usuarios",
 						"{{usuario_id}}",
 						"antecedentes",
-						"{{antecedente_id_1}}"
+						"{{antecedente_id}}"
 					]
 				}
 			},
@@ -556,10 +781,20 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id_1}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -567,7 +802,7 @@
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
 						"antecedentes",
-						"{{antecedente_id_1}}"
+						"{{antecedente_id}}"
 					]
 				}
 			},
@@ -628,6 +863,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -681,7 +926,30 @@
 		},
 		{
 			"name": "Get all antecedentes of an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -752,6 +1020,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -817,6 +1095,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -905,6 +1193,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -993,6 +1291,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -1076,6 +1384,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1112,10 +1430,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": "Text",
-					"header": [],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": ""
+					"body": null
 				}
 			]
 		},
@@ -1140,6 +1458,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1212,6 +1540,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1284,6 +1622,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1351,16 +1699,26 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id_1}}",
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"antecedentes",
-						"{{antecedente_id_1}}"
+						"{{antecedente_id}}"
 					]
 				}
 			},
@@ -1383,10 +1741,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": "Text",
-					"header": [],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": ""
+					"body": null
 				}
 			]
 		},
@@ -1406,6 +1764,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1438,10 +1806,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": "Text",
-					"header": [],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": ""
+					"body": null
 				}
 			]
 		},
@@ -1461,6 +1829,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1499,6 +1877,71 @@
 					"body": ""
 				}
 			]
+		},
+		{
+			"name": "Delete usuario 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
 		}
 	],
 	"event": [
@@ -1519,6 +1962,13 @@
 					""
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
 		}
 	]
 }

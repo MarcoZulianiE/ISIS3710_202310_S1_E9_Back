@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "9bd4d3d0-63d5-4b8a-b68f-e994217f6643",
-		"name": "Antecedentes",
+		"_postman_id": "41414373-80d4-42d4-9509-413c61212030",
+		"name": "Ofertas",
+		"description": "Documentation for the resource of oferta.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25914520"
+		"_exporter_id": "19626788"
 	},
 	"item": [
 		{
@@ -15,9 +16,6 @@
 						"exec": [
 							"var data = pm.response.json()\r",
 							"pm.globals.set(\"usuario_id\", data.id);\r",
-							"pm.globals.set(\"usuario_id_email\", data.correoElectronico);\r",
-							"pm.globals.set(\"usuario_id_contrasenia\", data.contrasenia);\r",
-							"pm.globals.set(\"usuario_id_roles\", data.roles);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -32,7 +30,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n} ",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -92,17 +90,17 @@
 			]
 		},
 		{
-			"name": "Generate Token",
+			"name": "Add oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"jwt_token\", data.token);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
+							"var data = pm.response.json()",
+							"pm.globals.set(\"oferta_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -110,14 +108,11 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"{{usuario_id_email}}\", \n    \"password\": \"{{usuario_id_contrasenia}}\", \n    \"roles\": \"{{usuario_id_roles}}\"\n}",
+					"raw": "{\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-04-01\",\n    \"fechaFin\": \"2023-04-13\",\n    \"usuario\": {\n        \"id\": \"{{usuario_id}}\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -125,119 +120,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/login",
+					"raw": "{{baseUrl}}/ofertas/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"usuarios",
-						"login"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Generate Token",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"carlos@gmail.com\", \n    \"password\": \"Carlos123\", \n    \"roles\": \"{{usuario_roles}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/usuarios/login",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"usuarios",
-								"login"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"token\": \"erwdewdadasdasdadasdadedd334654vfdg456gbbdb\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Add antecedente",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"antecedente_id\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/antecedentes/",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"antecedentes",
+						"ofertas",
 						""
 					]
-				}
+				},
+				"description": "This request creates a new oferta. The API returns the created resource with the assigned ID."
 			},
 			"response": [
 				{
-					"name": "Add antecedente",
+					"name": "Add oferta",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
+							"raw": "{\n    \"precio\": 30000, \n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\", \n    \"fechaFin\": \"2023-04-13\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -245,12 +147,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/",
+							"raw": "{{baseUrl}}/ofertas/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
+								"ofertas",
 								""
 							]
 						}
@@ -268,24 +170,24 @@
 						}
 					],
 					"cookie": [],
-					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\",\n    \"fechaFin\": \"2023-04-13\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get all antecendentes",
+			"name": "Get all ofertas",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Number of resenias > ' + 0, function () {\r",
-							"   var data = pm.response.json()\r",
-							"   pm.expect(data.length).to.greaterThan(0)\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test('Number of ofertas > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -293,41 +195,34 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes",
+					"raw": "{{baseUrl}}/ofertas/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes"
+						"ofertas",
+						""
 					]
-				}
+				},
+				"description": "This request obtains all ofertas. The API returns the detailed respresentation for each oferta."
 			},
 			"response": [
 				{
-					"name": "Get all antecendentes",
+					"name": "Get all ofertas",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes",
+							"raw": "{{baseUrl}}/ofertas/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes"
+								"ofertas",
+								""
 							]
 						}
 					},
@@ -344,19 +239,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"tipo\": \"Criminal\",\n        \"description\": \"Posesión ilegal de armas\"\n    },\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120003\",\n        \"tipo\": \"Criminal\",\n        \"description\": \"Robo de Vehículo\"\n    },\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120004\",\n        \"tipo\": \"Criminal\",\n        \"description\": \"Violencia Doméstica\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\", \n        \"usuario\": {\n            \"id\": \"48a9ab90-1276-11ed-861d-0131ac120002\",\n            \"nombre\": \"Marta Lopez\",\n            \"cedula\": 39483854,\n            \"contrasenia\": \"Marta123\",\n            \"correoElectronico\": \"marta@gmail.com\",\n            \"direccion\": \"carrera 34 #21-61\",\n            \"celular\": 3167537682,\n            \"tipoUsuario\": \"Canguro\"\n        },\n        \"contrato\": {\n            \"id\": \"7e265679-3a85-416d-afca-80fd04e2b79c\",\n            \"fecha\": \"2023-02-28\"\n        }, \n        \"disponibilidad\": {\n            // TODO: \n        }\n    }, \n    {\n        \"id\": \"14f05d0e-1275-11ed-86dd-0242ac120032\",\n        \"precio\": 40000,\n        \"disponible\": true,\n        \"tipoO\": \"Acudiente\",\n        \"fechaInicio\": \"2023-02-02\",\n        \"fechaFin\": \"2023-03-02\", \n        \"usuario\": {\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Carlos Perez\",\n            \"cedula\": 43657875,\n            \"contrasenia\": \"Carlos123\",\n            \"correoElectronico\": \"carlosgmail.com\",\n            \"direccion\": \"carrera 43 #98-51\",\n            \"celular\": 3167547634,\n            \"tipoUsuario\": \"Acudiente\"\n        },\n        \"contrato\": {\n        }, \n        \"disponibilidad\": {\n            // TODO:\n        }\n        \n    }\n]"
 				}
 			]
 		},
 		{
-			"name": "Get one antecedente",
+			"name": "Get one oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -364,43 +259,34 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes",
-						"{{antecedente_id}}"
+						"ofertas",
+						"{{oferta_id}}"
 					]
-				}
+				},
+				"description": "This request obtains an oferta given its ID. The API returns the detailed representation for the oferta."
 			},
 			"response": [
 				{
-					"name": "Get one antecedente",
+					"name": "Get one oferta",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
-								"{{antecedente_id}}"
+								"ofertas",
+								"{{oferta_id}}"
 							]
 						}
 					},
@@ -417,24 +303,24 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"tipo\": \"Criminal\",\n    \"description\": \"Posesión ilegal de armas\"\n}"
+					"body": "{\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\", \n        \"usuario\": {\n            \"id\": \"48a9ab90-1276-11ed-861d-0131ac120002\",\n            \"nombre\": \"Marta Lopez\",\n            \"cedula\": 39483854,\n            \"contrasenia\": \"Marta123\",\n            \"correoElectronico\": \"marta@gmail.com\",\n            \"direccion\": \"carrera 34 #21-61\",\n            \"celular\": 3167537682,\n            \"tipoUsuario\": \"Canguro\"\n        },\n        \"contrato\": {\n            \"id\": \"7e265679-3a85-416d-afca-80fd04e2b79c\",\n            \"fecha\": \"2023-02-28\"\n        }, \n        \"disponibilidad\": [\n            // TODO: \n        ]\n} "
 				}
 			]
 		},
 		{
-			"name": "Get an invalid antecedente",
+			"name": "Get an invalid oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -442,42 +328,33 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes",
+						"ofertas",
 						"00000000-0000-0000-0000-000000000000"
 					]
-				}
+				},
+				"description": "This request obtains an oferta that does not exist. The API returns an error message."
 			},
 			"response": [
 				{
-					"name": "Get an invalid antecedente",
+					"name": "Get an invalid oferta",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
+								"ofertas",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -495,19 +372,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The antecedente with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Update antecedente",
+			"name": "Update oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -515,21 +392,11 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Robo\"\r\n}",
+					"raw": "{\n        \"precio\": 30000,\n        \"disponible\": false,\n        \"tipoOferta\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\",\n        \"usuario\": {\n            \"id\": \"{{usuario_id}}\"\n        }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -537,25 +404,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes",
-						"{{antecedente_id}}"
+						"ofertas",
+						"{{oferta_id}}"
 					]
-				}
+				},
+				"description": "This request updates the information of an oferta with the given ID. The API returns the basic representation of the oferta with the updated information."
 			},
 			"response": [
 				{
-					"name": "Update antecedente",
+					"name": "Update oferta",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Robo\"\r\n}",
+							"raw": "{\n        \"precio\": 30000,\n        \"disponible\": false,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -563,13 +431,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
-								"{{antecedente_id}}"
+								"ofertas",
+								"{{oferta_id}}"
 							]
 						}
 					},
@@ -586,24 +454,24 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Robo\"\r\n}"
+					"body": "{\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"precio\": 30000,\n        \"disponible\": false,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\"\n    }"
 				}
 			]
 		},
 		{
-			"name": "Update invalid antecedente",
+			"name": "Update invalid oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -611,21 +479,11 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Robo\"\r\n}",
+					"raw": "{\n        \"precio\": 30000,\n        \"disponible\": false,\n        \"tipoOferta\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\",\n        \"usuario\": {\n            \"id\": \"{{usuario_id}}\"\n        }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -633,25 +491,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes",
+						"ofertas",
 						"00000000-0000-0000-0000-000000000000"
 					]
-				}
+				},
+				"description": "This request updates an oferta that does not exist. The API returns an error message."
 			},
 			"response": [
 				{
-					"name": "Update invalid antecedente",
+					"name": "Update invalid oferta",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Robo\"\r\n}",
+							"raw": "{\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -659,12 +518,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
+								"ofertas",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -682,19 +541,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The antecedente with the given id was not found\"\r\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an antecedente",
+			"name": "Delete an oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -702,69 +561,68 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes",
-						"{{antecedente_id}}"
+						"ofertas",
+						"{{oferta_id}}"
 					]
-				}
+				},
+				"description": "This request deletes an oferta given its ID. The API does not return any content."
 			},
 			"response": [
 				{
-					"name": "Delete an antecedente",
+					"name": "Delete an oferta",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
-								"{{antecedente_id}}"
+								"ofertas",
+								"{{oferta_id}}"
 							]
 						}
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
 		{
-			"name": "Delete an invalid antecedente",
+			"name": "Delete an invalid oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -772,42 +630,33 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes",
+						"ofertas",
 						"00000000-0000-0000-0000-000000000000"
 					]
-				}
+				},
+				"description": "This request deletes an oferta that does not exist. The API returns an error message."
 			},
 			"response": [
 				{
-					"name": "Delete an invalid antecedente",
+					"name": "Delete an invalid oferta",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
+								"ofertas",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -825,7 +674,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The antecedente with the given id was not found\"\r\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
 				}
 			]
 		},
@@ -845,16 +694,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -913,13 +752,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseUrl",
-			"value": "http://localhost:3000/api/v1",
-			"type": "string"
 		}
 	]
 }

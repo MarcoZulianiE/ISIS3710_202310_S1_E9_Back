@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a2b0a78b-2180-4853-b01f-c749d5b476dc",
-		"name": "Usuarios-Antecedentes",
+		"_postman_id": "31812c21-faa3-4156-a059-c92f8c2f2479",
+		"name": "Usuarios-Resenias",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25914520"
+		"_exporter_id": "19626788"
 	},
 	"item": [
 		{
@@ -89,14 +89,14 @@
 			]
 		},
 		{
-			"name": "Generate Token",
+			"name": "Add resenia",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"jwt_token\", data.token);\r",
+							"pm.globals.set(\"resenia_id_1\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -111,7 +111,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_id_roles}}\"\r\n}",
+					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -119,200 +119,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/login",
+					"raw": "{{baseUrl}}/resenias/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"usuarios",
-						"login"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Add an Usuario",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_roles}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/usuarios",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"usuarios"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"token\": \"erwdewdadasdasdadasdadedd334654vfdg456gbbdb\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Add an usuario 2",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"usuario_id_2\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/usuarios",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"usuarios"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Add an Usuario",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/usuarios",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"usuarios"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"nombre\": \"Marta Lopez\",\n    \"cedula\": \"39483854\",\n    \"contrasenia\": \"Marta123\",\n    \"correoElectronico\": \"marta@gmail.com\",\n    \"direccion\": \"carrera 34 #21-61\",\n    \"celular\": \"3167537682\",\n    \"tipoUsuario\": \"Canguro\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Add antecedente",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"antecedente_id\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/antecedentes/",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"antecedentes",
+						"resenias",
 						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add antecedente",
+					"name": "Add resenia",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
+							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -320,12 +145,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/",
+							"raw": "{{baseUrl}}/resenias/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
+								"resenias",
 								""
 							]
 						}
@@ -343,19 +168,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Add antecedente 2",
+			"name": "Add resenia 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"antecedente_id_2\", data.id);\r",
+							"pm.globals.set(\"resenia_id_2\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -366,21 +191,11 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
+					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -388,25 +203,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/",
+					"raw": "{{baseUrl}}/resenias/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes",
+						"resenias",
 						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add antecedente",
+					"name": "Add resenia",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
+							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -414,12 +229,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/",
+							"raw": "{{baseUrl}}/resenias/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
+								"resenias",
 								""
 							]
 						}
@@ -437,12 +252,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Add antecedente to an usuario",
+			"name": "Add resenia to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -457,47 +272,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes",
-						"{{antecedente_id}}"
+						"resenias",
+						"{{resenia_id_1}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add antecedente to an usuario",
+					"name": "Add resenia to an usuario",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes",
-								"{{antecedente_id}}"
+								"resenias",
+								"{{resenia_id}}"
 							]
 						}
 					},
@@ -514,12 +319,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [\r\n        {  \r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"tipo\": \"Criminal\",\r\n            \"description\": \"Posesión ilegal de armas\"\r\n        }\r\n    ],\r\n    \"reseniasRecibidas\": [],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [],\r\n    \"necesidades\": []\r\n}"
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [],\r\n    \"reseniasRecibidas\": [\r\n        {\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"titulo\": \"Excelente persona\", \r\n            \"calificacion\": 5,\r\n            \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n        }\r\n    ],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [],\r\n    \"necesidades\": []\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Add invalid antecedente to an usuario",
+			"name": "Add invalid resenia to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -531,55 +336,44 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
-							"});\r",
-							""
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes",
+						"resenias",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add invalid antecedente to an usuario",
+					"name": "Add invalid resenia to an usuario",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenia/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes",
+								"resenia",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -597,12 +391,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The antecedente with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The reseña with the given id was not found.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Add antecedente to an invalid usuario",
+			"name": "Add resenia to an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -622,47 +416,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"antecedentes",
-						"{{antecedente_id}}"
+						"resenias",
+						"{{resenia_id_1}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add antecedente to an invalid usuario",
+					"name": "Add resenia to an invalid usuario",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"antecedentes",
-								"{{antecedente_id}}"
+								"resenias",
+								"{{resenia_id}}"
 							]
 						}
 					},
@@ -679,12 +463,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an antecedente of an usuario",
+			"name": "Get an resenia of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -699,47 +483,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes",
-						"{{antecedente_id}}"
+						"resenias",
+						"{{resenia_id_1}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an antecedente of an usuario",
+					"name": "Get an resenia of an usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes",
-								"{{antecedente_id}}"
+								"resenias",
+								"{{resenia_id}}"
 							]
 						}
 					},
@@ -756,12 +530,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"tipo\": \"Criminal\",\r\n    \"description\": \"Posesión ilegal de armas\"\r\n}"
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an antecedente of an invalid usuario",
+			"name": "Get an resenia of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -781,47 +555,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"antecedentes",
-						"{{antecedente_id}}"
+						"resenias",
+						"{{resenia_id_1}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an antecedente of an invalid usuario",
+					"name": "Get an resenia of an invalid usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"antecedentes",
-								"{{antecedente_id}}"
+								"resenias",
+								"{{resenia_id}}"
 							]
 						}
 					},
@@ -838,12 +602,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an antecedente non-associated to an usuario",
+			"name": "Get an resenia non-associated to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -855,7 +619,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The antecedente with the given id is not associated to the usuario.\");\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id is not associated to the usuario.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -863,47 +627,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes",
-						"{{antecedente_id_2}}"
+						"resenias",
+						"{{resenia_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an antecedente non-associated to an usuario",
+					"name": "Get an resenia non-associated to an usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes",
-								"{{antecedente_id}}"
+								"resenias",
+								"{{resenia_id}}"
 							]
 						}
 					},
@@ -920,12 +674,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The antecedente with the given id is not associated to the usuario\"\n}"
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The reseña with the given id is not associated to the usuario\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get all antecedentes of an usuario",
+			"name": "Get all resenias of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -940,45 +694,35 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes"
+						"resenias"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all antecedentes of an usuario",
+					"name": "Get all resenias of an usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes"
+								"resenias"
 							]
 						}
 					},
@@ -995,12 +739,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"tipo\": \"Criminal\",\n        \"description\": \"Posesión ilegal de armas\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"titulo\": \"Excelente persona\",\n        \"calificacion\": 5,\n        \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\n    }\n]"
 				}
 			]
 		},
 		{
-			"name": "Get all antecedentes of an invalid usuario",
+			"name": "Get all resenias of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1020,45 +764,35 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"antecedentes"
+						"resenias"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all antecedentes of an invalid usuario",
+					"name": "Get all resenias of an invalid usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"antecedentes"
+								"resenias"
 							]
 						}
 					},
@@ -1075,12 +809,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Update antecedentes of an usuario",
+			"name": "Update resenias of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1095,21 +829,11 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{resenia_id_2}}\"\r\n   }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1117,26 +841,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes"
+						"resenias"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update antecedentes of an usuario",
+					"name": "Update resenias of an usuario",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{resenia_id_2}}\"\r\n   }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1144,14 +868,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes"
+								"resenias"
 							]
 						}
 					},
@@ -1168,12 +892,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [\r\n        {  \r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"tipo\": \"Criminal\",\r\n            \"description\": \"Posesión ilegal de armas\"\r\n        }\r\n    ],\r\n    \"reseniasRecibidas\": [],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [],\r\n    \"necesidades\": []\r\n}"
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [],\r\n    \"reseniasRecibidas\": [\r\n        {\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"titulo\": \"Excelente persona\", \r\n            \"calificacion\": 5,\r\n            \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n        }\r\n    ],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [],\r\n    \"necesidades\": []\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Update invalid antecedentes of an usuario",
+			"name": "Update invalid resenias of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1185,7 +909,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1193,16 +917,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -1215,20 +929,20 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes"
+						"resenias"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update invalid antecedentes of an usuario",
+					"name": "Update invalid resenias of an usuario",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
@@ -1242,14 +956,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes"
+								"resenias"
 							]
 						}
 					},
@@ -1266,12 +980,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The antecedente with the given id was not found\"\r\n}"
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The resenia with the given id was not found.\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Update antecedentes of an invalid usuario",
+			"name": "Update resenias of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1291,21 +1005,11 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{resenia_id_2}}\"\r\n   }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1313,26 +1017,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"antecedentes"
+						"resenias"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update antecedentes of an invalid usuario",
+					"name": "Update resenias of an invalid usuario",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{resenia_id_2}}\"\r\n   }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1340,14 +1044,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"antecedentes"
+								"resenias"
 							]
 						}
 					},
@@ -1364,12 +1068,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an antecedente of an usuario",
+			"name": "Delete a resenia of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1384,61 +1088,51 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes",
-						"{{antecedente_id_2}}"
+						"resenias",
+						"{{resenia_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an antecedente of an usuario",
+					"name": "Delete a resenia of an usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id_2}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes",
-								"{{antecedente_id_2}}"
+								"resenias",
+								"{{resenia_id_2}}"
 							]
 						}
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
 		{
-			"name": "Delete an antecedente of an invalid usuario",
+			"name": "Delete a resenia of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1458,47 +1152,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id_2}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"antecedentes",
-						"{{antecedente_id_2}}"
+						"resenias",
+						"{{resenia_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an antecedente of an invalid usuario",
+					"name": "Delete a resenia of an invalid usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id_2}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/resenias/{{resenia_id_2}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"antecedentes",
-								"{{antecedente_id_2}}"
+								"resenias",
+								"{{resenia_id_2}}"
 							]
 						}
 					},
@@ -1515,12 +1199,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an invalid antecedente of an usuario",
+			"name": "Delete an invalid resenia of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1532,7 +1216,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1540,46 +1224,36 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes",
+						"resenias",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an invalid antecedente of an usuario",
+					"name": "Delete an invalid resenia of an usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes",
+								"resenias",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -1597,12 +1271,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The antecedente with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The reseña with the given id was not found.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an antecedente non-associated to an usuario",
+			"name": "Delete a resenia non-associated to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1614,7 +1288,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The antecedente with the given id is not associated to the usuario.\");\r",
+							"   pm.expect(data.message).to.eql(\"The resenia with the given id is not associated to the usuario.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1622,47 +1296,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"antecedentes",
-						"{{antecedente_id_2}}"
+						"resenias",
+						"{{resenia_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an antecedente non-associated to an usuario",
+					"name": "Delete a resenia non-associated to an usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/resenias/{{resenia_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"antecedentes",
-								"{{antecedente_id}}"
+								"resenias",
+								"{{resenia_id}}"
 							]
 						}
 					},
@@ -1679,12 +1343,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"The antecedente with the given id is not associated to the usuario\"\r\n}"
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"The reseña with the given id is not associated to the usuario\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an antecedente",
+			"name": "Delete a resenia",
 			"event": [
 				{
 					"listen": "test",
@@ -1699,57 +1363,47 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+					"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes",
-						"{{antecedente_id}}"
+						"resenias",
+						"{{resenia_id_1}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an antecedente",
+					"name": "Delete a resenia",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
-								"{{antecedente_id}}"
+								"resenias",
+								"{{resenia_id}}"
 							]
 						}
 					},
-					"status": "No Content",
+					"status": "No Content}",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
 		{
-			"name": "Delete an antecedente 2",
+			"name": "Delete a resenia",
 			"event": [
 				{
 					"listen": "test",
@@ -1764,57 +1418,47 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id_2}}",
+					"raw": "{{baseUrl}}/resenias/{{resenia_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"antecedentes",
-						"{{antecedente_id_2}}"
+						"resenias",
+						"{{resenia_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an antecedente",
+					"name": "Delete a resenia",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"antecedentes",
-								"{{antecedente_id}}"
+								"resenias",
+								"{{resenia_id}}"
 							]
 						}
 					},
-					"status": "No Content",
+					"status": "No Content}",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
 		{
-			"name": "Delete usuario",
+			"name": "Delete usuario Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -1829,16 +1473,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1877,71 +1511,6 @@
 					"body": ""
 				}
 			]
-		},
-		{
-			"name": "Delete usuario 2",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"usuarios",
-						"{{usuario_id_2}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Delete usuario",
-					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"usuarios",
-								"{{usuario_id_2}}"
-							]
-						}
-					},
-					"status": "No Content",
-					"code": 204,
-					"_postman_previewlanguage": "Text",
-					"header": [],
-					"cookie": [],
-					"body": ""
-				}
-			]
 		}
 	],
 	"event": [
@@ -1962,13 +1531,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseUrl",
-			"value": "http://localhost:3000/api/v1",
-			"type": "string"
 		}
 	]
 }

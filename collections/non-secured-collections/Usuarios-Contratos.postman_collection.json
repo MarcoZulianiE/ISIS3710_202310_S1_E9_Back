@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "94ded5af-dda7-4cc6-90c1-639870388d2d",
-		"name": "Usuarios-Ofertas",
+		"_postman_id": "a86e1eeb-e5b6-40a4-b00a-53b8d74a5852",
+		"name": "Usuarios-Contratos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25894623"
 	},
@@ -15,9 +15,6 @@
 						"exec": [
 							"var data = pm.response.json()\r",
 							"pm.globals.set(\"usuario_id\", data.id);\r",
-							"pm.globals.set(\"usuario_id_email\", data.correoElectronico);\r",
-							"pm.globals.set(\"usuario_id_contrasenia\", data.contrasenia);\r",
-							"pm.globals.set(\"usuario_id_roles\", data.roles);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -87,90 +84,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Generate Token",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"jwt_token\", data.token);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_id_roles}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/usuarios/login",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"usuarios",
-						"login"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Add an Usuario",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_roles}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/usuarios",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"usuarios"
-							]
-						}
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"token\": \"erwdewdadasdasdadasdadedd334654vfdg456gbbdb\"\n}"
+					"body": "{\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\",\n    \"id\": \"982f9bbf-c809-415b-a90e-76b3645de0cd\"\n}"
 				}
 			]
 		},
@@ -222,7 +136,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -252,7 +166,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"nombre\": \"Marta Lopez\",\n    \"cedula\": \"39483854\",\n    \"contrasenia\": \"Marta123\",\n    \"correoElectronico\": \"marta@gmail.com\",\n    \"direccion\": \"carrera 34 #21-61\",\n    \"celular\": \"3167537682\",\n    \"tipoUsuario\": \"Canguro\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
+					"body": "{\n    \"nombre\": \"Marta Lopez\",\n    \"cedula\": \"39483854\",\n    \"contrasenia\": \"Marta123\",\n    \"correoElectronico\": \"marta@gmail.com\",\n    \"direccion\": \"carrera 34 #21-61\",\n    \"celular\": \"3167537682\",\n    \"tipoUsuario\": \"Canguro\",\n    \"id\": \"bf0f1bf3-d1a3-4b27-b683-4c7f121f1fe9\"\n}"
 				}
 			]
 		},
@@ -275,16 +189,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -347,7 +251,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-04-01T00:00:00.000Z\",\n    \"fechaFin\": \"2023-04-13T00:00:00.000Z\",\n    \"usuario\": {\n        \"id\": \"24103140-c2a2-41dd-bd11-d433d1afb7d2\",\n        \"cedula\": \"43657875\",\n        \"contrasenia\": \"Carlos123\",\n        \"nombre\": \"Carlos Perez\",\n        \"correoElectronico\": \"carlos@gmail.com\",\n        \"direccion\": \"carrera 43 #98-51\",\n        \"celular\": \"3167547634\",\n        \"tipoUsuario\": \"Acudiente\"\n    },\n    \"id\": \"8dcf1a50-a6cb-4814-be33-8f520438a7f5\"\n}"
+					"body": "{\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-04-01T00:00:00.000Z\",\n    \"fechaFin\": \"2023-04-13T00:00:00.000Z\",\n    \"usuario\": {\n        \"id\": \"982f9bbf-c809-415b-a90e-76b3645de0cd\",\n        \"cedula\": \"43657875\",\n        \"contrasenia\": \"Carlos123\",\n        \"nombre\": \"Carlos Perez\",\n        \"correoElectronico\": \"carlos@gmail.com\",\n        \"direccion\": \"carrera 43 #98-51\",\n        \"celular\": \"3167547634\",\n        \"tipoUsuario\": \"Acudiente\"\n    },\n    \"id\": \"73116ba7-885c-4d9f-972a-12c28d7d3331\"\n}"
 				}
 			]
 		},
@@ -370,16 +274,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -442,12 +336,192 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"precio\": 50000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-01-01T00:00:00.000Z\",\n    \"fechaFin\": \"2023-02-13T00:00:00.000Z\",\n    \"usuario\": {\n        \"id\": \"5f1e70ea-7fa0-4e17-ac0d-f4d6a27fe14a\",\n        \"cedula\": \"39483854\",\n        \"contrasenia\": \"Marta123\",\n        \"nombre\": \"Marta Lopez\",\n        \"correoElectronico\": \"marta@gmail.com\",\n        \"direccion\": \"carrera 34 #21-61\",\n        \"celular\": \"3167537682\",\n        \"tipoUsuario\": \"Canguro\"\n    },\n    \"id\": \"4d6fa052-1e34-465d-af7f-59baa14be7af\"\n}"
+					"body": "{\n    \"precio\": 50000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-01-01T00:00:00.000Z\",\n    \"fechaFin\": \"2023-02-13T00:00:00.000Z\",\n    \"usuario\": {\n        \"id\": \"bf0f1bf3-d1a3-4b27-b683-4c7f121f1fe9\",\n        \"cedula\": \"39483854\",\n        \"contrasenia\": \"Marta123\",\n        \"nombre\": \"Marta Lopez\",\n        \"correoElectronico\": \"marta@gmail.com\",\n        \"direccion\": \"carrera 34 #21-61\",\n        \"celular\": \"3167537682\",\n        \"tipoUsuario\": \"Canguro\"\n    },\n    \"id\": \"af4d798e-56cc-4954-9182-b6296edfd82a\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an oferta of an usuario",
+			"name": "Add a contrato",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"contrato_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fecha\" : \"2023-02-28\", \n    \"oferta\": {\n        \"id\": \"{{oferta_id}}\"\n    }, \n    \"usuario\":{\n        \"id\": \"{{usuario_id_2}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/contratos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"contratos"
+					]
+				},
+				"description": "This request creates a new contrato. The API returns the created resource with the assigned ID."
+			},
+			"response": [
+				{
+					"name": "Add a contrato",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fecha\" : \"2023-02-28\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contratos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contratos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"fecha\": \"2023-02-28T00:00:00.000Z\",\n    \"oferta\": {\n        \"id\": \"73116ba7-885c-4d9f-972a-12c28d7d3331\",\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoOferta\": \"Canguro\",\n        \"fechaInicio\": \"2023-04-01T00:00:00.000Z\",\n        \"fechaFin\": \"2023-04-13T00:00:00.000Z\"\n    },\n    \"usuario\": {\n        \"id\": \"bf0f1bf3-d1a3-4b27-b683-4c7f121f1fe9\",\n        \"cedula\": \"39483854\",\n        \"contrasenia\": \"Marta123\",\n        \"nombre\": \"Marta Lopez\",\n        \"correoElectronico\": \"marta@gmail.com\",\n        \"direccion\": \"carrera 34 #21-61\",\n        \"celular\": \"3167537682\",\n        \"tipoUsuario\": \"Canguro\"\n    },\n    \"id\": \"e26aa950-5fc0-4d45-ba3d-bfe50a748a67\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a contrato 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"contrato_id_2\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fecha\" : \"2023-02-28\", \n    \"oferta\": {\n        \"id\": \"{{oferta_id_2}}\"\n    }, \n    \"usuario\":{\n        \"id\": \"{{usuario_id}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/contratos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"contratos"
+					]
+				},
+				"description": "This request creates a new contrato. The API returns the created resource with the assigned ID."
+			},
+			"response": [
+				{
+					"name": "Add a contrato",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fecha\" : \"2023-02-28\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contratos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contratos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"fecha\": \"2023-02-28T00:00:00.000Z\",\n    \"oferta\": {\n        \"id\": \"af4d798e-56cc-4954-9182-b6296edfd82a\",\n        \"precio\": 50000,\n        \"disponible\": true,\n        \"tipoOferta\": \"Canguro\",\n        \"fechaInicio\": \"2023-01-01T00:00:00.000Z\",\n        \"fechaFin\": \"2023-02-13T00:00:00.000Z\"\n    },\n    \"usuario\": {\n        \"id\": \"982f9bbf-c809-415b-a90e-76b3645de0cd\",\n        \"cedula\": \"43657875\",\n        \"contrasenia\": \"Carlos123\",\n        \"nombre\": \"Carlos Perez\",\n        \"correoElectronico\": \"carlos@gmail.com\",\n        \"direccion\": \"carrera 43 #98-51\",\n        \"celular\": \"3167547634\",\n        \"tipoUsuario\": \"Acudiente\"\n    },\n    \"id\": \"d4e48715-07e9-40e9-b086-11a9cc0cb4e8\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an contrato of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -462,47 +536,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/{{oferta_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/{{contrato_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"ofertas",
-						"{{oferta_id}}"
+						"contratos",
+						"{{contrato_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an oferta of an usuario",
+					"name": "Get an contrato of an usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/{{oferta_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/{{contrato_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"ofertas",
-								"{{oferta_id}}"
+								"contratos",
+								"{{contrato_id}}"
 							]
 						}
 					},
@@ -519,12 +583,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"8dcf1a50-a6cb-4814-be33-8f520438a7f5\",\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-04-01T00:00:00.000Z\",\n    \"fechaFin\": \"2023-04-13T00:00:00.000Z\"\n}"
+					"body": "{\n    \"id\": \"d4e48715-07e9-40e9-b086-11a9cc0cb4e8\",\n    \"fecha\": \"2023-02-28T00:00:00.000Z\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an oferta of an invalid usuario",
+			"name": "Get an contrato of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -544,47 +608,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/contratos/{{contrato_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"ofertas",
-						"{{oferta_id}}"
+						"contratos",
+						"{{contrato_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an oferta of an invalid usuario",
+					"name": "Get an contrato of an invalid usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/contratos/{{contrato_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"ofertas",
-								"{{oferta_id}}"
+								"contratos",
+								"{{contrato_id}}"
 							]
 						}
 					},
@@ -606,7 +660,7 @@
 			]
 		},
 		{
-			"name": "Get an invalid oferta of an usuario",
+			"name": "Get an invalid contrato of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -618,7 +672,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The contrato with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -626,46 +680,36 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"ofertas",
+						"contratos",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an oferta of an invalid usuario",
+					"name": "Get an contrato of an invalid usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"ofertas",
+								"contratos",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -683,12 +727,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found.\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The contrato with the given id was not found.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an oferta non-associated to an usuario",
+			"name": "Get an contrato non-associated to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -700,7 +744,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The oferta with the given id is not associated to the usuario.\");\r",
+							"   pm.expect(data.message).to.eql(\"The contrato with the given id is not associated to the usuario.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -708,47 +752,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/{{oferta_id_2}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/{{contrato_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"ofertas",
-						"{{oferta_id_2}}"
+						"contratos",
+						"{{contrato_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an oferta non-associated to an usuario",
+					"name": "Get an contrato non-associated to an usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/{{oferta_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/{{contrato_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"ofertas",
-								"{{oferta_id}}"
+								"contratos",
+								"{{contrato_id}}"
 							]
 						}
 					},
@@ -765,12 +799,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The oferta with the given id is not associated to the usuario.\"\n}"
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The contrato with the given id is not associated to the usuario.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get all ofertas of an usuario",
+			"name": "Get all contratos of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -785,45 +819,35 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"ofertas"
+						"contratos"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all ofertas of an usuario",
+					"name": "Get all contratos of an usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"ofertas"
+								"contratos"
 							]
 						}
 					},
@@ -840,12 +864,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\r\n    {\r\n        \"id\": \"8dcf1a50-a6cb-4814-be33-8f520438a7f5\",\r\n        \"precio\": 30000,\r\n        \"disponible\": true,\r\n        \"tipoOferta\": \"Canguro\",\r\n        \"fechaInicio\": \"2023-04-01T00:00:00.000Z\",\r\n        \"fechaFin\": \"2023-04-13T00:00:00.000Z\"\r\n    }\r\n]"
+					"body": "[\r\n    {\r\n        \"id\": \"d4e48715-07e9-40e9-b086-11a9cc0cb4e8\",\r\n        \"fecha\": \"2023-02-28T00:00:00.000Z\"\r\n    }\r\n]"
 				}
 			]
 		},
 		{
-			"name": "Get all ofertas of an invalid usuario",
+			"name": "Get all contratos of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -865,45 +889,35 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/ofertas",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/contratos",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"ofertas"
+						"contratos"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all ofertas of an invalid usuario",
+					"name": "Get all contratos of an invalid usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/ofertas",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/contratos",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"ofertas"
+								"contratos"
 							]
 						}
 					},
@@ -925,7 +939,7 @@
 			]
 		},
 		{
-			"name": "Delete an oferta of an usuario",
+			"name": "Delete a contrato of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -940,46 +954,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/{{oferta_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/{{contrato_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"ofertas",
-						"{{oferta_id}}"
+						"contratos",
+						"{{contrato_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an oferta of an usuario",
+					"name": "Delete a contrato of an usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas{{oferta_id_2}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/{{contrato_id_2}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"ofertas{{oferta_id_2}}"
+								"contratos",
+								"{{contrato_id_2}}"
 							]
 						}
 					},
@@ -993,7 +998,7 @@
 			]
 		},
 		{
-			"name": "Delete an oferta of an invalid usuario",
+			"name": "Delete a contrato of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1013,47 +1018,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id_2}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/contratos/{{contrato_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"ofertas",
-						"{{oferta_id_2}}"
+						"contratos",
+						"{{contrato_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an oferta of an invalid usuario",
+					"name": "Delete a contrato of an invalid usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/ofertas/{{oferta_id_2}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/contratos/{{contrato_id_2}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"ofertas",
-								"{{oferta_id_2}}"
+								"contratos",
+								"{{contrato_id_2}}"
 							]
 						}
 					},
@@ -1075,7 +1070,7 @@
 			]
 		},
 		{
-			"name": "Delete an invalid oferta of an usuario",
+			"name": "Delete an invalid contrato of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1087,7 +1082,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The contrato with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1095,46 +1090,36 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"ofertas",
+						"contratos",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an invalid oferta of an usuario",
+					"name": "Delete an invalid contrato of an usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"ofertas",
+								"contratos",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -1152,12 +1137,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found.\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The contrato with the given id was not found.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an oferta non-associated to an usuario",
+			"name": "Delete a contrato non-associated to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1169,7 +1154,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The oferta with the given id is not associated to the usuario.\");\r",
+							"   pm.expect(data.message).to.eql(\"The contrato with the given id is not associated to the usuario.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1177,47 +1162,37 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/{{oferta_id_2}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/{{contrato_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"ofertas",
-						"{{oferta_id_2}}"
+						"contratos",
+						"{{contrato_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an oferta non-associated to an usuario",
+					"name": "Delete a contrato non-associated to an usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/ofertas/{{oferta_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/contratos/{{contrato_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"ofertas",
-								"{{oferta_id}}"
+								"contratos",
+								"{{contrato_id}}"
 							]
 						}
 					},
@@ -1234,7 +1209,119 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The oferta with the given id is not associated to the usuario.\"\n}"
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The contrato with the given id is not associated to the usuario.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a contrato",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/contratos/{{contrato_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"contratos",
+						"{{contrato_id}}"
+					]
+				},
+				"description": "This request deletes a contrato with the given ID. The API does not return any content."
+			},
+			"response": [
+				{
+					"name": "Delete a contrato",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contratos/{{contrato_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contratos",
+								"{{contrato_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete a contrato 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/contratos/{{contrato_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"contratos",
+						"{{contrato_id_2}}"
+					]
+				},
+				"description": "This request deletes a contrato with the given ID. The API does not return any content."
+			},
+			"response": [
+				{
+					"name": "Delete a contrato",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contratos/{{contrato_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contratos",
+								"{{contrato_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
 				}
 			]
 		},
@@ -1254,16 +1341,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1328,16 +1405,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1359,13 +1426,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/ofertas/{{oferta_id_2}}",
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"ofertas",
-								"{{oferta_id_2}}"
+								"{{oferta_id}}"
 							]
 						}
 					},
@@ -1402,16 +1469,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1444,10 +1501,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": "Text",
-					"header": [],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": ""
+					"body": null
 				}
 			]
 		},
@@ -1467,16 +1524,6 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -1509,10 +1556,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": "Text",
-					"header": [],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": ""
+					"body": null
 				}
 			]
 		}
