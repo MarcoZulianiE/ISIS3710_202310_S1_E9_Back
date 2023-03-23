@@ -1,0 +1,1974 @@
+{
+	"info": {
+		"_postman_id": "a2b0a78b-2180-4853-b01f-c749d5b476dc",
+		"name": "Usuarios-Antecedentes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25914520"
+	},
+	"item": [
+		{
+			"name": "Add an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"usuario_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Generate Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"jwt_token\", data.token);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_id_roles}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_roles}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"erwdewdadasdasdadasdadedd334654vfdg456gbbdb\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add an usuario 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"usuario_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Marta Lopez\",\n    \"cedula\": \"39483854\",\n    \"contrasenia\": \"Marta123\",\n    \"correoElectronico\": \"marta@gmail.com\",\n    \"direccion\": \"carrera 34 #21-61\",\n    \"celular\": \"3167537682\",\n    \"tipoUsuario\": \"Canguro\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add antecedente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"antecedente_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add antecedente",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add antecedente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"antecedente_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add antecedente",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add antecedente to an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes",
+						"{{antecedente_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add antecedente to an usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [\r\n        {  \r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"tipo\": \"Criminal\",\r\n            \"description\": \"Posesión ilegal de armas\"\r\n        }\r\n    ],\r\n    \"reseniasRecibidas\": [],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [],\r\n    \"necesidades\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add invalid antecedente to an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add invalid antecedente to an usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The antecedente with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add antecedente to an invalid usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The usuario with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000",
+						"antecedentes",
+						"{{antecedente_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add antecedente to an invalid usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000",
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an antecedente of an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes",
+						"{{antecedente_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an antecedente of an usuario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"tipo\": \"Criminal\",\r\n    \"description\": \"Posesión ilegal de armas\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an antecedente of an invalid usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The usuario with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000",
+						"antecedentes",
+						"{{antecedente_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an antecedente of an invalid usuario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000",
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an antecedente non-associated to an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id is not associated to the usuario.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes",
+						"{{antecedente_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an antecedente non-associated to an usuario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The antecedente with the given id is not associated to the usuario\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all antecedentes of an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all antecedentes of an usuario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"tipo\": \"Criminal\",\n        \"description\": \"Posesión ilegal de armas\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get all antecedentes of an invalid usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The usuario with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000",
+						"antecedentes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all antecedentes of an invalid usuario",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000",
+								"antecedentes"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update antecedentes of an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update antecedentes of an usuario",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [\r\n        {  \r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"tipo\": \"Criminal\",\r\n            \"description\": \"Posesión ilegal de armas\"\r\n        }\r\n    ],\r\n    \"reseniasRecibidas\": [],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [],\r\n    \"necesidades\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update invalid antecedentes of an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update invalid antecedentes of an usuario",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The antecedente with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update antecedentes of an invalid usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The usuario with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000",
+						"antecedentes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update antecedentes of an invalid usuario",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000",
+								"antecedentes"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an antecedente of an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes",
+						"{{antecedente_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an antecedente of an usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes",
+								"{{antecedente_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete an antecedente of an invalid usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The usuario with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000",
+						"antecedentes",
+						"{{antecedente_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an antecedente of an invalid usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000",
+								"antecedentes",
+								"{{antecedente_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid antecedente of an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an invalid antecedente of an usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The antecedente with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an antecedente non-associated to an usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id is not associated to the usuario.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"antecedentes",
+						"{{antecedente_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an antecedente non-associated to an usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}",
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"The antecedente with the given id is not associated to the usuario\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an antecedente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						"{{antecedente_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an antecedente",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete an antecedente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						"{{antecedente_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an antecedente",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete usuario 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

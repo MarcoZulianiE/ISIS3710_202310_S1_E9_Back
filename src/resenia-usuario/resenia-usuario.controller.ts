@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors.interceptor';
 import { Role } from 'src/shared/security/roles';
 import { HasRoles } from 'src/shared/security/roles.decorator';
 import { UsuarioDto } from '../usuario/usuario.dto';
@@ -10,6 +11,7 @@ import { UsuarioEntity } from '../usuario/usuario.entity';
 import { ReseniaUsuarioService } from './resenia-usuario.service';
 
 @Controller('resenia')
+@UseInterceptors(BusinessErrorsInterceptor)
 export class ReseniaUsuarioController {
 
     constructor(private readonly reseniaUsuarioService: ReseniaUsuarioService){}

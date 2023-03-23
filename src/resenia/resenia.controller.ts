@@ -10,9 +10,9 @@ import { ReseniaDto } from './resenia.dto';
 import { ReseniaEntity } from './resenia.entity';
 import { ReseniaService } from './resenia.service';
 
-@UseInterceptors(BusinessErrorsInterceptor)
 
 @Controller('resenias')
+@UseInterceptors(BusinessErrorsInterceptor)
 export class ReseniaController {
     constructor(private readonly reseniaService: ReseniaService) {}
 
@@ -47,7 +47,7 @@ export class ReseniaController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ELIMINARRESENIA, Role.ADMINRESENIA)
+    @HasRoles(Role.ESCRITORRESENIA, Role.ADMINRESENIA)
     @Delete(':reseniaId')
     @HttpCode(204)
     async delete(@Param('reseniaId') reseniaId: string) {
