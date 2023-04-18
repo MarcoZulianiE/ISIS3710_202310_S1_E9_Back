@@ -19,14 +19,14 @@ export class UsuarioController {
     private readonly authService: AuthService) {}
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.LECTORUSUARIO, Role.ADMINUSUARIO)
+  @HasRoles(Role.ADMIN, Role.USER)
   @Get()
   async findAll() {
     return await this.usuarioService.findAll();
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.LECTORUSUARIO, Role.ADMINUSUARIO)
+  @HasRoles(Role.ADMIN, Role.USER)
   @Get(':usuarioId')
   async findOne(@Param('usuarioId') usuarioId: string) {
     return await this.usuarioService.findOne(usuarioId);
@@ -39,7 +39,7 @@ export class UsuarioController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.ESCRITORUSUARIO, Role.ADMINUSUARIO)
+  @HasRoles(Role.ADMIN, Role.USER) // TODO: Solo los asociados
   @Put(':usuarioId')
   async update(@Param('usuarioId') usuarioId: string, @Body() usuarioDto: UsuarioDto) {
     const usuario: UsuarioEntity = plainToInstance(UsuarioEntity, usuarioDto);
@@ -47,7 +47,7 @@ export class UsuarioController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @HasRoles(Role.ELIMINARUSUARIO, Role.ADMINUSUARIO)
+  @HasRoles(Role.ADMIN)
   @Delete(':usuarioId')
   @HttpCode(204)
   async delete(@Req() req: Request , @Param('usuarioId') usuarioId: string) {

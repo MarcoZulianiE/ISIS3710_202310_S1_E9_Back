@@ -15,28 +15,26 @@ export class OfertaHorarioController {
     constructor(private readonly ofertaHorarioService: OfertaHorarioService) {}
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINOFERTA, Role.ESCRITOROFERTA)
+    @HasRoles(Role.ADMIN, Role.USER) // TODO: Solo los asociados
     @Post(':ofertaId/horarios/:horarioId')
     async addHorarioOferta(@Param('ofertaId') ofertaId: string, @Param('horarioId') horarioId: string) {
         return await this.ofertaHorarioService.addHorarioToOferta(ofertaId, horarioId);
     }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINOFERTA, Role.LECTOROFERTA)
+
     @Get(':ofertaId/horarios/:horarioId')
     async findHorarioByOfertaIdHorarioId(@Param('ofertaId') ofertaId: string, @Param('horarioId') horarioId: string) {
         return await this.ofertaHorarioService.findHorarioByOfertaIdHorarioId(ofertaId, horarioId);
     }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINOFERTA, Role.LECTOROFERTA)
+
     @Get(':ofertaId/horarios')
     async findHorariosByOfertaId(@Param('ofertaId') ofertaId: string) {
         return await this.ofertaHorarioService.findHorariosByOfertaId(ofertaId);
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINOFERTA, Role.ESCRITOROFERTA)
+    @HasRoles(Role.ADMIN, Role.USER) // TODO: Solo los asociados
     @Put(':ofertaId/horarios')
     async associateHorariosOferta(@Body() horariosDto: HorarioDto[], @Param('ofertaId') ofertaId: string) {
         const horarios: HorarioEntity[] = plainToInstance(HorarioEntity, horariosDto)
@@ -44,7 +42,7 @@ export class OfertaHorarioController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINOFERTA, Role.ELIMINAROFERTA)
+    @HasRoles(Role.ADMIN, Role.USER) // TODO: Solo los asociados
     @Delete(':ofertaId/horarios/:horarioId')
     @HttpCode(204)
     async deleteHorarioOferta(@Param('ofertaId') ofertaId: string, @Param('horarioId') horarioId: string) {
