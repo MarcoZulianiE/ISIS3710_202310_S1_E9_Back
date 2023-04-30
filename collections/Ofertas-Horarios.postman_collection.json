@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "d57cf731-681c-419d-91dc-d1b24ced503e",
+		"_postman_id": "c03f5afd-065e-4003-9c28-dcea1f4dad13",
 		"name": "Ofertas-Horarios",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788"
+		"_exporter_id": "19626788",
+		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-c03f5afd-065e-4003-9c28-dcea1f4dad13?action=share&creator=19626788&source=collection_link"
 	},
 	"item": [
 		{
@@ -1981,7 +1982,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{jwt_token}}",
+							"value": "{{admin_jwt_token}}",
 							"type": "string"
 						}
 					]

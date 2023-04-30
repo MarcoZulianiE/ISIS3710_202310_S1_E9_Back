@@ -1,14 +1,14 @@
 {
 	"info": {
-		"_postman_id": "a4bc594e-a9b8-4011-b643-e02bdb927ba3",
-		"name": "Resenia",
+		"_postman_id": "75df8e4c-cc4b-4101-afda-f64ecdcc5031",
+		"name": "Ofertas",
+		"description": "Documentation for the resource of oferta.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788",
-		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-a4bc594e-a9b8-4011-b643-e02bdb927ba3?action=share&creator=19626788&source=collection_link"
+		"_exporter_id": "19626788"
 	},
 	"item": [
 		{
-			"name": "Add an usuario",
+			"name": "Add an usuario Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -33,7 +33,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n} ",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,12 +88,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
+					"body": "{\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Generate Token",
+			"name": "Generate Token Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -180,17 +180,17 @@
 			]
 		},
 		{
-			"name": "Add resenia",
+			"name": "Add oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"resenia_id\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
+							"var data = pm.response.json()",
+							"pm.globals.set(\"oferta_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -212,7 +212,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+					"raw": "{\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoOferta\": \"Canguro\",\n    \"fechaInicio\": \"2023-04-01\",\n    \"fechaFin\": \"2023-04-13\",\n    \"usuario\": {\n        \"id\": \"{{usuario_id}}\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -220,25 +220,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/",
+					"raw": "{{baseUrl}}/ofertas/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"ofertas",
 						""
 					]
-				}
+				},
+				"description": "This request creates a new oferta. The API returns the created resource with the assigned ID."
 			},
 			"response": [
 				{
-					"name": "Add resenia",
+					"name": "Add oferta",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+							"raw": "{\n    \"precio\": 30000, \n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\", \n    \"fechaFin\": \"2023-04-13\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -246,12 +247,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/",
+							"raw": "{{baseUrl}}/ofertas/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"ofertas",
 								""
 							]
 						}
@@ -269,24 +270,24 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"precio\": 30000,\n    \"disponible\": true,\n    \"tipoO\": \"Canguro\",\n    \"fechaInicio\": \"yyyy-mm-dd\",\n    \"fechaFin\": \"2023-04-13\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get all resenias",
+			"name": "Get all ofertas",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Number of resenias > ' + 0, function () {\r",
-							"   var data = pm.response.json()\r",
-							"   pm.expect(data.length).to.greaterThan(0)\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test('Number of ofertas > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -307,29 +308,30 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/",
+					"raw": "{{baseUrl}}/ofertas/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"ofertas",
 						""
 					]
-				}
+				},
+				"description": "This request obtains all ofertas. The API returns the detailed respresentation for each oferta."
 			},
 			"response": [
 				{
-					"name": "Get all resenias",
+					"name": "Get all ofertas",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/",
+							"raw": "{{baseUrl}}/ofertas/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"ofertas",
 								""
 							]
 						}
@@ -347,19 +349,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"titulo\": \"Excelente persona\", \n    \"calificacion\": 5,\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\n    },\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120003\",\n        \"titulo:\": \"Es un crack\",\n        \"calificacion\": 5,\n        \"descripcion\": \"Es muy buena gente y tiene un buen trato\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\", \n        \"usuario\": {\n            \"id\": \"48a9ab90-1276-11ed-861d-0131ac120002\",\n            \"nombre\": \"Marta Lopez\",\n            \"cedula\": 39483854,\n            \"contrasenia\": \"Marta123\",\n            \"correoElectronico\": \"marta@gmail.com\",\n            \"direccion\": \"carrera 34 #21-61\",\n            \"celular\": 3167537682,\n            \"tipoUsuario\": \"Canguro\"\n        },\n        \"contrato\": {\n            \"id\": \"7e265679-3a85-416d-afca-80fd04e2b79c\",\n            \"fecha\": \"2023-02-28\"\n        }, \n        \"disponibilidad\": {\n            // TODO: \n        }\n    }, \n    {\n        \"id\": \"14f05d0e-1275-11ed-86dd-0242ac120032\",\n        \"precio\": 40000,\n        \"disponible\": true,\n        \"tipoO\": \"Acudiente\",\n        \"fechaInicio\": \"2023-02-02\",\n        \"fechaFin\": \"2023-03-02\", \n        \"usuario\": {\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Carlos Perez\",\n            \"cedula\": 43657875,\n            \"contrasenia\": \"Carlos123\",\n            \"correoElectronico\": \"carlosgmail.com\",\n            \"direccion\": \"carrera 43 #98-51\",\n            \"celular\": 3167547634,\n            \"tipoUsuario\": \"Acudiente\"\n        },\n        \"contrato\": {\n        }, \n        \"disponibilidad\": {\n            // TODO:\n        }\n        \n    }\n]"
 				}
 			]
 		},
 		{
-			"name": "Get one resenia",
+			"name": "Get one oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -380,30 +382,31 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"ofertas",
+						"{{oferta_id}}"
 					]
-				}
+				},
+				"description": "This request obtains an oferta given its ID. The API returns the detailed representation for the oferta."
 			},
 			"response": [
 				{
-					"name": "Get one resenia",
+					"name": "Get one oferta",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"ofertas",
+								"{{oferta_id}}"
 							]
 						}
 					},
@@ -420,24 +423,24 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": "{\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\", \n        \"usuario\": {\n            \"id\": \"48a9ab90-1276-11ed-861d-0131ac120002\",\n            \"nombre\": \"Marta Lopez\",\n            \"cedula\": 39483854,\n            \"contrasenia\": \"Marta123\",\n            \"correoElectronico\": \"marta@gmail.com\",\n            \"direccion\": \"carrera 34 #21-61\",\n            \"celular\": 3167537682,\n            \"tipoUsuario\": \"Canguro\"\n        },\n        \"contrato\": {\n            \"id\": \"7e265679-3a85-416d-afca-80fd04e2b79c\",\n            \"fecha\": \"2023-02-28\"\n        }, \n        \"disponibilidad\": [\n            // TODO: \n        ]\n} "
 				}
 			]
 		},
 		{
-			"name": "Get an invalid resenia",
+			"name": "Get an invalid oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -458,29 +461,30 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"ofertas",
 						"00000000-0000-0000-0000-000000000000"
 					]
-				}
+				},
+				"description": "This request obtains an oferta that does not exist. The API returns an error message."
 			},
 			"response": [
 				{
-					"name": "Get an invalid resenia",
+					"name": "Get an invalid oferta",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"ofertas",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -498,19 +502,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The reseña with the given id was not found\"\r\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The oferta with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Update resenia",
+			"name": "Update oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -532,7 +536,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"raw": "{\n        \"precio\": 30000,\n        \"disponible\": false,\n        \"tipoOferta\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\",\n        \"usuario\": {\n            \"id\": \"{{usuario_id}}\"\n        }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -540,25 +544,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"ofertas",
+						"{{oferta_id}}"
 					]
-				}
+				},
+				"description": "This request updates the information of an oferta with the given ID. The API returns the basic representation of the oferta with the updated information."
 			},
 			"response": [
 				{
-					"name": "Update resenia",
+					"name": "Update oferta",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"raw": "{\n        \"precio\": 30000,\n        \"disponible\": false,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -566,13 +571,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"ofertas",
+								"{{oferta_id}}"
 							]
 						}
 					},
@@ -589,24 +594,24 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": "{\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"precio\": 30000,\n        \"disponible\": false,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\"\n    }"
 				}
 			]
 		},
 		{
-			"name": "Update invalid resenia",
+			"name": "Update invalid oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -628,7 +633,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"raw": "{\n        \"precio\": 30000,\n        \"disponible\": false,\n        \"tipoOferta\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\",\n        \"usuario\": {\n            \"id\": \"{{usuario_id}}\"\n        }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -636,25 +641,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"ofertas",
 						"00000000-0000-0000-0000-000000000000"
 					]
-				}
+				},
+				"description": "This request updates an oferta that does not exist. The API returns an error message."
 			},
 			"response": [
 				{
-					"name": "Update invalid resenia",
+					"name": "Update invalid oferta",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"raw": "{\n        \"precio\": 30000,\n        \"disponible\": true,\n        \"tipoO\": \"Canguro\",\n        \"fechaInicio\": \"2023-02-01\",\n        \"fechaFin\": \"2023-04-13\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,12 +668,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenia/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenia",
+								"ofertas",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -685,19 +691,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The museum with the given id was not found\"\r\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete a resenia",
+			"name": "Delete an oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -718,56 +724,65 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"ofertas",
+						"{{oferta_id}}"
 					]
-				}
+				},
+				"description": "This request deletes an oferta given its ID. The API does not return any content."
 			},
 			"response": [
 				{
-					"name": "Delete a resenia",
+					"name": "Delete an oferta",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/ofertas/{{oferta_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"ofertas",
+								"{{oferta_id}}"
 							]
 						}
 					},
-					"status": "No Content}",
+					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
 		{
-			"name": "Delete an invalid resenia",
+			"name": "Delete an invalid oferta",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The oferta with the given id was not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -788,29 +803,30 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"ofertas",
 						"00000000-0000-0000-0000-000000000000"
 					]
-				}
+				},
+				"description": "This request deletes an oferta that does not exist. The API returns an error message."
 			},
 			"response": [
 				{
-					"name": "Delete an invalid resenia",
+					"name": "Delete an invalid oferta",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/ofertas/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"ofertas",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -853,7 +869,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{admin_jwt_token}}",
+							"value": "{{jwt_token}}",
 							"type": "string"
 						}
 					]
@@ -916,12 +932,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseUrl",
-			"value": "http://localhost:3000/api/v1"
 		}
 	]
 }

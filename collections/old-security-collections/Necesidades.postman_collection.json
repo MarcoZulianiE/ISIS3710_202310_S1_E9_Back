@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a4bc594e-a9b8-4011-b643-e02bdb927ba3",
-		"name": "Resenia",
+		"_postman_id": "ebe984db-73f6-4882-bd67-0a32a3309d8a",
+		"name": "Necesidades",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788",
-		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-a4bc594e-a9b8-4011-b643-e02bdb927ba3?action=share&creator=19626788&source=collection_link"
+		"_exporter_id": "25914808"
 	},
 	"item": [
 		{
@@ -33,7 +32,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n} ",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,12 +87,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
+					"body": "{\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Generate Token",
+			"name": "Generate Token Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -180,14 +179,14 @@
 			]
 		},
 		{
-			"name": "Add resenia",
+			"name": "Add Necesidad",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"resenia_id\", data.id);\r",
+							"pm.globals.set(\"necesidad_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -212,7 +211,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+					"raw": "{\r\n    \"tipo\" : \"Educativa\",\r\n    \"descripcion\" : \"Necesito una niniera que se encargue de la educacion de mi hijo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -220,25 +219,24 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/",
+					"raw": "{{baseUrl}}/necesidades",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						""
+						"necesidades"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add resenia",
+					"name": "Add Necesidad",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+							"raw": "{\r\n    \"tipo\" : \"Educativa\",\r\n    \"descripcion\" : \"Necesito una niniera que se encargue de la educacion de mi hijo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -246,41 +244,32 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/",
+							"raw": "{{baseUrl}}/necesidades",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								""
+								"necesidades"
 							]
 						}
 					},
 					"status": "Created",
 					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Get all resenias",
+			"name": "Get all Necesidades",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Number of resenias > ' + 0, function () {\r",
+							"pm.test('Number of necesidades > ' + 0, function () {\r",
 							"   var data = pm.response.json()\r",
 							"   pm.expect(data.length).to.greaterThan(0)\r",
 							"});\r",
@@ -307,52 +296,49 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/",
+					"raw": "{{baseUrl}}/necesidades",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						""
+						"necesidades"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all resenias",
+					"name": "Get all Necesidades",
 					"originalRequest": {
 						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/resenias/",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"resenias",
-								""
-							]
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"tipo\" : \"Educativa\",\r\n        \"descripcion\" : \"Necesito una niniera que se encargue de la educacion de mi hijo\"\r\n    },\r\n    {\r\n        \"tipo\" : \"Salud\",\r\n        \"descripcion\" : \"Mi hijo sufre de asma y se requiere alguien que sepa administrar el tratamiento adecuadamente\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						}
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "[\n    {\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"titulo\": \"Excelente persona\", \n    \"calificacion\": 5,\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\n    },\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120003\",\n        \"titulo:\": \"Es un crack\",\n        \"calificacion\": 5,\n        \"descripcion\": \"Es muy buena gente y tiene un buen trato\"\n    }\n]"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Get one resenia",
+			"name": "Get a Necesidad",
 			"event": [
 				{
 					"listen": "test",
@@ -380,52 +366,60 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get one resenia",
+					"name": "Get a Necesidad",
 					"originalRequest": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\" : \"Educativa\",\r\n    \"descripcion\" : \"Necesito una niniera que se encargue de la educacion de mi hijo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/necesidades/{{necesidad_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"necesidades",
+								"{{necesidad_id}}"
 							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Get an invalid resenia",
+			"name": "Get an invalid Necesidad",
 			"event": [
 				{
 					"listen": "test",
@@ -437,7 +431,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The necesidad with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -458,52 +452,60 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/necesidades/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"necesidades",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an invalid resenia",
+					"name": "Add an invalid Necesidad",
 					"originalRequest": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The necesidad with the given id was not found\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/necesidades/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"necesidades",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The reseña with the given id was not found\"\r\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Update resenia",
+			"name": "Update a Necesidad",
 			"event": [
 				{
 					"listen": "test",
@@ -532,7 +534,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"raw": "{\r\n    \"tipo\" : \"Educativa\",\r\n    \"descripcion\" : \"Mi hijo debe aprender a multiplicar en menos de un mes, por lo que requiero de alguien que sepa las bases\" \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -540,25 +542,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update resenia",
+					"name": "Update a Necesidad",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"raw": "{\r\n    \"tipo\" : \"Educativa\",\r\n    \"descripcion\" : \"Mi hijo debe aprender a multiplicar en menos de un mes, por lo que requiero de alguien que sepa las bases\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -566,35 +568,27 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/necesidades/{{necesidad_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"necesidades",
+								"{{necesidad_id}}"
 							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Update invalid resenia",
+			"name": "Update an invalid Necesidad",
 			"event": [
 				{
 					"listen": "test",
@@ -606,7 +600,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The necesidad with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -628,7 +622,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"raw": "{\r\n    \"tipo\": \"Educativa\",\r\n   \"descripcion\": \"Necesito de alguien que sepa frances\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -636,25 +630,32 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/necesidades/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"necesidades",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update invalid resenia",
+					"name": "Update an invalid Necesidad",
 					"originalRequest": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"raw": "{\r\n    \"tipo\": \"Educativa\",\r\n   \"descripcion\": \"Necesito de alguien que sepa frances\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,12 +663,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenia/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/necesidades/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenia",
+								"necesidades",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -685,12 +686,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The museum with the given id was not found\"\r\n}"
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The necesidad with the given id was not found\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete a resenia",
+			"name": "Delete a Necesidad",
 			"event": [
 				{
 					"listen": "test",
@@ -718,34 +719,34 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete a resenia",
+					"name": "Delete a Necesidad",
 					"originalRequest": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/necesidades/{{necesidad_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"necesidades",
+								"{{necesidad_id}}"
 							]
 						}
 					},
-					"status": "No Content}",
+					"status": "No Content",
 					"code": 204,
 					"_postman_previewlanguage": null,
 					"header": null,
@@ -755,7 +756,7 @@
 			]
 		},
 		{
-			"name": "Delete an invalid resenia",
+			"name": "Delete an invalid Necesidad",
 			"event": [
 				{
 					"listen": "test",
@@ -767,7 +768,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The necesidad with the given id was not found\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -788,52 +789,58 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/necesidades/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"necesidades",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an invalid resenia",
+					"name": "Delete an invalid Necesidad",
 					"originalRequest": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The Necesidad with the given id was not found\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/necesidades/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"necesidades",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
 					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Delete usuario",
+			"name": "Delete usuario Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -853,7 +860,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{admin_jwt_token}}",
+							"value": "{{jwt_token}}",
 							"type": "string"
 						}
 					]
@@ -916,12 +923,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseUrl",
-			"value": "http://localhost:3000/api/v1"
 		}
 	]
 }

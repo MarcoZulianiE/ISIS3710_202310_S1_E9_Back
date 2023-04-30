@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "272dca2a-cb92-415c-9436-8874f2c2ec75",
-		"name": "Usuarios-Especialidades",
+		"_postman_id": "52d30aa9-2b6f-4969-adca-593216dfc727",
+		"name": "Usuarios-Necesidades",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788",
-		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-272dca2a-cb92-415c-9436-8874f2c2ec75?action=share&creator=19626788&source=collection_link"
+		"_exporter_id": "25914808"
 	},
 	"item": [
 		{
@@ -262,14 +261,14 @@
 			]
 		},
 		{
-			"name": "Add Especialidad Copy",
+			"name": "Add Necesidad Copy",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"especialidad_id\", data.id);\r",
+							"pm.globals.set(\"necesidad_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -294,7 +293,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tipo\" :\"Comportamental\",\r\n    \"aniosExperiencia\" : 2\r\n}",
+					"raw": "{\r\n    \"tipo\" : \"Educativa\",\r\n    \"descripcion\" : \"La niniera debe tener al menos 20 anios de edad\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -302,31 +301,24 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/especialidades",
+					"raw": "{{baseUrl}}/necesidades",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"especialidades"
+						"necesidades"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add Especialidad",
+					"name": "Add Necesidad",
 					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tipo\" :\"Comportamental\",\r\n    \"aniosExperiencia\" : 2\r\n}",
+							"raw": "{\r\n    \"tipo\" : \"Educativa\",\r\n    \"descripcion\" : \"Necesito una niniera que se encargue de la educacion de mi hijo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -334,12 +326,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/especialidades",
+							"raw": "{{baseUrl}}/necesidades",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"especialidades"
+								"necesidades"
 							]
 						}
 					},
@@ -353,7 +345,7 @@
 			]
 		},
 		{
-			"name": "Add Especialidad to an Usuario",
+			"name": "Add Necesidad to an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -381,21 +373,21 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add Especialidad to an Usuario",
+					"name": "Add Necesidad to an Usuario",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -408,7 +400,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [],\r\n    \"reseniasRecibidas\": [],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [\r\n        {\r\n            \"tipo\" : \"Educativa\",\r\n            \"aniosExperiencia\" : 3\r\n        }\r\n    ],\r\n    \"necesidades\": []\r\n}",
+							"raw": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [],\r\n    \"reseniasRecibidas\": [],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [],\r\n    \"necesidades\": [\r\n        {\r\n            \"tipo\" : \"Comportamental\",\r\n            \"descripcion\" : \"Quiero que sepa actuar como el pollito pio\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -416,15 +408,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/{{necesidad_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
-								"{{especialidad_id}}"
+								"necesidades",
+								"{{necesidad_id}}"
 							]
 						}
 					},
@@ -441,12 +433,62 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"Nombre\": \"Carlos Perez\",\n    \"cedula\": 43657875,\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlosgmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": 3167547634,\n    \"tipoUsuario\": \"Acudiente\",\n    \"antecedentes\": [],\n    \"reseniasRecibidas\": [],\n    \"contratos\": [],\n    \"ofertas\": [],\n    \"especialidades\": [\n        {\n            \"tipo\": \"Salud\",\n            \"aniosExperiencia\": 1\n        }\n    ],\n    \"necesidades\": []\n}"
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"Nombre\": \"Carlos Perez\",\n    \"cedula\": 43657875,\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlosgmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": 3167547634,\n    \"tipoUsuario\": \"Acudiente\",\n    \"antecedentes\": [],\n    \"reseniasRecibidas\": [],\n    \"contratos\": [],\n    \"ofertas\": [],\n    \"especialidades\": [],\n    \"necesidades\": [\n        {\n            \"tipo\" : \"Comportamental\",\n            \"descripcion\" : \"La niniera debe saber cambiar paniales\"\n        }\n    ]\n}"
 				}
 			]
 		},
 		{
-			"name": "Add invalid Especialidad to an Usuario",
+			"name": "Add Necesidad to an Usuario 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/{{necesidad_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}",
+						"necesidades",
+						"{{necesidad_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add invalid Necesidad to an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -458,7 +500,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The necesidad with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -479,48 +521,56 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
+						"necesidades",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add invalid Especialidad to an Usuario",
+					"name": "Add invalid Necesidad to an Usuario",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
+								"necesidades",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The especialidad with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The necesidad with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Add Especialidad to an invalid Usuario",
+			"name": "Add Necesidad to an invalid Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -553,34 +603,34 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades",
-						"{{especialidad_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add Especialidad to an invalid Usuario",
+					"name": "Add Necesidad to an invalid Usuario",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/necesidades/{{necesidad_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"especialidades",
-								"{{especialidad_id}}"
+								"necesidades",
+								"{{necesidad_id}}"
 							]
 						}
 					},
@@ -594,7 +644,7 @@
 			]
 		},
 		{
-			"name": "Get an Especialidad of an Usuario",
+			"name": "Get a Necesidad of an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -622,34 +672,34 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an Especialidad of an Usuario",
+					"name": "Get a Necesidad of an Usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/{{necesidad_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
-								"{{especialidad_id}}"
+								"necesidades",
+								"{{necesidad_id}}"
 							]
 						}
 					},
@@ -666,12 +716,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"tipo\": \"Salud\",\n    \"aniosExperiencia\": 1\n}"
+					"body": "{\n    \"tipo\" : \"Educativa\",\n    \"descripcion\" : \"Necesito un docente en japones\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an invalid Especialidad of an Usuario",
+			"name": "Get an invalid Necesidad of an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -683,7 +733,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The necesidad with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -704,33 +754,33 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
+						"necesidades",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an invalid Especialidad of an Usuario",
+					"name": "Get an invalid Necesidad of an Usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
+								"necesidades",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -740,12 +790,12 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The especialidad with the given id was not found\"\n}"
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The necesidad with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an Especialidad of an invalid Usuario",
+			"name": "Get a Necesidad of an invalid Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -778,34 +828,34 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades",
-						"{{especialidad_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an Especialidad of an invalid Usuario",
+					"name": "Get a Necesidad of an invalid Usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/necesidades/{{necesidad_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"especialidades",
-								"{{especialidad_id}}"
+								"necesidades",
+								"{{necesidad_id}}"
 							]
 						}
 					},
@@ -819,7 +869,7 @@
 			]
 		},
 		{
-			"name": "Get an Especialidad non-associated to an Usuario",
+			"name": "Get a Necesidad non-associated to an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -831,7 +881,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id is not associated to the usuario.\");\r",
+							"   pm.expect(data.message).to.eql(\"The necesidad with the given id is not associated to the usuario.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -852,34 +902,34 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id_2}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an Especialidad non-associated to an Usuario",
+					"name": "Get a Necesidad non-associated to an Usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id2}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/{{necesidad_id_2}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
-								"{{especialidad_id2}}"
+								"necesidades",
+								"{{necesidad_id_2}}"
 							]
 						}
 					},
@@ -888,12 +938,12 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 412,\n   \"message\": \"The especialidad with the given id is not associated to the usuario\"\n}"
+					"body": "{\n   \"statusCode\": 412,\n   \"message\": \"The necesidad with the given id is not associated to the usuario.\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get all Especialidades of an Usuario",
+			"name": "Get all Necesidades of an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -921,32 +971,32 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades"
+						"necesidades"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all Especialidades of an Usuario",
+					"name": "Get all Necesidades of an Usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades"
+								"necesidades"
 							]
 						}
 					},
@@ -955,12 +1005,12 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "[\n   {\n    \"tipo\": \"Salud\",\n    \"aniosExperiencia\": 1\n   }\n]"
+					"body": "[\n   {\n    \"tipo\" : \"Educativa\",\n    \"descripcion\" : \"Necesito un profesional en ciencias\"\n   }\n]"
 				}
 			]
 		},
 		{
-			"name": "Get all Especialidades of an invalid Usuario",
+			"name": "Get all Necesidades of an invalid Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -993,32 +1043,32 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/necesidades",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades"
+						"necesidades"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all Especialidades of an invalid Usuario",
+					"name": "Get all Necesidades of an invalid Usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/necesidades",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"especialidades"
+								"necesidades"
 							]
 						}
 					},
@@ -1032,7 +1082,7 @@
 			]
 		},
 		{
-			"name": "Update Especialidades of an Usuario",
+			"name": "Update Necesidades of an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1061,7 +1111,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n   {\n       \"id\": \"{{especialidad_id}}\"\n   }\n]",
+					"raw": "[\n   {\n       \"id\": \"{{necesidad_id}}\"\n   }\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1069,26 +1119,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades"
+						"necesidades"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update Especialidades of an Usuario",
+					"name": "Update Necesidades of an Usuario",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n   {\n       \"id\": \"{{especialidad_id2}}\"\n   }\n]",
+							"raw": "[\n   {\n       \"id\": \"{{necesidad_id_2}}\"\n   }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1096,14 +1146,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades"
+								"necesidades"
 							]
 						}
 					},
@@ -1120,12 +1170,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"Nombre\": \"Carlos Perez\",\n    \"cedula\": 43657875,\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlosgmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": 3167547634,\n    \"tipoUsuario\": \"Acudiente\",\n    \"antecedentes\": [],\n    \"reseniasRecibidas\": [],\n    \"contratos\": [],\n    \"ofertas\": [],\n    \"especialidades\": [\n        {\n            \"tipo\": \"Comportamental\",\n            \"aniosExperiencia\": 2\n        }\n    ],\n    \"necesidades\": []\n}"
+					"body": ""
 				}
 			]
 		},
 		{
-			"name": "Update invalid Especialidades of an Usuario",
+			"name": "Update invalid Necesidades of an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1137,7 +1187,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The necesidad with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1167,20 +1217,20 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades"
+						"necesidades"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update invalid Especialidades of an Usuario",
+					"name": "Update invalid Necesidades of an Usuario",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
@@ -1194,14 +1244,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades"
+								"necesidades"
 							]
 						}
 					},
@@ -1210,12 +1260,12 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The necesidad with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Update Especialidades of an invalid Usuario",
+			"name": "Update Necesidades of an invalid Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1249,7 +1299,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n   {\n       \"id\": \"{{especialidad_id}}\"\n   }\n]",
+					"raw": "[\n   {\n       \"id\": \"{{especialidad_id2}}\"\n   }\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1257,26 +1307,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/necesidades",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades"
+						"necesidades"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update Especialidades of an invalid Usuario",
+					"name": "Update Necesidades of an invalid Usuario",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n   {\n       \"id\": \"{{especialidad_id2}}\"\n   }\n]",
+							"raw": "[\n   {\n       \"id\": \"{{necesidad_id}}\"\n   }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1284,14 +1334,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/necesidades",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"especialidades"
+								"necesidades"
 							]
 						}
 					},
@@ -1305,7 +1355,7 @@
 			]
 		},
 		{
-			"name": "Delete an Especialidad of an Usuario",
+			"name": "Delete a Necesidad of an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1333,34 +1383,34 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an Especialidad of an Usuario",
+					"name": "Delete a Necesidad of an Usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id2}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/{{necesidad_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
-								"{{especialidad_id2}}"
+								"necesidades",
+								"{{necesidad_id}}"
 							]
 						}
 					},
@@ -1374,7 +1424,7 @@
 			]
 		},
 		{
-			"name": "Delete an Especialidad of an invalid Usuario",
+			"name": "Delete an Necesidad of an invalid Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1407,15 +1457,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades",
-						"{{especialidad_id}}"
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
@@ -1448,7 +1498,7 @@
 			]
 		},
 		{
-			"name": "Delete an invalid Especialidad of an Usuario",
+			"name": "Delete an invalid Necesidad of an Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1460,7 +1510,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The necesidad with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1481,33 +1531,33 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
+						"necesidades",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an invalid Especialidad of an Usuario",
+					"name": "Delete an invalid Necesidad of an Usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
+								"necesidades",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -1517,12 +1567,12 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The especialidad with the given id was not found\"\n}"
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The necesidad with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an Especialidad non-associated to an Usuario",
+			"name": "Delete a Necesidad non-associated to a Usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1534,7 +1584,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id is not associated to the usuario.\");\r",
+							"   pm.expect(data.message).to.eql(\"The necesidad with the given id is not associated to the usuario.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1555,34 +1605,34 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}/necesidades/{{necesidad_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
-						"{{usuario_id}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"{{usuario_id_2}}",
+						"necesidades",
+						"{{necesidad_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an Especialidad non-associated to an Usuario",
+					"name": "Delete a Necesidad non-associated to a Usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/artworks/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/necesidades/{{necesidad_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"artworks",
-								"{{especialidad_id}}"
+								"necesidades",
+								"{{necesidad_id}}"
 							]
 						}
 					},
@@ -1591,12 +1641,12 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 412,\n   \"message\": \"The especialidad with the given id is not associated to the usuario\"\n}"
+					"body": "{\r\n   \"statusCode\": 412,\r\n   \"message\": \"The necesidad with the given id is not associated to the usuario\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete usuario",
+			"name": "Delete usuario Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -1616,7 +1666,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{admin_jwt_token}}",
+							"value": "{{jwt_token}}",
 							"type": "string"
 						}
 					]
@@ -1661,7 +1711,7 @@
 			]
 		},
 		{
-			"name": "Delete usuario 2",
+			"name": "Delete usuario 2 Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -1681,7 +1731,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{admin_jwt_token}}",
+							"value": "{{jwt_token}}",
 							"type": "string"
 						}
 					]

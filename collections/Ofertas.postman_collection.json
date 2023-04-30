@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "75df8e4c-cc4b-4101-afda-f64ecdcc5031",
+		"_postman_id": "310c96cf-0950-4379-aba5-a9d2a1c2f089",
 		"name": "Ofertas",
 		"description": "Documentation for the resource of oferta.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788"
+		"_exporter_id": "19626788",
+		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-310c96cf-0950-4379-aba5-a9d2a1c2f089?action=share&creator=19626788&source=collection_link"
 	},
 	"item": [
 		{
@@ -869,7 +870,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{jwt_token}}",
+							"value": "{{admin_jwt_token}}",
 							"type": "string"
 						}
 					]

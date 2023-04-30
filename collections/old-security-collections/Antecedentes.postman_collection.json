@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a4bc594e-a9b8-4011-b643-e02bdb927ba3",
-		"name": "Resenia",
+		"_postman_id": "9bd4d3d0-63d5-4b8a-b68f-e994217f6643",
+		"name": "Antecedentes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788",
-		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-a4bc594e-a9b8-4011-b643-e02bdb927ba3?action=share&creator=19626788&source=collection_link"
+		"_exporter_id": "25914520"
 	},
 	"item": [
 		{
@@ -180,14 +179,14 @@
 			]
 		},
 		{
-			"name": "Add resenia",
+			"name": "Add antecedente",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"resenia_id\", data.id);\r",
+							"pm.globals.set(\"antecedente_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -212,7 +211,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -220,25 +219,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/",
+					"raw": "{{baseUrl}}/antecedentes/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"antecedentes",
 						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add resenia",
+					"name": "Add antecedente",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -246,12 +245,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/",
+							"raw": "{{baseUrl}}/antecedentes/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"antecedentes",
 								""
 							]
 						}
@@ -269,12 +268,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Get all resenias",
+			"name": "Get all antecendentes",
 			"event": [
 				{
 					"listen": "test",
@@ -307,30 +306,28 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/",
+					"raw": "{{baseUrl}}/antecedentes",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						""
+						"antecedentes"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all resenias",
+					"name": "Get all antecendentes",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/",
+							"raw": "{{baseUrl}}/antecedentes",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								""
+								"antecedentes"
 							]
 						}
 					},
@@ -347,12 +344,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"titulo\": \"Excelente persona\", \n    \"calificacion\": 5,\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\n    },\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120003\",\n        \"titulo:\": \"Es un crack\",\n        \"calificacion\": 5,\n        \"descripcion\": \"Es muy buena gente y tiene un buen trato\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"tipo\": \"Criminal\",\n        \"description\": \"Posesión ilegal de armas\"\n    },\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120003\",\n        \"tipo\": \"Criminal\",\n        \"description\": \"Robo de Vehículo\"\n    },\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120004\",\n        \"tipo\": \"Criminal\",\n        \"description\": \"Violencia Doméstica\"\n    }\n]"
 				}
 			]
 		},
 		{
-			"name": "Get one resenia",
+			"name": "Get one antecedente",
 			"event": [
 				{
 					"listen": "test",
@@ -380,30 +377,30 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"antecedentes",
+						"{{antecedente_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get one resenia",
+					"name": "Get one antecedente",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"antecedentes",
+								"{{antecedente_id}}"
 							]
 						}
 					},
@@ -420,12 +417,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"tipo\": \"Criminal\",\n    \"description\": \"Posesión ilegal de armas\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an invalid resenia",
+			"name": "Get an invalid antecedente",
 			"event": [
 				{
 					"listen": "test",
@@ -437,7 +434,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -458,29 +455,29 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"antecedentes",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an invalid resenia",
+					"name": "Get an invalid antecedente",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"antecedentes",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -498,12 +495,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The reseña with the given id was not found\"\r\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The antecedente with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Update resenia",
+			"name": "Update antecedente",
 			"event": [
 				{
 					"listen": "test",
@@ -532,7 +529,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Robo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -540,25 +537,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"antecedentes",
+						"{{antecedente_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update resenia",
+					"name": "Update antecedente",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Robo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -566,13 +563,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"antecedentes",
+								"{{antecedente_id}}"
 							]
 						}
 					},
@@ -589,12 +586,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Robo\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Update invalid resenia",
+			"name": "Update invalid antecedente",
 			"event": [
 				{
 					"listen": "test",
@@ -606,7 +603,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -628,7 +625,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Robo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -636,25 +633,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"antecedentes",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update invalid resenia",
+					"name": "Update invalid antecedente",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Robo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,12 +659,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenia/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenia",
+								"antecedentes",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -685,12 +682,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The museum with the given id was not found\"\r\n}"
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The antecedente with the given id was not found\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete a resenia",
+			"name": "Delete an antecedente",
 			"event": [
 				{
 					"listen": "test",
@@ -718,34 +715,34 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"antecedentes",
+						"{{antecedente_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete a resenia",
+					"name": "Delete an antecedente",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"antecedentes",
+								"{{antecedente_id}}"
 							]
 						}
 					},
-					"status": "No Content}",
+					"status": "No Content",
 					"code": 204,
 					"_postman_previewlanguage": null,
 					"header": null,
@@ -755,7 +752,7 @@
 			]
 		},
 		{
-			"name": "Delete an invalid resenia",
+			"name": "Delete an invalid antecedente",
 			"event": [
 				{
 					"listen": "test",
@@ -767,7 +764,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -788,29 +785,29 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"antecedentes",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an invalid resenia",
+					"name": "Delete an invalid antecedente",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/antecedentes/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"antecedentes",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -828,7 +825,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The antecedente with the given id was not found\"\r\n}"
 				}
 			]
 		},
@@ -853,7 +850,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{admin_jwt_token}}",
+							"value": "{{jwt_token}}",
 							"type": "string"
 						}
 					]
@@ -921,7 +918,8 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "http://localhost:3000/api/v1"
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
 		}
 	]
 }

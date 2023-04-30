@@ -1,14 +1,13 @@
 {
 	"info": {
-		"_postman_id": "272dca2a-cb92-415c-9436-8874f2c2ec75",
-		"name": "Usuarios-Especialidades",
+		"_postman_id": "a2b0a78b-2180-4853-b01f-c749d5b476dc",
+		"name": "Usuarios-Antecedentes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788",
-		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-272dca2a-cb92-415c-9436-8874f2c2ec75?action=share&creator=19626788&source=collection_link"
+		"_exporter_id": "25914520"
 	},
 	"item": [
 		{
-			"name": "Add an usuario Copy",
+			"name": "Add an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -16,9 +15,6 @@
 						"exec": [
 							"var data = pm.response.json()\r",
 							"pm.globals.set(\"usuario_id\", data.id);\r",
-							"pm.globals.set(\"usuario_id_email\", data.correoElectronico);\r",
-							"pm.globals.set(\"usuario_id_contrasenia\", data.contrasenia);\r",
-							"pm.globals.set(\"usuario_id_roles\", data.roles);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -88,12 +84,95 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Add an usuario 2 Copy",
+			"name": "Generate Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"jwt_token\", data.token);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_id_roles}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{usuario_id_email}}\", \r\n    \"password\": \"{{usuario_id_contrasenia}}\", \r\n    \"roles\": \"{{usuario_roles}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"erwdewdadasdasdadasdadedd334654vfdg456gbbdb\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add an usuario 2",
 			"event": [
 				{
 					"listen": "test",
@@ -175,14 +254,14 @@
 			]
 		},
 		{
-			"name": "Generate Token Copy",
+			"name": "Add antecedente",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"jwt_token\", data.token);\r",
+							"pm.globals.set(\"antecedente_id\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -194,13 +273,20 @@
 			],
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"{{usuario_id_email}}\", \n    \"password\": \"{{usuario_id_contrasenia}}\", \n    \"roles\": \"{{usuario_id_roles}}\"\n}",
+					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -208,25 +294,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/login",
+					"raw": "{{baseUrl}}/antecedentes/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"usuarios",
-						"login"
+						"antecedentes",
+						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Generate Token",
+					"name": "Add antecedente",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"carlos@gmail.com\", \n    \"password\": \"Carlos123\", \n    \"roles\": \"{{usuario_roles}}\"\n}",
+							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -234,13 +320,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/login",
+							"raw": "{{baseUrl}}/antecedentes/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"usuarios",
-								"login"
+								"antecedentes",
+								""
 							]
 						}
 					},
@@ -257,19 +343,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"token\": \"erwdewdadasdasdadasdadedd334654vfdg456gbbdb\"\n}"
+					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Add Especialidad Copy",
+			"name": "Add antecedente 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var data = pm.response.json()\r",
-							"pm.globals.set(\"especialidad_id\", data.id);\r",
+							"pm.globals.set(\"antecedente_id_2\", data.id);\r",
 							"\r",
 							"pm.test(\"Status code is 201\", function () {\r",
 							"   pm.response.to.have.status(201);\r",
@@ -294,7 +380,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tipo\" :\"Comportamental\",\r\n    \"aniosExperiencia\" : 2\r\n}",
+					"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"descripcion\": \"Posesion ilegal de armas\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -302,31 +388,25 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/especialidades",
+					"raw": "{{baseUrl}}/antecedentes/",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"especialidades"
+						"antecedentes",
+						""
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add Especialidad",
+					"name": "Add antecedente",
 					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tipo\" :\"Comportamental\",\r\n    \"aniosExperiencia\" : 2\r\n}",
+							"raw": "{\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -334,26 +414,35 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/especialidades",
+							"raw": "{{baseUrl}}/antecedentes/",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"especialidades"
+								"antecedentes",
+								""
 							]
 						}
 					},
 					"status": "Created",
 					"code": 201,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": null
+					"body": "{  \r\n   \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n   \"tipo\": \"Criminal\",\r\n   \"description\": \"Posesión ilegal de armas\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Add Especialidad to an Usuario",
+			"name": "Add antecedente to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -381,50 +470,34 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"antecedentes",
+						"{{antecedente_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add Especialidad to an Usuario",
+					"name": "Add antecedente to an usuario",
 					"originalRequest": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [],\r\n    \"reseniasRecibidas\": [],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [\r\n        {\r\n            \"tipo\" : \"Educativa\",\r\n            \"aniosExperiencia\" : 3\r\n        }\r\n    ],\r\n    \"necesidades\": []\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
+						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
-								"{{especialidad_id}}"
+								"antecedentes",
+								"{{antecedente_id}}"
 							]
 						}
 					},
@@ -441,12 +514,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"Nombre\": \"Carlos Perez\",\n    \"cedula\": 43657875,\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlosgmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": 3167547634,\n    \"tipoUsuario\": \"Acudiente\",\n    \"antecedentes\": [],\n    \"reseniasRecibidas\": [],\n    \"contratos\": [],\n    \"ofertas\": [],\n    \"especialidades\": [\n        {\n            \"tipo\": \"Salud\",\n            \"aniosExperiencia\": 1\n        }\n    ],\n    \"necesidades\": []\n}"
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [\r\n        {  \r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"tipo\": \"Criminal\",\r\n            \"description\": \"Posesión ilegal de armas\"\r\n        }\r\n    ],\r\n    \"reseniasRecibidas\": [],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [],\r\n    \"necesidades\": []\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Add invalid Especialidad to an Usuario",
+			"name": "Add invalid antecedente to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -458,8 +531,9 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id was not found.\");\r",
-							"});"
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -479,48 +553,56 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
+						"antecedentes",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add invalid Especialidad to an Usuario",
+					"name": "Add invalid antecedente to an usuario",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
+								"antecedentes",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The especialidad with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The antecedente with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Add Especialidad to an invalid Usuario",
+			"name": "Add antecedente to an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -553,48 +635,56 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades",
-						"{{especialidad_id}}"
+						"antecedentes",
+						"{{antecedente_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add Especialidad to an invalid Usuario",
+					"name": "Add antecedente to an invalid usuario",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"especialidades",
-								"{{especialidad_id}}"
+								"antecedentes",
+								"{{antecedente_id}}"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an Especialidad of an Usuario",
+			"name": "Get an antecedente of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -622,34 +712,34 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"antecedentes",
+						"{{antecedente_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an Especialidad of an Usuario",
+					"name": "Get an antecedente of an usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
-								"{{especialidad_id}}"
+								"antecedentes",
+								"{{antecedente_id}}"
 							]
 						}
 					},
@@ -666,86 +756,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"tipo\": \"Salud\",\n    \"aniosExperiencia\": 1\n}"
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"tipo\": \"Criminal\",\r\n    \"description\": \"Posesión ilegal de armas\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an invalid Especialidad of an Usuario",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id was not found.\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{jwt_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"usuarios",
-						"{{usuario_id}}",
-						"especialidades",
-						"00000000-0000-0000-0000-000000000000"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Get an invalid Especialidad of an Usuario",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"usuarios",
-								"{{usuario_id}}",
-								"especialidades",
-								"00000000-0000-0000-0000-000000000000"
-							]
-						}
-					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
-					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The especialidad with the given id was not found\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Get an Especialidad of an invalid Usuario",
+			"name": "Get an antecedente of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -778,48 +794,56 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades",
-						"{{especialidad_id}}"
+						"antecedentes",
+						"{{antecedente_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an Especialidad of an invalid Usuario",
+					"name": "Get an antecedente of an invalid usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"especialidades",
-								"{{especialidad_id}}"
+								"antecedentes",
+								"{{antecedente_id}}"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get an Especialidad non-associated to an Usuario",
+			"name": "Get an antecedente non-associated to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -831,7 +855,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id is not associated to the usuario.\");\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id is not associated to the usuario.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -852,48 +876,56 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
-						"{{usuario_id_2}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"{{usuario_id}}",
+						"antecedentes",
+						"{{antecedente_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an Especialidad non-associated to an Usuario",
+					"name": "Get an antecedente non-associated to an usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id2}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
-								"{{especialidad_id2}}"
+								"antecedentes",
+								"{{antecedente_id}}"
 							]
 						}
 					},
 					"status": "Precondition Failed",
 					"code": 412,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 412,\n   \"message\": \"The especialidad with the given id is not associated to the usuario\"\n}"
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The antecedente with the given id is not associated to the usuario\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get all Especialidades of an Usuario",
+			"name": "Get all antecedentes of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -921,46 +953,54 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades"
+						"antecedentes"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all Especialidades of an Usuario",
+					"name": "Get all antecedentes of an usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades"
+								"antecedentes"
 							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "[\n   {\n    \"tipo\": \"Salud\",\n    \"aniosExperiencia\": 1\n   }\n]"
+					"body": "[\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n        \"tipo\": \"Criminal\",\n        \"description\": \"Posesión ilegal de armas\"\n    }\n]"
 				}
 			]
 		},
 		{
-			"name": "Get all Especialidades of an invalid Usuario",
+			"name": "Get all antecedentes of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -993,46 +1033,54 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades"
+						"antecedentes"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all Especialidades of an invalid Usuario",
+					"name": "Get all antecedentes of an invalid usuario",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"especialidades"
+								"antecedentes"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Update Especialidades of an Usuario",
+			"name": "Update antecedentes of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1061,7 +1109,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n   {\n       \"id\": \"{{especialidad_id}}\"\n   }\n]",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1069,26 +1117,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades"
+						"antecedentes"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update Especialidades of an Usuario",
+					"name": "Update antecedentes of an usuario",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n   {\n       \"id\": \"{{especialidad_id2}}\"\n   }\n]",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1096,14 +1144,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades"
+								"antecedentes"
 							]
 						}
 					},
@@ -1120,12 +1168,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"Nombre\": \"Carlos Perez\",\n    \"cedula\": 43657875,\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlosgmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": 3167547634,\n    \"tipoUsuario\": \"Acudiente\",\n    \"antecedentes\": [],\n    \"reseniasRecibidas\": [],\n    \"contratos\": [],\n    \"ofertas\": [],\n    \"especialidades\": [\n        {\n            \"tipo\": \"Comportamental\",\n            \"aniosExperiencia\": 2\n        }\n    ],\n    \"necesidades\": []\n}"
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"Nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"antecedentes\": [\r\n        {  \r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"tipo\": \"Criminal\",\r\n            \"description\": \"Posesión ilegal de armas\"\r\n        }\r\n    ],\r\n    \"reseniasRecibidas\": [],\r\n    \"contratos\": [],\r\n    \"ofertas\": [],\r\n    \"especialidades\": [],\r\n    \"necesidades\": []\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Update invalid Especialidades of an Usuario",
+			"name": "Update invalid antecedentes of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1137,7 +1185,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1159,7 +1207,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n   {\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\n   }\n]",
+					"raw": "[\r\n   {\r\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n   }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1167,26 +1215,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades"
+						"antecedentes"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update invalid Especialidades of an Usuario",
+					"name": "Update invalid antecedentes of an usuario",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n   {\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\n   }\n]",
+							"raw": "[\r\n   {\r\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n   }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1194,28 +1242,36 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades"
+								"antecedentes"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The antecedente with the given id was not found\"\r\n}"
 				}
 			]
 		},
 		{
-			"name": "Update Especialidades of an invalid Usuario",
+			"name": "Update antecedentes of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1249,7 +1305,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n   {\n       \"id\": \"{{especialidad_id}}\"\n   }\n]",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1257,26 +1313,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades"
+						"antecedentes"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update Especialidades of an invalid Usuario",
+					"name": "Update antecedentes of an invalid usuario",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n   {\n       \"id\": \"{{especialidad_id2}}\"\n   }\n]",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{antecedente_id_2}}\"\r\n   }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1284,28 +1340,36 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"especialidades"
+								"antecedentes"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an Especialidad of an Usuario",
+			"name": "Delete an antecedente of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1333,34 +1397,34 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"antecedentes",
+						"{{antecedente_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an Especialidad of an Usuario",
+					"name": "Delete an antecedente of an usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id2}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
-								"{{especialidad_id2}}"
+								"antecedentes",
+								"{{antecedente_id_2}}"
 							]
 						}
 					},
@@ -1374,7 +1438,7 @@
 			]
 		},
 		{
-			"name": "Delete an Especialidad of an invalid Usuario",
+			"name": "Delete an antecedente of an invalid usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1407,48 +1471,56 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"00000000-0000-0000-0000-000000000000",
-						"especialidades",
-						"{{especialidad_id}}"
+						"antecedentes",
+						"{{antecedente_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an Especialidad of an invalid Usuario",
+					"name": "Delete an antecedente of an invalid usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/especialidades/{{especialidad_id2}}",
+							"raw": "{{baseUrl}}/usuarios/00000000-0000-0000-0000-000000000000/antecedentes/{{antecedente_id_2}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"00000000-0000-0000-0000-000000000000",
-								"especialidades",
-								"{{especialidad_id2}}"
+								"antecedentes",
+								"{{antecedente_id_2}}"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The usuario with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an invalid Especialidad of an Usuario",
+			"name": "Delete an invalid antecedente of an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1460,7 +1532,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id was not found.\");\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id was not found.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1481,48 +1553,56 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
+						"antecedentes",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an invalid Especialidad of an Usuario",
+					"name": "Delete an invalid antecedente of an usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"especialidades",
+								"antecedentes",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The especialidad with the given id was not found\"\n}"
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The antecedente with the given id was not found\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Delete an Especialidad non-associated to an Usuario",
+			"name": "Delete an antecedente non-associated to an usuario",
 			"event": [
 				{
 					"listen": "test",
@@ -1534,7 +1614,7 @@
 							"\r",
 							"pm.test(\"Get expected error message\", function () {\r",
 							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The especialidad with the given id is not associated to the usuario.\");\r",
+							"   pm.expect(data.message).to.eql(\"The antecedente with the given id is not associated to the usuario.\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1555,43 +1635,181 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/especialidades/{{especialidad_id}}",
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id_2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"usuarios",
 						"{{usuario_id}}",
-						"especialidades",
-						"{{especialidad_id}}"
+						"antecedentes",
+						"{{antecedente_id_2}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an Especialidad non-associated to an Usuario",
+					"name": "Delete an antecedente non-associated to an usuario",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/artworks/{{especialidad_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}/antecedentes/{{antecedente_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
 								"{{usuario_id}}",
-								"artworks",
-								"{{especialidad_id}}"
+								"antecedentes",
+								"{{antecedente_id}}"
 							]
 						}
 					},
 					"status": "Precondition Failed",
 					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"The antecedente with the given id is not associated to the usuario\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an antecedente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						"{{antecedente_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an antecedente",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\n   \"statusCode\": 412,\n   \"message\": \"The especialidad with the given id is not associated to the usuario\"\n}"
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete an antecedente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/antecedentes/{{antecedente_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"antecedentes",
+						"{{antecedente_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an antecedente",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/antecedentes/{{antecedente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"antecedentes",
+								"{{antecedente_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
 				}
 			]
 		},
@@ -1616,7 +1834,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{admin_jwt_token}}",
+							"value": "{{jwt_token}}",
 							"type": "string"
 						}
 					]
@@ -1653,10 +1871,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
@@ -1681,7 +1899,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{admin_jwt_token}}",
+							"value": "{{jwt_token}}",
 							"type": "string"
 						}
 					]
@@ -1706,22 +1924,22 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id_2}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"usuarios",
-								"{{usuario_id}}"
+								"{{usuario_id_2}}"
 							]
 						}
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		}
@@ -1744,6 +1962,13 @@
 					""
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
 		}
 	]
 }

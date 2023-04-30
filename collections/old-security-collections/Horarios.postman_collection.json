@@ -1,14 +1,13 @@
 {
 	"info": {
-		"_postman_id": "a4bc594e-a9b8-4011-b643-e02bdb927ba3",
-		"name": "Resenia",
+		"_postman_id": "c93a13fb-4010-45ea-83f2-faa8109b12ae",
+		"name": "Horarios",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788",
-		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-a4bc594e-a9b8-4011-b643-e02bdb927ba3?action=share&creator=19626788&source=collection_link"
+		"_exporter_id": "19626788"
 	},
 	"item": [
 		{
-			"name": "Add an usuario",
+			"name": "Add an usuario Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -33,7 +32,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n} ",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,12 +87,12 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
+					"body": "{\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\",\n    \"id\": \"f1a4bbd6-a9bc-47c9-b09a-4e215b7dd686\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Generate Token",
+			"name": "Generate Token Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -180,17 +179,17 @@
 			]
 		},
 		{
-			"name": "Add resenia",
+			"name": "Add Horario",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"resenia_id\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
+							"var data = pm.response.json()",
+							"pm.globals.set(\"horario_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -212,7 +211,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+					"raw": "{\r\n    \"horaInicio\" : \"1800-01-01T00:09:00.000Z\",\r\n    \"horaFin\" : \"1800-01-01T00:10:00.000Z\",\r\n    \"dia\" : \"Martes\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -220,25 +219,31 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/",
+					"raw": "{{baseUrl}}/horarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						""
+						"horarios"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Add resenia",
+					"name": "Add Horario",
 					"originalRequest": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+							"raw": "{\r\n    \"horaInicio\" : \"7:48 a.m.\",\r\n    \"horaFin\" : \"4:01 p.m.\",\r\n    \"dia\" : \"Martes\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -246,47 +251,38 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/",
+							"raw": "{{baseUrl}}/horarios",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								""
+								"horarios"
 							]
 						}
 					},
 					"status": "Created",
 					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Get all resenias",
+			"name": "Get all Horarios",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Number of resenias > ' + 0, function () {\r",
-							"   var data = pm.response.json()\r",
-							"   pm.expect(data.length).to.greaterThan(0)\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test('Number of horarios > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -307,59 +303,65 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/",
+					"raw": "{{baseUrl}}/horarios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						""
+						"horarios"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get all resenias",
+					"name": "Get all Horarios",
 					"originalRequest": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"horaInicio\" : \"7:48 a.m.\",\r\n        \"horaFin\" : \"4:01 p.m.\",\r\n        \"dia\" : \"Martes\"\r\n    },\r\n    {\r\n        \"horaInicio\" : \"7:30 a.m.\",\r\n        \"horaFin\" : \"4:00 p.m.\",\r\n        \"dia\" : \"Jueves\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/",
+							"raw": "{{baseUrl}}/horarios",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								""
+								"horarios"
 							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "[\n    {\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"titulo\": \"Excelente persona\", \n    \"calificacion\": 5,\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\n    },\n    {\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120003\",\n        \"titulo:\": \"Es un crack\",\n        \"calificacion\": 5,\n        \"descripcion\": \"Es muy buena gente y tiene un buen trato\"\n    }\n]"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Get one resenia",
+			"name": "Get an Horario",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -380,64 +382,72 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"horarios",
+						"{{horario_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get one resenia",
+					"name": "Get an Horario",
 					"originalRequest": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"horaInicio\" : \"7:48 a.m\",\r\n        \"horaFin\" : \"4:01 p.m.\",\r\n        \"dia\" : \"Martes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"horarios",
+								"{{horario_id}}"
 							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Get an invalid resenia",
+			"name": "Get an invalid Horario",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The horario with the given id was not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -458,59 +468,67 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"horarios",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Get an invalid resenia",
+					"name": "Get an invalid Horario",
 					"originalRequest": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The horario with the given id was not found\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"horarios",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The reseña with the given id was not found\"\r\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Update resenia",
+			"name": "Update an Horario",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -532,7 +550,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"raw": "{\r\n    \"horaInicio\" : \"1800-01-01T00:08:00.000Z\",\r\n    \"horaFin\" : \"1800-01-01T00:10:00.000Z\",\r\n    \"dia\" : \"Martes\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -540,73 +558,62 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"horarios",
+						"{{horario_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update resenia",
+					"name": "Update an Horario",
 					"originalRequest": {
-						"method": "PUT",
-						"header": [],
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"raw": "{\r\n    \"horaInicio\" : \"8:04 a.m.\",\r\n    \"horaFin\" : \"4:01 p.m.\",\r\n    \"dia\" : \"Martes\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"resenias",
-								"{{resenia_id}}"
-							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Update invalid resenia",
+			"name": "Update an invalid Horario",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The horario with the given id was not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -628,7 +635,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+					"raw": "{\n    \"horaInicio\" : \"1800-01-01T00:08:00.000Z\",\n    \"horaFin\" : \"1800-01-01T00:10:00.000Z\",\n    \"dia\" : \"Martes\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -636,25 +643,32 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"horarios",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Update invalid resenia",
+					"name": "Update an invalid Horario",
 					"originalRequest": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 3,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The horario with the given id was not found\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,42 +676,34 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenia/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenia",
+								"horarios",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The museum with the given id was not found\"\r\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Delete a resenia",
+			"name": "Delete an Horario",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -718,34 +724,34 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"raw": "{{baseUrl}}/horarios/{{horario_id}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id}}"
+						"horarios",
+						"{{horario_id}}"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete a resenia",
+					"name": "Delete an Horario",
 					"originalRequest": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"raw": "{{baseUrl}}/horarios/{{horario_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
-								"{{resenia_id}}"
+								"horarios",
+								"{{horario_id}}"
 							]
 						}
 					},
-					"status": "No Content}",
+					"status": "No Content",
 					"code": 204,
 					"_postman_previewlanguage": null,
 					"header": null,
@@ -755,19 +761,19 @@
 			]
 		},
 		{
-			"name": "Delete an invalid resenia",
+			"name": "Delete an invalid Horario",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"   pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Get expected error message\", function () {\r",
-							"   var data = pm.response.json();\r",
-							"   pm.expect(data.message).to.eql(\"The resenia with the given id was not found.\");\r",
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"The horario with the given id was not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -788,52 +794,60 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+					"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"horarios",
 						"00000000-0000-0000-0000-000000000000"
 					]
 				}
 			},
 			"response": [
 				{
-					"name": "Delete an invalid resenia",
+					"name": "Delete an invalid Horario",
 					"originalRequest": {
-						"method": "DELETE",
-						"header": [],
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The horario with the given id was not found\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000",
+							"raw": "{{baseUrl}}/horarios/00000000-0000-0000-0000-000000000000",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"resenias",
+								"horarios",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
+					"_postman_previewlanguage": null,
+					"header": null,
 					"cookie": [],
-					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The museum with the given id was not found\"\n}"
+					"body": null
 				}
 			]
 		},
 		{
-			"name": "Delete usuario",
+			"name": "Delete usuario Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -853,7 +867,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{admin_jwt_token}}",
+							"value": "{{jwt_token}}",
 							"type": "string"
 						}
 					]
@@ -921,7 +935,8 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "http://localhost:3000/api/v1"
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
 		}
 	]
 }
