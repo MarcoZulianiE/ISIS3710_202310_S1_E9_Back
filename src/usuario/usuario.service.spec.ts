@@ -32,10 +32,12 @@ describe('UsuarioService', () => {
         cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
         contrasenia: faker.internet.password(),
         nombre: faker.name.fullName(),
+        foto: faker.image.imageUrl(),
         correoElectronico: faker.internet.email(),
         direccion: faker.address.streetAddress(),
         celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
-        tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"])})
+        tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+        aniosExperiencia: faker.datatype.number({min: 0, max: 100}),})
         usuarioList.push(usuario);
     }
   }
@@ -55,12 +57,13 @@ describe('UsuarioService', () => {
     const usuario: UsuarioEntity = await service.findOne(storedUsuario.id);
     expect(usuario).not.toBeNull();
     expect(usuario.cedula).toEqual(storedUsuario.cedula)
-    expect(usuario.contrasenia).toEqual(storedUsuario.contrasenia)
     expect(usuario.nombre).toEqual(storedUsuario.nombre)
     expect(usuario.correoElectronico).toEqual(storedUsuario.correoElectronico)
     expect(usuario.direccion).toEqual(storedUsuario.direccion)
     expect(usuario.celular).toEqual(storedUsuario.celular)
     expect(usuario.tipoUsuario).toEqual(storedUsuario.tipoUsuario)
+    expect(usuario.foto).toEqual(storedUsuario.foto)
+    expect(usuario.aniosExperiencia).toEqual(storedUsuario.aniosExperiencia)
   });
 
   it('findOne should throw an exception for an invalid usuario', async () => {
@@ -73,10 +76,12 @@ describe('UsuarioService', () => {
       cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
+      foto: faker.image.imageUrl(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      aniosExperiencia: faker.datatype.number({min: 0, max: 100}),
       roles: ["admin"],
       necesidades: [],
       especialidades: [],
@@ -93,12 +98,13 @@ describe('UsuarioService', () => {
     const storedUsuario: UsuarioEntity = await repository.findOne({where: {id: newUsuario.id}})
     expect(usuario).not.toBeNull();
     expect(usuario.cedula).toEqual(storedUsuario.cedula)
-    expect(usuario.contrasenia).toEqual(storedUsuario.contrasenia)
     expect(usuario.nombre).toEqual(storedUsuario.nombre)
     expect(usuario.correoElectronico).toEqual(storedUsuario.correoElectronico)
     expect(usuario.direccion).toEqual(storedUsuario.direccion)
     expect(usuario.celular).toEqual(storedUsuario.celular)
     expect(usuario.tipoUsuario).toEqual(storedUsuario.tipoUsuario)
+    expect(usuario.foto).toEqual(storedUsuario.foto)
+    expect(usuario.aniosExperiencia).toEqual(storedUsuario.aniosExperiencia)
   });
 
   it('create should throw an exception for an invalid tipoUsuario', async () => {
@@ -107,10 +113,12 @@ describe('UsuarioService', () => {
       cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
+      foto: faker.image.imageUrl(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: "panda",
+      aniosExperiencia: faker.datatype.number({min: 0, max: 100}),
       roles: ["admin"],
       necesidades: [],
       especialidades: [],
@@ -130,10 +138,12 @@ describe('UsuarioService', () => {
       cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
+      foto: faker.image.imageUrl(),
       correoElectronico: "canguros@gmail.com",
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: "canguro",
+      aniosExperiencia: faker.datatype.number({min: 0, max: 100}),
       roles: ["admin"],
       necesidades: [],
       especialidades: [],
@@ -151,10 +161,12 @@ describe('UsuarioService', () => {
       cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
+      foto: faker.image.imageUrl(),
       correoElectronico: "canguros@gmail.com",
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: "canguro",
+      aniosExperiencia: faker.datatype.number({min: 0, max: 100}),
       roles: ["admin"],
       necesidades: [],
       especialidades: [],
@@ -174,10 +186,12 @@ describe('UsuarioService', () => {
       cedula: null,
       contrasenia: null,
       nombre: null,
+      foto: faker.image.imageUrl(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      aniosExperiencia: faker.datatype.number({min: 0, max: 100}),
       roles: ["admin"],
       necesidades: [],
       especialidades: [],

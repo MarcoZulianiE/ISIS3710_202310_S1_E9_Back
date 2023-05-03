@@ -46,7 +46,8 @@ export class UsuarioController {
   @Put(':usuarioId')
   async update(@Param('usuarioId') usuarioId: string, @Body() usuarioDto: UsuarioDto) {
     const usuario: UsuarioEntity = plainToInstance(UsuarioEntity, usuarioDto);
-    return await this.usuarioService.update(usuarioId, usuario);
+    const u =  await this.usuarioService.update(usuarioId, usuario);
+    return plainToInstance(UsuarioSeguroDto, u, { excludeExtraneousValues: true })
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)

@@ -48,10 +48,12 @@ describe('UsuarioOfertaService', () => {
       cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
+      foto: faker.image.imageUrl(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      aniosExperiencia: faker.datatype.number({min: 0, max: 100}),
       roles: ["admin"],
       ofertas: ofertaList
     })
@@ -74,10 +76,12 @@ describe('UsuarioOfertaService', () => {
       cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
+      foto: faker.image.imageUrl(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      aniosExperiencia: faker.datatype.number({min: 0, max: 100}),
       roles: ["admin"],
     })
  
@@ -97,10 +101,12 @@ describe('UsuarioOfertaService', () => {
       cedula: faker.datatype.number({min: 10000, max: 99999999999}).toString(),
       contrasenia: faker.internet.password(),
       nombre: faker.name.fullName(),
+      foto: faker.image.imageUrl(),
       correoElectronico: faker.internet.email(),
       direccion: faker.address.streetAddress(),
       celular: faker.datatype.number({min: 1000000000, max: 9999999999}).toString(),
       tipoUsuario: faker.helpers.arrayElement(["canguro", "acudiente", "ambos"]),
+      aniosExperiencia: faker.datatype.number({min: 0, max: 100}),
       roles: ["admin"],
     })
  
