@@ -1,4 +1,4 @@
-import { IsArray, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl } from 'class-validator';
 
 export class UsuarioDto {
 
@@ -10,12 +10,14 @@ export class UsuarioDto {
     @IsNotEmpty()
     readonly contrasenia: string;
 
+    @IsUrl()
+    readonly foto: string;
+
     @IsString()
     @IsNotEmpty()
     readonly nombre: string;
 
     @IsEmail()
-    @IsNotEmpty()
     readonly correoElectronico: string;
 
     @IsString()
@@ -29,6 +31,9 @@ export class UsuarioDto {
     @IsString()
     @IsNotEmpty()
     readonly tipoUsuario: string;
+
+    @IsNumber()
+    readonly aniosExperiencia: number;
 
     @IsArray()
     @IsOptional()

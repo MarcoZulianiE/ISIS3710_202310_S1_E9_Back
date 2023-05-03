@@ -8,6 +8,7 @@ import { BusinessErrorsInterceptor } from '../shared/interceptors/business-error
 import { Role } from '../shared/security/roles';
 import { HasRoles } from '../shared/security/roles.decorator';
 import { UsuarioDto } from './usuario.dto';
+import { UsuarioSeguroDto } from './usuarioSeguro.dto';
 import { UsuarioEntity } from './usuario.entity';
 import { UsuarioService } from './usuario.service';
 
@@ -22,14 +23,16 @@ export class UsuarioController {
   @HasRoles(Role.ADMIN, Role.USER)
   @Get()
   async findAll() {
-    return await this.usuarioService.findAll();
+    const usuarios = await this.usuarioService.findAll();
+    return plainToInstance(UsuarioSeguroDto, usuarios, { excludeExtraneousValues: true });
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @HasRoles(Role.ADMIN, Role.USER)
   @Get(':usuarioId')
   async findOne(@Param('usuarioId') usuarioId: string) {
-    return await this.usuarioService.findOne(usuarioId);
+    const usuario =  await this.usuarioService.findOne(usuarioId);
+    return plainToInstance(UsuarioSeguroDto, usuario, { excludeExtraneousValues: true })
   }
 
   @Post()

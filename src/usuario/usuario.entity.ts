@@ -23,6 +23,9 @@ export class UsuarioEntity {
     nombre: string;
 
     @Column()
+    foto: string;
+
+    @Column()
     correoElectronico: string;
 
     @Column()
@@ -33,6 +36,9 @@ export class UsuarioEntity {
 
     @Column()
     tipoUsuario: string;
+
+    @Column()
+    aniosExperiencia: number;
 
     @Column("text", { array: true, nullable: true})
     roles: string[];
