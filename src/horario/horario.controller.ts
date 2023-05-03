@@ -14,30 +14,27 @@ import { HorarioService } from './horario.service';
 export class HorarioController {
     constructor(private readonly horarioService: HorarioService) {}
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINHORARIO, Role.LECTORHORARIO)
+
     @Get()
     async findAll() {
         return await this.horarioService.findAll();
     }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINHORARIO, Role.LECTORHORARIO)
     @Get(':horarioId')
     async findOne(@Param('horarioId') horarioId: string) {
         return await this.horarioService.findOne(horarioId);
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINHORARIO, Role.ESCRITORHORARIO)
+    @HasRoles(Role.ADMIN, Role.USER) 
     @Post()
     async create(@Body() horarioDto: HorarioDto) {
         const horario: HorarioEntity = plainToInstance(HorarioEntity, horarioDto)
         return await this.horarioService.create(horario);
     }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINHORARIO, Role.ESCRITORHORARIO)
+    @UseGuards(JwtAuthGuard, RolesGuard)    
+    @HasRoles(Role.ADMIN, Role.USER) // TODO: Solo los asociados
     @Put(':horarioId')
     async update(@Param('horarioId') horarioId: string, @Body() horarioDto: HorarioDto) {
         const horario: HorarioEntity = plainToInstance(HorarioEntity, horarioDto)
@@ -45,7 +42,7 @@ export class HorarioController {
     }
 
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINHORARIO, Role.ELIMINARHORARIO)
+    @HasRoles(Role.ADMIN, Role.USER) // TODO: Solo los asociados
     @Delete(':horarioId')
     @HttpCode(204)
     async delete(@Param('horarioId') horarioId: string) {

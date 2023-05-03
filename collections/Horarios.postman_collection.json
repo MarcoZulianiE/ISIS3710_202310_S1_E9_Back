@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "c93a13fb-4010-45ea-83f2-faa8109b12ae",
+		"_postman_id": "85816653-1156-4da1-8184-fe3f85e17a31",
 		"name": "Horarios",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788"
+		"_exporter_id": "19626788",
+		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-85816653-1156-4da1-8184-fe3f85e17a31?action=share&creator=19626788&source=collection_link"
 	},
 	"item": [
 		{
@@ -867,7 +868,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{jwt_token}}",
+							"value": "{{admin_jwt_token}}",
 							"type": "string"
 						}
 					]

@@ -34,7 +34,7 @@ export class UsuarioService {
         if(!usuario.cedula || !usuario.contrasenia || !usuario.nombre)
             throw new BusinessLogicException("El usuario debe tener minimo una cedula, una contrasenia y un nombre", BusinessError.PRECONDITION_FAILED);
         if(!usuario.roles)
-            usuario.roles = [Role.ADMINUSUARIO, Role.ADMINRESENIA, Role.ADMINOFERTA, Role.ADMINNECESIDAD, Role.ADMINANTECEDENTE, Role.ADMINESPECIALIDAD, Role.ADMINCONTRATO, Role.ADMINHORARIO];
+            usuario.roles = [Role.USER];
         return await this.usuarioRepository.save(usuario);
     }
 

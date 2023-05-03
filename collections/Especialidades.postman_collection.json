@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "c5fcf25a-f3eb-439a-8570-746842e6d28a",
+		"_postman_id": "8489c8cb-7464-42d5-b0dd-7c1c2dcb84fb",
 		"name": "Especialidades",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25914808"
+		"_exporter_id": "19626788",
+		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-8489c8cb-7464-42d5-b0dd-7c1c2dcb84fb?action=share&creator=19626788&source=collection_link"
 	},
 	"item": [
 		{
@@ -873,7 +874,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{jwt_token}}",
+							"value": "{{admin_jwt_token}}",
 							"type": "string"
 						}
 					]

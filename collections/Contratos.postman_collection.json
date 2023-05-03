@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "4e56c453-f7fe-4643-853a-4af7bb6fc961",
+		"_postman_id": "0633ad04-3181-449d-be59-858a361349ce",
 		"name": "Contratos",
 		"description": "Documentation for the resource of contrato.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788"
+		"_exporter_id": "19626788",
+		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-0633ad04-3181-449d-be59-858a361349ce?action=share&creator=19626788&source=collection_link"
 	},
 	"item": [
 		{
@@ -1047,7 +1048,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{jwt_token}}",
+							"value": "{{admin_jwt_token}}",
 							"type": "string"
 						}
 					]

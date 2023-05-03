@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "2eda5fe5-479d-4bdb-992f-cbd21bf346d3",
+		"_postman_id": "bd98fdcc-cb06-4fd6-9112-3d893bbb6128",
 		"name": "Usuarios",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25894623"
+		"_exporter_id": "19626788",
+		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-bd98fdcc-cb06-4fd6-9112-3d893bbb6128?action=share&creator=19626788&source=collection_link"
 	},
 	"item": [
 		{
@@ -611,7 +612,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{jwt_token}}",
+							"value": "{{admin_jwt_token}}",
 							"type": "string"
 						}
 					]
@@ -681,7 +682,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{jwt_token}}",
+							"value": "{{admin_jwt_token}}",
 							"type": "string"
 						}
 					]

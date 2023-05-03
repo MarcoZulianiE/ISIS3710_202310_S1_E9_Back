@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "94ded5af-dda7-4cc6-90c1-639870388d2d",
+		"_postman_id": "a57b9ad9-77e5-4113-aab7-050273e7fb44",
 		"name": "Usuarios-Ofertas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25894623"
+		"_exporter_id": "19626788",
+		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-a57b9ad9-77e5-4113-aab7-050273e7fb44?action=share&creator=19626788&source=collection_link"
 	},
 	"item": [
 		{
@@ -1407,7 +1408,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{jwt_token}}",
+							"value": "{{admin_jwt_token}}",
 							"type": "string"
 						}
 					]
@@ -1472,7 +1473,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{jwt_token}}",
+							"value": "{{admin_jwt_token}}",
 							"type": "string"
 						}
 					]

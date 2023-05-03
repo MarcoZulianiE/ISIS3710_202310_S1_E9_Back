@@ -11,22 +11,19 @@ import { HorarioOfertaService } from './horario-oferta.service';
 export class HorarioOfertaController {
     constructor(private readonly horarioOfertaService: HorarioOfertaService) {}
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINHORARIO, Role.ESCRITORHORARIO)
+
     @Post(':horarioId/ofertas/:ofertaId')
     async addOfertaHorario(@Param('horarioId') horarioId: string, @Param('ofertaId') ofertaId: string) {
         return await this.horarioOfertaService.addOfertaHorario(horarioId, ofertaId);
     }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINHORARIO, Role.LECTORHORARIO)
+
     @Get(':horarioId/ofertas/:ofertaId')
     async findOfertaByHorarioIdOfertaId(@Param('horarioId') horarioId: string, @Param('ofertaId') ofertaId: string) {
         return await this.horarioOfertaService.findOfertaByHorarioIdOfertaId(horarioId, ofertaId);
     }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINHORARIO, Role.LECTORHORARIO)
+
     @Get(':horarioId/ofertas')
     async findOfertasByHorarioId(@Param('horarioId') horarioId: string) {
         return await this.horarioOfertaService.findOfertasByHorarioId(horarioId);
@@ -39,8 +36,7 @@ export class HorarioOfertaController {
     //     // return await this.horarioOfertaService.associateOfertaHorario(horarioId, ofertas);
     // }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @HasRoles(Role.ADMINHORARIO, Role.ELIMINARHORARIO)
+
     @Delete(':horarioId/ofertas/:ofertaId')
     @HttpCode(204)
     async deleteOfertaHorario(@Param('horarioId') horarioId: string, @Param('ofertaId') ofertaId: string) {

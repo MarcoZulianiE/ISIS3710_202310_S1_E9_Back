@@ -1,0 +1,1183 @@
+{
+	"info": {
+		"_postman_id": "82ee02c5-436a-49ad-8591-f793a23e1458",
+		"name": "Resenias-Usuarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19626788",
+		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-82ee02c5-436a-49ad-8591-f793a23e1458?action=share&creator=19626788&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Add an usuario Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"usuario_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an Usuario",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Carlos Perez\",\n    \"cedula\": \"43657875\",\n    \"contrasenia\": \"Carlos123\",\n    \"correoElectronico\": \"carlos@gmail.com\",\n    \"direccion\": \"carrera 43 #98-51\",\n    \"celular\": \"3167547634\",\n    \"tipoUsuario\": \"Acudiente\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add resenia Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"resenia_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add resenia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenias/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add usuario to a resenia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add usuario to a resenia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}",
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\",\r\n    \"usuario\": {\r\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n        \"nombre\": \"Carlos Perez\",\r\n        \"cedula\": 43657875,\r\n        \"contrasenia\": \"Carlos123\",\r\n        \"correoElectronico\": \"carlosgmail.com\",\r\n        \"direccion\": \"carrera 43 #98-51\",\r\n        \"celular\": 3167547634,\r\n        \"tipoUsuario\": \"Acudiente\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add invalid usuario to an resenia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}",
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add invalid usuario to a resenia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}",
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add usuario to an invalid resenia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"00000000-0000-0000-0000-000000000000",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add usuario to an invalid resenia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"00000000-0000-0000-0000-000000000000",
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The resenia with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an usuario of a resenia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an usuario of a resenia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}",
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\"\r\n    }"
+				}
+			]
+		},
+		{
+			"name": "Get an usuario of an invalid resenia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"00000000-0000-0000-0000-000000000000",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an usuario of an invalid resenia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"00000000-0000-0000-0000-000000000000",
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The resenia with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an usuario non-associated to a resenia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an usuario non-associated to a resenia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}",
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The usuario with the given id is not associated to the reseña\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all usuarios of a resenia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}",
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all usuarios of a resenia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}",
+								"usuarios"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": 43657875,\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlosgmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": 3167547634,\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all usuarios of an invalid resenia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"00000000-0000-0000-0000-000000000000",
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all usuarios of an invalid resenia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"00000000-0000-0000-0000-000000000000",
+								"usuarios"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The reseña with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update usuarios of a resenia",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{usuario_id_2}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuario",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}",
+						"usuario"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update usuarios of a resenia",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{usuario_id_2}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuario",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}",
+								"usuario"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"titulo\": \"Excelente persona\", \r\n    \"calificacion\": 5,\r\n    \"descripcion\": \"Excelente persona, y ha contribuido al desarrollo de mi hija mejorando sus notas en el colegio.\",\r\n    \"usuario\": {\r\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n        \"nombre\": \"Carlos Perez\",\r\n        \"cedula\": 43657875,\r\n        \"contrasenia\": \"Carlos123\",\r\n        \"correoElectronico\": \"carlosgmail.com\",\r\n        \"direccion\": \"carrera 43 #98-51\",\r\n        \"celular\": 3167547634,\r\n        \"tipoUsuario\": \"Acudiente\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update invalid usuarios of a resenia",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuario",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}",
+						"usuario"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update invalid usuarios of a resenia",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuario",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}",
+								"usuario"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The usuario with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update usuarios of an invalid resenia",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{usuario_id_2}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"00000000-0000-0000-0000-000000000000",
+						"usuarios"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update usuarios of an invalid resenia",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{usuario_id_2}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"00000000-0000-0000-0000-000000000000",
+								"usuarios"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The reseña with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an usuario of an resenia",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenia/{{resenia_id}}/usuarios/{{usuario_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenia",
+						"{{resenia_id}}",
+						"usuarios",
+						"{{usuario_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an usuario of an resenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenia/{{resenia_id}}/usuarios/{{usuario_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenia",
+								"{{resenia_id}}",
+								"usuarios",
+								"{{usuario_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete an usuario of an invalid resenia",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"00000000-0000-0000-0000-000000000000",
+						"usuarios",
+						"{{usuario_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an usuario of an invalid resenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/00000000-0000-0000-0000-000000000000/usuarios/{{usuario_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"00000000-0000-0000-0000-000000000000",
+								"usuarios",
+								"{{usuario_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The reseña with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid usuario of an resenia",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}",
+						"usuarios",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an invalid usuario of an resenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}",
+								"usuarios",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The usuario with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete an usuario non-associated to a resenia",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}",
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an usuario non-associated to a resenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}",
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"The usuario with the given id is not associated to the resenia\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a resenia Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a resenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id}}"
+							]
+						}
+					},
+					"status": "No Content}",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete usuario Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"{{usuario_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete usuario",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/{{usuario_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"{{usuario_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

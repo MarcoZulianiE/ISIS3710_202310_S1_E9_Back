@@ -10,6 +10,7 @@ import { UsuarioEspecialidadService } from './usuario-especialidad.service';
 export class UsuarioEspecialidadController {
    constructor(private readonly usuarioEspecialidadService: UsuarioEspecialidadService){}
 
+   
    @Post(':usuarioId/especialidades/:especialidadId')
    async addEspecialidadUsuario(@Param('usuarioId') usuarioId: string, @Param('especialidadId') especialidadId: string){
        return await this.usuarioEspecialidadService.addEspecialidadUsuario(usuarioId, especialidadId);
