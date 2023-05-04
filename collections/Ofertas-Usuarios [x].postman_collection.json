@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "674b45e1-ec44-44e7-a89b-80443215e215",
+		"_postman_id": "18617507-5831-4bfe-8caf-acd2f7a7c3e1",
 		"name": "Ofertas-Usuarios [x]",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19626788",
-		"_collection_link": "https://www.postman.com/kangaroo-web-uniandes/workspace/web-2023/collection/19626788-674b45e1-ec44-44e7-a89b-80443215e215?action=share&creator=19626788&source=collection_link"
+		"_exporter_id": "25894623"
 	},
 	"item": [
 		{
@@ -33,7 +32,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Carlos Perez\",\r\n    \"cedula\": \"43657875\",\r\n    \"contrasenia\": \"Carlos123\",\r\n    \"foto\": \"https://media.discordapp.net/attachments/1040862459378020502/1103426162149052426/Ellipse_4.png\",\r\n    \"correoElectronico\": \"carlos@gmail.com\",\r\n    \"direccion\": \"carrera 43 #98-51\",\r\n    \"celular\": \"3167547634\",\r\n    \"tipoUsuario\": \"Acudiente\",\r\n    \"aniosExperiencia\": 5\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -198,7 +197,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Marta Lopez\",\r\n    \"cedula\": \"39483854\",\r\n    \"contrasenia\": \"Marta123\",\r\n    \"foto\": \"https://media.discordapp.net/attachments/1040862459378020502/1103425810448257125/Ellipse_3.png\",\r\n    \"correoElectronico\": \"marta@gmail.com\",\r\n    \"direccion\": \"carrera 34 #21-61\",\r\n    \"celular\": \"3167537682\",\r\n    \"tipoUsuario\": \"Canguro\",\r\n    \"aniosExperiencia\": 2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
