@@ -7,50 +7,48 @@ import { OfertaEntity } from '../oferta/oferta.entity';
 import { ReseniaEntity } from '../resenia/resenia.entity';
 
 export class UsuarioSeguroDto {
+  @Expose()
+  cedula: string;
 
-    @Expose()
-    cedula: string;
+  @Expose()
+  nombre: string;
 
-    @Expose()
-    nombre: string;
+  @Expose()
+  foto: string;
 
-    @Expose()
-    foto: string;
+  @Expose()
+  correoElectronico: string;
 
-    @Expose()
-    correoElectronico: string;
+  @Expose()
+  direccion: string;
 
-    @Expose()
-    direccion: string;
+  @Expose()
+  celular: string;
 
-    @Expose()
-    celular: string;
+  @Expose()
+  tipoUsuario: string;
 
-    @Expose()
-    tipoUsuario: string;
+  @Expose()
+  aniosExperiencia: number;
 
-    @Expose()
-    aniosExperiencia: number;
-    
-    @Expose()
-    necesidades: NecesidadEntity[];
+  @Expose()
+  necesidades: NecesidadEntity[];
 
-    @Expose()
-    especialidades: EspecialidadEntity[];
-    
-    @Expose()
-    reseniasRecibidas: ReseniaEntity[];
+  @Expose()
+  especialidades: EspecialidadEntity[];
 
-    @Expose()
-    reseniasEscritas: ReseniaEntity[];
+  @Expose()
+  reseniasRecibidas: ReseniaEntity[];
 
-    @Expose()
-    antecedentes: AntecedenteEntity[];
+  @Expose()
+  reseniasEscritas: ReseniaEntity[];
 
-    @Expose()
-    contratos: ContratoEntity[];
+  @Expose()
+  antecedentes: AntecedenteEntity[];
 
-    @Expose()
-    ofertas: OfertaEntity[];
+  @Expose()
+  contratos: ContratoEntity[];
 
+  @Expose()
+  ofertas: OfertaEntity[];
 }
