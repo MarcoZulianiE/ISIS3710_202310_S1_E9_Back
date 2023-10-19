@@ -1,3 +1,6 @@
-# Enlaces
-  - [Jenkins](http://157.253.238.75:8080/jenkins-isis2603/)
-  - [Sonar](http://157.253.238.75:8080/sonar-isis2603/)
+# ISIS3710_202310_S1_E9_Back
+
+Back-end developed as part of the project for the course "Programación con Tecnologías Web" of the Universidad de los Andes.
+
+## Front-end
+The front-end repository for this project can be found in the next [link](https://github.com/poloivaz/ISIS3710_202310_S1_E9_Front).
